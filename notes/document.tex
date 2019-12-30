@@ -1,0 +1,267 @@
+\documentclass[UTF8,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{ctex}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx,epsfig,subfig}
+\usepackage{makeidx,hyperref}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage[linesnumbered,boxed]{algorithm2e}
+\usepackage{xcolor}
+
+
+\geometry{scale=0.8}
+
+\newtheorem{theorem}{定理}
+\newtheorem{example}{例}
+\newtheorem{remark}{注}
+
+\title{谱元法笔记}
+\author{flag}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{问题和离散}
+
+求解区域$\Omega = [0,1]^d$，维数$d = 1, 2, 3$。
+
+考虑源项问题
+\begin{eqnarray}
+- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = f(\mathbf{x}) \qquad \mathbf{x} \in \Omega \\
+\frac{\partial u}{\partial n}(\mathbf{x}) + a u(\mathbf{x}) = 0 \qquad \mathbf{x} \in \partial \Omega
+\end{eqnarray}
+和特征值问题
+\begin{eqnarray}
+- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = \lambda u(\mathbf{x}) \qquad \mathbf{x} \in \Omega \\
+\frac{\partial u}{\partial n}(\mathbf{x}) + a u(\mathbf{x}) = 0 \qquad \mathbf{x} \in \partial \Omega
+\end{eqnarray}
+
+一维的情况时，区域$\Omega=[0,1]$被均匀分成$M$个方格$\Omega^{(m)}$($m = 0, 1, \cdots, M-1$)，二维时，$V(x)$区域$\Omega=[0,1] \times [0,1]$被均匀分成$M_1 \times M_2$个方格$\Omega^{(m_1, m_2)}$($m_i = 0, 1, \cdots, M_i-1$)。在每个方格上$V(\mathbf{x})$是分片常数，而且大于0。
+
+源项问题对应变分形式
+\begin{equation}
+\text{find} \ u \in H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) + (a u, v)_{\partial\Omega} = (f, v) \qquad \forall v \in  H^1(\Omega)
+\end{equation}
+特征值问题对应变分形式
+\begin{equation}
+\text{find} \ \lambda, u \in \mathbb{C} \times H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) + (a u, v)_{\partial\Omega} = \lambda (u, v) \qquad \forall v \in  H^1(\Omega)
+\end{equation}
+其中
+$$ (u, v) = \int_\Omega u(x) v(x) \ dx \qquad (u, v)_{\partial\Omega} = \int_{\partial\Omega} u(x) v(x) \ dx $$
+
+区域被分成的方格就是天然的剖分。选取$V_N$是分片$N$次多项式，而且整体连续的函数空间。
+
+源项问题离散形式为
+\begin{equation}
+\text{find} \ u_N \in V_N \quad (\nabla u_N, \nabla v_N) + (V u_N, v_N) + (a u_N, v_N)_{\partial\Omega} = (f, v_N) \qquad \forall v_N \in V_N
+\end{equation}
+特征值问题离散形式为
+\begin{equation}
+\text{find} \ \lambda_N, u_N \in \mathbb{C} \times V_N \quad (\nabla u_N, \nabla v_N) + (V u_N, v_N) + (a u_N, v_N)_{\partial\Omega} = \lambda_N (u_N, v_N) \qquad \forall v_N \in V_N
+\end{equation}
+
+离散问题可以写成矩阵形式
+\begin{equation}
+A U = F \qquad \text{and} \qquad A U = \lambda B u
+\end{equation}
+其中矩阵元素为
+$$ A_{i,j} = (\nabla \phi_i, \nabla \phi_j) + (V \phi_i, \phi_j) + (a \phi_i, \phi_j)_{\partial\Omega} $$
+$$ B_{i,j} = (\phi_i, \phi_j) \qquad F_i = (f, \phi_i) $$
+$\phi_i(x)$是有限维空间$V_N$的一组基，$U_i$是数值解$u_N$在这组基下的系数。
+
+内积中的积分可以表示为
+$$ (u, v) = \sum_{m=0}^{M} \int_{\Omega_m} u(x) v(x) \ dx $$
+边界上的内积也类似。所以只需要求出单元上的矩阵$A^{(m)},B^{(m)},F^{(m)}$然后按照一定规则拼合起来，就可以得到全局的矩阵。
+
+\section{单元基函数}
+
+\subsection{一维的情况}
+
+一维的参考单元$\hat{\Omega} = [-1,1]$，选取参考单元上的一组基函数为
+\begin{equation}
+\phi_k(x) = \left\{ \begin{array}{ll}
+(1-x)/2 = (L_0(x) - L_1(x))/2 & k = 0 \\
+(L_{k+1}(x) - L_{k-1}(x)) / \sqrt{4k+2} & 1 \leq k \leq N-1 \\
+(1+x)/2 = (L_0(x) + L_1(x))/2 & k = N \\
+\end{array}  \right.
+\end{equation}
+共$N+1$个。其中$L(x)$是勒让德多项式。
+
+近似解就是由这组基张成的函数
+$$ u_N(x) = U_0 \phi_0(x) + U_1 \phi_1(x) + \cdots + U_N \phi_N(x) $$
+此时$\phi_0$的系数就是函数在左端点的函数值，$\phi_N$的系数就是函数在右端点的函数值。在很多块区域拼起来时，这两个就是边界上的自由度。
+
+根据公式$(2k+1) L_k(x) = L_{k+1}'(x) - L_{k-1}'(x)$得到
+\begin{equation}
+\phi_k'(x) = \left\{ \begin{array}{ll}
+-\frac{1}{2} & k = 0 \\
+\frac{\sqrt{4k+2}}{2} L_{k}(x) & 1 \leq k \leq N-1 \\
+\frac{1}{2} & k = N \\
+\end{array} \right.
+\end{equation}
+
+所以在参考单元上，$(\phi_j'(x), \phi_k'(x))$形成的矩阵是
+\begin{equation}
+\hat{A} = \left[ \begin{matrix}
+\frac12 &  &  &  & -\frac12 \\ 
+& 1 &  &  &  \\ 
+&  & \ddots &  &  \\ 
+&  &  & 1 &  \\ 
+-\frac12 &  &  &  & \frac12
+\end{matrix}  \right]
+\end{equation}
+共$3N+5$个非零元，矩阵编号从0开始。矩阵中只有第一行和最后一行，第一列和最后一列特殊。\\
+其它满足
+$$ (\phi_k', \phi_k') = 1 \quad \text{其中} \quad (k = 1, 2, \cdots, N-1) $$
+
+同样得到，在参考单元上，$(\phi_j(x), \phi_k(x))$形成的矩阵是
+\begin{equation}
+\hat{B} = \left[ \begin{array}{cccccccc}
+\frac23 & -\frac{1}{\sqrt{6}} & \frac{1}{3\sqrt{10}} &  &  &  &  & \frac13 \\ 
+-\frac{1}{\sqrt{6}} & \frac25 & 0 & -\frac{1}{5\sqrt{21}} &  &  &  & -\frac{1}{\sqrt{6}} \\ 
+\frac{1}{3\sqrt{10}} & 0 & \frac{2}{21} & 0 & \ddots &  &  & -\frac{1}{3\sqrt{10}} \\ 
+& -\frac{1}{5\sqrt{21}} & 0 & \ddots & \ddots & -\frac{1}{(2k+3)\sqrt{(2k+5)(2k+1)}} &  &  \\ 
+&  & \ddots & \ddots & \ddots & 0 & \ddots &  \\ 
+&  &  & -\frac{1}{(2k+3)\sqrt{(2k+5)(2k+1)}} & 0 & \frac{1}{(2k+3)(2k-1)} & \ddots &  \\ 
+&  &  &  & \ddots & \ddots & \ddots &  \\ 
+\frac13 & -\frac{1}{\sqrt{6}} & -\frac{1}{3\sqrt{10}} &  &  &  &  & \frac23
+\end{array}  \right]
+\end{equation}
+共$3N+5$个非零元，矩阵编号从0开始。矩阵中只有第一行和最后一行，第一列和最后一列特殊。\\
+其它满足
+$$ (\phi_k, \phi_k) = \frac{2}{(2k+3)(2k-1)} \quad \text{其中} \quad (k = 1, 2, \cdots, N-1) $$
+和
+$$ (\phi_{k}, \phi_{k+2}) = (\phi_{k+2}, \phi_{k}) = -\frac{1}{(2k+3)\sqrt{(2k+5)(2k+1)}} \quad \text{其中} \quad (k = 1, 2, \cdots, N-3) $$
+
+一维的情况下，边界上的内积就是$(\phi_i, \phi_j)_{\partial\hat{\Omega}} = \phi_i(0) \phi_j(0) + \phi_i(1) \phi_j(1)$。对应只有两个矩阵元素不为0，矩阵为
+\begin{equation}
+\hat{H} = \left[ \begin{array}{ccc}
+1 & 0 &  \\ 
+0 & \ddots & 0 \\ 
+& 0 & 1
+\end{array} \right]
+\end{equation}
+
+一维的情况下，对$f(x) = 1$的情况，由于高次的勒让德多项式都和零次多项式正交，所以
+\begin{equation}
+(1, \phi_j) = \left\{ \begin{array}{ll}
+1 & j = 0 \ \text{or} \ j = N\\
+0 & \text{ortherwise} \\
+\end{array}  \right.
+\end{equation}
+对应向量为
+\begin{equation}
+\hat{F} = \left[ \begin{array}{c}
+1 \\
+-\frac{2}{\sqrt{6}} \\
+0 \\
+\vdots \\
+1 \\
+\end{array} \right]
+\end{equation}
+
+此时，对于数值解
+$$ u_N(x) = \sum_{n = 0}^{N} U_{n} \phi_n(x) $$
+对应的系数向量$U = (U_0, U_1, \cdots, U_N)$，双线性型表示为
+$$ (\nabla u_N, \nabla v_N) = U^T \hat{A} V \qquad (u_N, v_N) = U^T \hat{B} V $$
+$$ (u_N, v_N)_{\partial\hat{\Omega}} = U^T \hat{H} V \qquad  (1, v_N) = \hat{F}^T V $$
+
+如果不对区域分割，直接在参考单元上求解，就相当于直接使用谱方法求解。下面我们考虑如何把空间分割，并把不同的区域拼合起来。
+
+对于长度为$h_m$的一般单元$\Omega_m = [x_m, x_{m+1}]$，设$\chi_m$是参考单元到当前单元的仿射变换，就得到当前单元上的基函数为$\{\phi^{(m)}_k(x) = \phi_{k}(\chi_m^{-1}(x))\}$
+
+因为一维的变换就是区间伸缩和平移，所以
+$$ \chi_m(x) = h_m/2 x + b_m \qquad \chi_m'(x) = h_m/2 $$
+
+当前单元上的内积为
+$$ (\phi^{(m)}_i, \phi^{(m)}_j) = \int_{x_m}^{x_{m+1}} \phi_{i}(\chi_m^{-1}(x)) \phi_{j}(\chi_m^{-1}(x)) \ dx $$
+
+积分变换的过程省略，在小区间上的矩阵是
+$$ A^{(m)} = \frac{2}{h_m} \hat{A} \qquad B^{(m)} = \frac{h_m}{2} \hat{B} \qquad F^{(m)} = \frac{h_m}{2} \hat{F} $$
+边界不用管，拼合之后的边界就变了。
+
+下面要把小区间上的自由度对应到整体的自由度，在这个过程中要保证整体的函数是连续的，就是$\Omega_m$上的自由度$U^{(m)}_N$和$\Omega_{m+1}$上的自由度$U^{(m+1)}_0$必须是同一个。这样，局部编号$U^{(m)}_n$的自由度对应总体自由度为$m N + n$（所有的编号都是从0开始的）。
+
+对于边界，只要考虑$\Omega_0$上的$U^{(0)}_0$和$\Omega_{M-1}$上的自由度$U^{(M-1)}_N$，在最后的矩阵里把它们分别加上a就可以了。就是相当于加上
+\begin{equation}
+\tilde{H} = \left[ \begin{array}{ccc}
+1 & 0 &  \\ 
+0 & \ddots & 0 \\ 
+& 0 & 1
+\end{array} \right]_{(MN+1) \times (MN+1)}
+\end{equation}
+
+\subsection{二维的情况}
+
+二维的参考单元是$\hat{\Omega} = [-1,1] \times [-1,1]$，二维的基函数是张量形式的
+$$ u_N(x,y) = \sum_{n_x,n_y = 0}^{N_x, N_y} U_{n_x,n_y} \phi_{n_x}(x) \phi_{n_y}(y) $$
+
+在参考单元上$(\nabla \phi_i(x) \phi_j(y), \nabla \phi_k(x) \phi_l(y))$就是
+\begin{align*}
+& \int_{[-1,1] \times [-1,1]} \phi_i'(x) \phi_j(y) \phi_k'(x) \phi_l(y) \ dx dy + \int_{[-1,1] \times [-1,1]} \phi_i(x) \phi_j'(y) \phi_k(x) \phi_l'(y) \ dx dy \\
+= & \int_{-1}^{1} \phi_i'(x) \phi_k'(x) \ dx \int_{-1}^{1} \phi_j(y) \phi_l(y) \ dy + \int_{-1}^{1} \phi_i(x) \phi_k(x) \ dx \int_{-1}^{1} \phi_j'(y) \phi_l'(y) \ dy \\
+= & \hat{A}_{i,k} \hat{B}_{j,l} + \hat{B}_{i,k} \hat{A}_{j,l}
+\end{align*}
+
+在参考单元上$(\phi_i(x) \phi_j(y), \phi_k(x) \phi_l(y))$就是
+\begin{align*}
+& \int_{[-1,1] \times [-1,1]} \phi_i(x) \phi_j(y) \phi_k(x) \phi_l(y) \ dx dy \\
+= & \int_{-1}^{1} \phi_i(x) \phi_k(x) \ dx \int_{-1}^{1} \phi_j(y) \phi_l(y) \ dy \\
+= & \hat{B}_{i,k} \hat{B}_{j,l}
+\end{align*}
+
+在参考单元上$(\phi_i(x) \phi_j(y), \phi_k(x) \phi_l(y))_{\partial \hat{\Omega}}$就是
+\begin{align*}
+& \int_{-1}^{1} \phi_i(1) \phi_j(y) \phi_k(1) \phi_l(y) \ dy + \int_{-1}^{1} \phi_i(-1) \phi_j(y) \phi_k(-1) \phi_l(y) \ dy \\
++ & \int_{-1}^{1} \phi_i(x) \phi_j(1) \phi_k(x) \phi_l(1) \ dx + \int_{-1}^{1} \phi_i(x) \phi_j(-1) \phi_k(x) \phi_l(-1) \ dx \\
+= & (\phi_j(-1) \phi_l(-1) + \phi_j(1) \phi_l(1)) \int_{-1}^{1} \phi_i(x) \phi_k(x) \ dx \\
++ & (\phi_i(-1) \phi_k(-1) + \phi_i(1) \phi_k(1)) \int_{-1}^{1} \phi_j(y) \phi_l(y) \ dy \\
+= & \hat{H}_{i,k} \hat{B}_{j,l} + \hat{B}_{i,k} \hat{H}_{j,l}
+\end{align*}
+
+在参考单元上$(1, \phi_i(x) \phi_j(y))$就是
+\begin{align*}
+& \int_{[-1,1] \times [-1,1]} \phi_i(x) \phi_j(y) \ dx dy = \int_{-1}^{1} \phi_i(x) \ dx \int_{-1}^{1} \phi_j(y) \ dy = \hat{F}_{i} \hat{F}_{j}
+\end{align*}
+
+此时，对于
+$$ u_N(x,y) = \sum_{i,j = 0}^{N_x, N_y} U_{i,j} \phi_{i}(x) \phi_{j}(y) $$
+双线性型表示为
+$$ (\nabla u_N, \nabla v_N) = \sum_{i,j,k,l} U_{i,j} (\hat{A}_{i,k} \hat{B}_{j,l} + \hat{B}_{i,k} \hat{A}_{j,l}) V_{k,l} $$
+$$ (u_N, v_N) = \sum_{i,j,k,l} U_{i,j} \hat{B}_{i,k} \hat{B}_{j,l} V_{k,l} $$
+$$ (u_N, v_N)_{\partial\hat{\Omega}} = \sum_{i,j,k,l} U_{i,j} (\hat{H}_{i,k} \hat{B}_{j,l} + \hat{B}_{i,k} \hat{H}_{j,l}) V_{k,l} $$
+$$ (1, v_N) = \sum_{i,j} \hat{F}_i V_{i,j} \hat{F}_j $$
+
+对应的系数向量拉直成一维的
+$$U = (U_{0,0}, U_{0,1}, \cdots, U_{0,N}, U_{1,0}, U_{1,1}, \cdots, U_{N,N})$$
+此时$U_{i,j}$对应的一维下标是$i(N+1)+j$。双线性型表示为
+$$ (\nabla u_N, \nabla v_N) = U^T (\hat{A} \otimes \hat{B} + \hat{B} \otimes \hat{A}) V \qquad (u_N, v_N) = U^T (\hat{B} \otimes \hat{B}) V $$
+$$ (u_N, v_N)_{\partial\hat{\Omega}} = U^T (\hat{B} \otimes \hat{H} + \hat{H} \otimes \hat{B}) V \qquad (1, v_N) = (\hat{F} \otimes \hat{F})^T V $$
+
+下面我们考虑如何把空间分割，并把不同的区域拼合起来。
+
+对于长度为$h_{x,m_x} \times h_{y,m_y}$的一般单元$\Omega_{m_x, m_y} = [x_{m_x}, x_{m_x+1}] \times [y_{m_y}, y_{m_y+1}]$，设$\chi$是参考单元到当前单元的仿射变换，就得到当前单元上的基函数为$\{\phi_{n_x}(\chi^{-1}(x,y)) \phi_{n_y}(\chi^{-1}(x,y))\}$。
+
+因为只考虑矩形分割，所以二维的仿射变换也可以看成分别在每个维度上伸缩和平移。在小区间上的矩阵是
+$$ A^{(m)} = \frac{h_{x,i} h_{y,j}}{4} \hat{A} \qquad B^{(m)} = \frac{4}{h_{x,i} h_{y,j}} \hat{B} \qquad F^{(m)} = \frac{h_m}{2} \hat{F} $$
+
+下面要把小区间上的自由度对应到整体的自由度，在这个过程中要保证整体的函数是连续的，就是$\Omega_m$上的自由度$U^{(m)}_N$和$\Omega_{m+1}$上的自由度$U^{(m+1)}_0$必须是同一个。这样，局部编号$U^{(m)}_n$的自由度对应总体自由度为：
+\begin{equation}
+\left\{  \begin{array}{ll}
+m N & k = 0 \\
+(m+1) N & k = 1 \\
+m N + n - 1 & 2 \leq k \leq N \\
+\end{array}  \right.
+\end{equation}
+所有的编号都是从0开始的。
+
+\subsection{三维的情况}
+
+三维的情况不仅要考虑如何在面上拼接，还要考虑如何在棱上拼接。这个太复杂，先不考虑。
+
+
+\end{document}
