@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 # author: flag
 
+"""
+solve source problem
+- u''(x) + V(x) u(x) = 1 for x in [0,1]
+u'(x) + h0 u(x) = g0 for x=0 or x=1
+V(x) is piecewise constant, generated randomly
+"""
+
 import numpy as np
 import scipy as sp
 import scipy.linalg as spl
@@ -12,20 +19,13 @@ from scipy.special import legendre
 
 import matplotlib.pyplot as plt
 
-def phi(n, x):
-    if n == 0:
-        return (1-x)/2
-    elif n == N:
-        return (1+x)/2
-    else:
-        return (legendre(n+1)(x) - legendre(n-1)(x)) / np.sqrt(4*n+2)
-
 N = 5
 M = 100
 hm = 1/M
 
 Vmax = 1000
-a = 0
+h0 = 0
+g0 = 0
 
 np.random.seed(0)
 #V = Vmax * np.ones(shape=(M,))
@@ -37,32 +37,47 @@ plt.bar(x=np.arange(0,1,1/M)+1/(1*M), height=V, width=1/M)
 def mmp(m, n):
     return m*N + n
 
-A_hat = np.zeros(shape=(N+1, N+1))
-A_hat[0,0] = A_hat[N,N] = 1/2
-A_hat[N,0] = A_hat[0,N] = -1/2
-for k in range(1,N):
-    A_hat[k,k] = 1
+def phi(n, x):
+    if n == 0:
+        return (1-x)/2
+    elif n == N:
+        return (1+x)/2
+    else:
+        return (legendre(n+1)(x) - legendre(n-1)(x)) / np.sqrt(4*n+2)
 
-B_hat = np.zeros(shape=(N+1, N+1))
-B_hat[0,0] = B_hat[N,N] = 2/3
-B_hat[0,1] = B_hat[1,0] = -1/np.sqrt(6)
-B_hat[0,2] = B_hat[2,0] = 1/np.sqrt(90)
-B_hat[0,N] = B_hat[N,0] = 1/3
-B_hat[1,N] = B_hat[N,1] = -1/np.sqrt(6)
-B_hat[2,N] = B_hat[N,2] = -1/np.sqrt(90)
+rA = [0, N, 0, N]
+cA = [0, N, N, 0]
+vA = [1/2, 1/2, -1/2, -1/2]
 for k in range(1,N):
-    B_hat[k,k] = 2/(2*k-1)/(2*k+3)
+    rA.append(k)
+    cA.append(k)
+    vA.append(1)
+A_hat = sps.coo_matrix((vA,(rA,cA)), shape=(N+1,N+1))
+
+rB = [0, N, 0, 1, 0, 2, 0, N, 1, N, 2, N]
+cB = [0, N, 1, 0, 2, 0, N, 0, N, 1, N, 2]
+vB = [2/3, 2/3, -1/np.sqrt(6), -1/np.sqrt(6), 1/np.sqrt(90), 1/np.sqrt(90), \
+      1/3, 1/3, -1/np.sqrt(6), -1/np.sqrt(6), -1/np.sqrt(90), -1/np.sqrt(90) ]
+for k in range(1,N):
+    rB.append(k)
+    cB.append(k)
+    vB.append(2/(2*k-1)/(2*k+3))
 for k in range(1,N-2):
-    B_hat[k+2,k] = -1/(2*k+3)/np.sqrt(2*k+1)/np.sqrt(2*k+5)
-    B_hat[k,k+2] = -1/(2*k+3)/np.sqrt(2*k+1)/np.sqrt(2*k+5)
+    rB.append(k)
+    cB.append(k+2)
+    vB.append(-1/(2*k+3)/np.sqrt(2*k+1)/np.sqrt(2*k+5))
+    rB.append(k+2)
+    cB.append(k)
+    vB.append(-1/(2*k+3)/np.sqrt(2*k+1)/np.sqrt(2*k+5))
+B_hat = sps.coo_matrix((vB,(rB,cB)), shape=(N+1,N+1))
 
-H_hat = np.zeros(shape=(N+1, N+1))
-H_hat[0,0] = 1
-H_hat[N,N] = 1
+H_hat0 = sps.coo_matrix(([1],([0],[0])), shape=(N+1,N+1))
+H_hat1 = sps.coo_matrix(([1],([N],[N])), shape=(N+1,N+1))
 
-F_hat = np.zeros(shape=(N+1,1))
-F_hat[0,0] = F_hat[N,0] = 1
-F_hat[1,0] = -2/np.sqrt(6)
+F_hat = sps.coo_matrix(([1,1,-2/np.sqrt(6)],([0,N,1],[0,0,0])), shape=(N+1,1))
+
+G_hat0 = sps.coo_matrix(([1],([0],[0])), shape=(N+1,1))
+G_hat1 = sps.coo_matrix(([1],([N],[0])), shape=(N+1,1))
 
 A = np.zeros(shape=(M*N+1, M*N+1))
 F = np.zeros(shape=(M*N+1,))
@@ -83,16 +98,18 @@ for m in range(M):
         i = mmp(m, Fe.row[k])
         F[i] += Fe.data[k]
 
-A[0,0] += a
-A[-1,-1] += a
+A[0,0] += h0
+A[-1,-1] += h0
+F[0] += g0
+F[-1] += g0
 
 A = sps.csc_matrix(A)
 U = spsl.spsolve(A, F)
 
-x = np.linspace(0, 1, 20*M)
+x = np.linspace(0, 1, 20*M +1)[:-1]
 xx = np.linspace(-1, 1, 20 +1)[:-1]
 y = np.zeros_like(x)
-UU = U.real
+UU = U
 for m in range(M):
     DOF = UU[m*N: (m+1)*N+1]
     for ii in range(N+1):

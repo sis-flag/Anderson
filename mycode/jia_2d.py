@@ -2,13 +2,6 @@
 # -*- coding: utf-8 -*-
 # author: flag
 
-"""
-solve source problem
-- laplace u(x) + V(x) u(x) = lam u(x) for x in [0,1] x [0,1]
-u'(x) + h0 u(x) = 0 for x on boundary
-V(x) is piecewise constant, generated randomly
-"""
-
 import numpy as np
 import scipy as sp
 import scipy.linalg as spl
@@ -20,24 +13,26 @@ from scipy.special import legendre
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+K = 1000
+p = 0.5
+h = 0
+M = 20
+beta = 1
+
 N = 4
-M = 10
 hm = 1/M
 
-Vmax = 0
-h0 = 1
-
-
 np.random.seed(0)
-V = Vmax * np.ones(shape=(M,M))
-#V = Vmax * np.random.rand(M,M)
-#V = Vmax * np.random.randint(2, size=(M,M))
+V = np.random.rand(M,M)
+V[V<=p] = 0
+V[V>p] = 1
+KV = K * V
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 x = np.arange(0,1,1/M)
 X, Y = np.meshgrid(x, x)
-ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, V.ravel())
+ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, KV.ravel())
 plt.show()
 
 def mmp(m1, m2, n):
@@ -86,14 +81,14 @@ F_hat = sps.coo_matrix(([1,1,-2/np.sqrt(6)],([0,N,1],[0,0,0])), shape=(N+1,1))
 G_hat0 = sps.coo_matrix(([1],([0],[0])), shape=(N+1,1))
 G_hat1 = sps.coo_matrix(([1],([N],[0])), shape=(N+1,1))
 
-    
+
 A = np.zeros(shape=((M*N+1)**2, (M*N+1)**2))
 B = np.zeros(shape=((M*N+1)**2, (M*N+1)**2))
 
 for m1 in range(M):
     for m2 in range(M):
         Ae = sps.kron(A_hat, B_hat) + sps.kron(B_hat, A_hat) \
-           + hm*hm/4 * V[m1,m2] * sps.kron(B_hat, B_hat)
+           + hm*hm/4 * KV[m1,m2] * sps.kron(B_hat, B_hat)
         Be = hm*hm/4 * sps.kron(B_hat, B_hat)
         
         Ae = sps.coo_matrix(Ae)
@@ -112,7 +107,7 @@ for m1 in range(M):
 # lower boundary
 m1 = 0
 for m2 in range(M):
-    Ae = hm/2 * h0 * sps.kron(H_hat0, B_hat)
+    Ae = hm/2 * h * sps.kron(H_hat0, B_hat)
     Ae = sps.coo_matrix(Ae)
     for k in range(Ae.nnz):
         r = mmp(m1, m2, Ae.row[k])
@@ -122,7 +117,7 @@ for m2 in range(M):
 # upper boundary
 m1 = M-1
 for m2 in range(M):
-    Ae = hm/2 * h0 * sps.kron(H_hat1, B_hat)
+    Ae = hm/2 * h * sps.kron(H_hat1, B_hat)
     Ae = sps.coo_matrix(Ae)
     for k in range(Ae.nnz):
         r = mmp(m1, m2, Ae.row[k])
@@ -132,7 +127,7 @@ for m2 in range(M):
 # left boundary
 m2 = 0
 for m1 in range(M):
-    Ae = hm/2 * h0 * sps.kron(B_hat, H_hat0)
+    Ae = hm/2 * h * sps.kron(B_hat, H_hat0)
     Ae = sps.coo_matrix(Ae)
     for k in range(Ae.nnz):
         r = mmp(m1, m2, Ae.row[k])
@@ -142,7 +137,7 @@ for m1 in range(M):
 # right boundary
 m2 = M-1
 for m1 in range(M):
-    Ae = hm/2 * h0 * sps.kron(B_hat, H_hat1)    
+    Ae = hm/2 * h * sps.kron(B_hat, H_hat1)    
     Ae = sps.coo_matrix(Ae)
     for k in range(Ae.nnz):
         r = mmp(m1, m2, Ae.row[k])
@@ -151,9 +146,105 @@ for m1 in range(M):
 
 A = sps.csc_matrix(A)
 B = sps.csc_matrix(B)
-lam, U = spsl.eigsh(A=A, M=B, k=6, sigma=0)
+lam, U_eig = spsl.eigsh(A=A, M=B, k=6, sigma=0)
+
+
+A = np.zeros(shape=((M*N+1)**2, (M*N+1)**2))
+F = np.zeros(shape=((M*N+1)**2, 1))
+
+for m1 in range(M):
+    for m2 in range(M):
+        Ae = sps.kron(A_hat, B_hat) + sps.kron(B_hat, A_hat) \
+           + hm*hm/4 * KV[m1,m2] * sps.kron(B_hat, B_hat)
+        Fe = hm*hm/4 * sps.kron(F_hat, F_hat)
+        
+        Ae = sps.coo_matrix(Ae)
+        Fe = sps.coo_matrix(Fe)
+        
+        for k in range(Ae.nnz):
+            r = mmp(m1, m2, Ae.row[k])
+            c = mmp(m1, m2, Ae.col[k])
+            A[r,c] += Ae.data[k]
+        
+        for k in range(Fe.nnz):
+            i = mmp(m1, m2, Fe.row[k])
+            F[i] += Fe.data[k]
+            
+
+# lower boundary
+m1 = 0
+for m2 in range(M):
+    Fe = hm/2 * h/beta * sps.kron(G_hat0, F_hat)
+    Fe = sps.coo_matrix(Fe)
+    for k in range(Fe.nnz):
+        i = mmp(m1, m2, Fe.row[k])
+        F[i] += Fe.data[k]
+        
+# upper boundary
+m1 = M-1
+for m2 in range(M):
+    Fe = hm/2 * h/beta * sps.kron(G_hat1, F_hat)
+    Fe = sps.coo_matrix(Fe)
+    for k in range(Fe.nnz):
+        i = mmp(m1, m2, Fe.row[k])
+        F[i] += Fe.data[k]
+        
+# left boundary
+m2 = 0
+for m1 in range(M):
+    Fe = hm/2 * h/beta * sps.kron(F_hat, G_hat0)
+    Fe = sps.coo_matrix(Fe)
+    for k in range(Fe.nnz):
+        i = mmp(m1, m2, Fe.row[k])
+        F[i] += Fe.data[k]
+        
+# right boundary
+m2 = M-1
+for m1 in range(M):
+    Fe = hm/2 * h/beta * sps.kron(F_hat, G_hat1)
+    Fe = sps.coo_matrix(Fe)
+    for k in range(Fe.nnz):
+        i = mmp(m1, m2, Fe.row[k])
+        F[i] += Fe.data[k]
+
+
+A = sps.csc_matrix(A)
+U_solve = spsl.spsolve(A, F)
+
+
+def normalize(y):
+    if np.max(y) < -np.min(y):
+        return y / np.min(y)
+    else:
+        return y / np.max(y)
+    
 
 print(lam)
+
+x = np.linspace(0, 1, 20*M +1)[:-1]
+x1, x2 = np.meshgrid(x, x)
+xx = np.linspace(-1, 1, 20+1)[:-1]
+xx1, xx2 = np.meshgrid(xx, xx)
+y0 = np.zeros_like(x1)
+UU = U_solve.reshape((M*N+1, M*N+1)).real
+for m1 in range(M):
+    for m2 in range(M):
+        DOF = UU[m1*N: (m1+1)*N+1, m2*N: (m2+1)*N+1]
+        for ii in range(N+1):
+            for jj in range(N+1):
+                y0[m2*20:(m2+1)*20,m1*20:(m1+1)*20] += \
+                    DOF[ii,jj] * phi(ii, xx1) * phi(jj, xx2)
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.plot_surface(x1, x2, y0, cmap='rainbow')
+plt.show()
+
+fig = plt.figure()
+ax = fig.gca()
+cax = ax.pcolor(x1, x2, y0, cmap='rainbow')
+fig.colorbar(cax)
+plt.show()
 
 x = np.linspace(0, 1, 20*M +1)[:-1]
 x1, x2 = np.meshgrid(x, x)
@@ -161,7 +252,7 @@ xx = np.linspace(-1, 1, 20 +1)[:-1]
 xx1, xx2 = np.meshgrid(xx, xx)
 for ind in range(6):    
     y = np.zeros_like(x1)
-    UU = U[:,ind].reshape((M*N+1, M*N+1))
+    UU = U_eig[:,ind].reshape((M*N+1, M*N+1))
     for m1 in range(M):
         for m2 in range(M):
             DOF = UU[m1*N: (m1+1)*N+1, m2*N: (m2+1)*N+1]
@@ -169,9 +260,15 @@ for ind in range(6):
                 for jj in range(N+1):
                     y[m2*20:(m2+1)*20,m1*20:(m1+1)*20] += \
                         DOF[ii,jj] * phi(ii, xx1) * phi(jj, xx2)
-
+                        
     fig = plt.figure()
     ax = fig.gca(projection='3d')
-    ax.plot_surface(x1, x2, y, cmap='rainbow')
+    ax.plot_surface(x1, x2, normalize(y)/(lam[ind]+beta+np.min(y0)), cmap='rainbow')
     plt.show()
-    
+
+    fig = plt.figure()
+    ax = fig.gca()
+    cax = ax.pcolor(x1, x2, normalize(y)/(lam[ind]+beta+np.min(y0)), \
+                    cmap='rainbow', vmin=-0.003)
+    fig.colorbar(cax)
+    plt.show()

@@ -1,12 +1,6 @@
 # !python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 # author: flag
-
-"""
-solve source problem
-- u''(x) + V u(x) = 1 for x in [-1,1]
-u'(x) + h0 u(x) = g0 for x=-1 or x=1
-"""
 
 import numpy as np
 import scipy as sp
@@ -18,10 +12,25 @@ from scipy.special import legendre
 
 import matplotlib.pyplot as plt
 
-V = 0
-h0 = 1
-g0 = -1.5
-N = 10
+
+K = 10000
+p = 0.5
+h = 0
+
+N = 5
+M = 100
+hm = 1/M
+
+np.random.seed(0)
+V = np.random.rand(M)
+V[V<=p] = 0
+V[V>p] = 1
+KV = K * V
+
+plt.bar(x=np.arange(0,1,1/M)+1/(1*M), height=KV, width=1/M)
+
+def mmp(m, n):
+    return m*N + n
 
 def phi(n, x):
     if n == 0:
@@ -64,18 +73,47 @@ F_hat = sps.coo_matrix(([1,1,-2/np.sqrt(6)],([0,N,1],[0,0,0])), shape=(N+1,1))
 
 G_hat0 = sps.coo_matrix(([1],([0],[0])), shape=(N+1,1))
 G_hat1 = sps.coo_matrix(([1],([N],[0])), shape=(N+1,1))
+    
+A = np.zeros(shape=(M*N+1, M*N+1))
+B = np.zeros(shape=(M*N+1, M*N+1))
 
+for m in range(M):
+    Ae = 2/hm * A_hat + hm/2 * KV[m] * B_hat
+    Be = hm/2 * B_hat
+    
+    Ae = sps.coo_matrix(Ae)
+    Be = sps.coo_matrix(Be)
+    
+    for k in range(Ae.nnz):
+        r = mmp(m, Ae.row[k])
+        c = mmp(m, Ae.col[k])
+        A[r,c] += Ae.data[k]
+    
+    for k in range(Be.nnz):
+        r = mmp(m, Be.row[k])
+        c = mmp(m, Be.col[k])
+        B[r,c] += Be.data[k]
 
-Ae = A_hat + V*B_hat + h0*(H_hat0 + H_hat1)
-Fe = F_hat + g0*(G_hat0 + G_hat1)
+A[0,0] += h
+A[-1,-1] += h
 
-Ae = sps.csc_matrix(Ae)
-U = spsl.spsolve(Ae, Fe)
+A = sps.csc_matrix(A)
+B = sps.csc_matrix(B)
+lam, U = spsl.eigsh(A=A, M=B, k=4, sigma=0)
 
-x = np.linspace(-1,1,100)
-y = 0
-for ii in range(N+1):
-    y += U[ii] * phi(ii, x)
-plt.figure()
-plt.plot(x, y)
-plt.show()
+print(lam)
+
+x = np.linspace(0, 1, 20*M +1)[:-1]
+xx = np.linspace(-1, 1, 20 +1)[:-1]
+for ind in range(4):
+    y = np.zeros_like(x)
+    UU = U[:,ind]
+    for m in range(M):
+        DOF = UU[m*N: (m+1)*N+1]
+        for ii in range(N+1):
+            y[m*20: (m+1)*20] += DOF[ii] * phi(ii, xx)
+
+    plt.figure()
+    plt.plot(x, y)
+    plt.show()
+    

@@ -2,13 +2,6 @@
 # -*- coding: utf-8 -*-
 # author: flag
 
-"""
-solve source problem
-- laplace u(x) + V(x) u(x) = 1 for x in [0,1] x [0,1]
-u'(x) + h0 u(x) = g0 for x on boundary
-V(x) is piecewise constant, generated randomly
-"""
-
 import numpy as np
 import scipy as sp
 import scipy.linalg as spl
@@ -20,24 +13,26 @@ from scipy.special import legendre
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-N = 5
+K = 1000
+p = 0.7
+h = 0
 M = 10
+beta = 1
+
+N = 4
 hm = 1/M
 
-Vmax = 0.0001
-h0 = 0
-g0 = -0.25
-
 np.random.seed(0)
-V = Vmax * np.ones(shape=(M,M))
-#V = Vmax * np.random.rand(M,M)
-#V = Vmax * np.random.randint(2, size=(M,M))
+V = np.random.rand(M,M)
+V[V<=p] = 0
+V[V>p] = 1
+KV = K * V
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 x = np.arange(0,1,1/M)
 X, Y = np.meshgrid(x, x)
-ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, V.ravel())
+ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, KV.ravel())
 plt.show()
 
 def mmp(m1, m2, n):
@@ -93,7 +88,7 @@ F = np.zeros(shape=((M*N+1)**2, 1))
 for m1 in range(M):
     for m2 in range(M):
         Ae = sps.kron(A_hat, B_hat) + sps.kron(B_hat, A_hat) \
-           + hm*hm/4 * V[m1,m2] * sps.kron(B_hat, B_hat)
+           + hm*hm/4 * KV[m1,m2] * sps.kron(B_hat, B_hat)
         Fe = hm*hm/4 * sps.kron(F_hat, F_hat)
         
         Ae = sps.coo_matrix(Ae)
@@ -112,17 +107,8 @@ for m1 in range(M):
 # lower boundary
 m1 = 0
 for m2 in range(M):
-    Ae = hm/2 * h0 * sps.kron(H_hat0, B_hat)
-    Fe = hm/2 * g0 * sps.kron(G_hat0, F_hat)
-    
-    Ae = sps.coo_matrix(Ae)
+    Fe = hm/2 * h/beta * sps.kron(G_hat0, F_hat)
     Fe = sps.coo_matrix(Fe)
-    
-    for k in range(Ae.nnz):
-        r = mmp(m1, m2, Ae.row[k])
-        c = mmp(m1, m2, Ae.col[k])
-        A[r,c] += Ae.data[k]
-    
     for k in range(Fe.nnz):
         i = mmp(m1, m2, Fe.row[k])
         F[i] += Fe.data[k]
@@ -130,17 +116,8 @@ for m2 in range(M):
 # upper boundary
 m1 = M-1
 for m2 in range(M):
-    Ae = hm/2 * h0 * sps.kron(H_hat1, B_hat)
-    Fe = hm/2 * g0 * sps.kron(G_hat1, F_hat)
-    
-    Ae = sps.coo_matrix(Ae)
+    Fe = hm/2 * h/beta * sps.kron(G_hat1, F_hat)
     Fe = sps.coo_matrix(Fe)
-    
-    for k in range(Ae.nnz):
-        r = mmp(m1, m2, Ae.row[k])
-        c = mmp(m1, m2, Ae.col[k])
-        A[r,c] += Ae.data[k]
-    
     for k in range(Fe.nnz):
         i = mmp(m1, m2, Fe.row[k])
         F[i] += Fe.data[k]
@@ -148,17 +125,8 @@ for m2 in range(M):
 # left boundary
 m2 = 0
 for m1 in range(M):
-    Ae = hm/2 * h0 * sps.kron(B_hat, H_hat0)
-    Fe = hm/2 * g0 * sps.kron(F_hat, G_hat0)
-    
-    Ae = sps.coo_matrix(Ae)
+    Fe = hm/2 * h/beta * sps.kron(F_hat, G_hat0)
     Fe = sps.coo_matrix(Fe)
-    
-    for k in range(Ae.nnz):
-        r = mmp(m1, m2, Ae.row[k])
-        c = mmp(m1, m2, Ae.col[k])
-        A[r,c] += Ae.data[k]
-    
     for k in range(Fe.nnz):
         i = mmp(m1, m2, Fe.row[k])
         F[i] += Fe.data[k]
@@ -166,17 +134,8 @@ for m1 in range(M):
 # right boundary
 m2 = M-1
 for m1 in range(M):
-    Ae = hm/2 * h0 * sps.kron(B_hat, H_hat1)
-    Fe = hm/2 * g0 * sps.kron(F_hat, G_hat1)
-    
-    Ae = sps.coo_matrix(Ae)
+    Fe = hm/2 * h/beta * sps.kron(F_hat, G_hat1)
     Fe = sps.coo_matrix(Fe)
-    
-    for k in range(Ae.nnz):
-        r = mmp(m1, m2, Ae.row[k])
-        c = mmp(m1, m2, Ae.col[k])
-        A[r,c] += Ae.data[k]
-    
     for k in range(Fe.nnz):
         i = mmp(m1, m2, Fe.row[k])
         F[i] += Fe.data[k]
@@ -202,4 +161,10 @@ for m1 in range(M):
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax.plot_surface(x1, x2, y, cmap='rainbow')
+plt.show()
+
+fig = plt.figure()
+ax = fig.gca()
+cax = ax.pcolor(x1, x2, y, cmap='rainbow')
+fig.colorbar(cax)
 plt.show()

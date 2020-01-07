@@ -2,13 +2,6 @@
 # -*- coding: utf-8 -*-
 # author: flag
 
-"""
-solve source problem
-- u''(x) + V(x) u(x) = lam u(x) for x in [0,1]
-u'(x) + h0 u(x) = 0 for x=0 or x=1
-V(x) is piecewise constant, generated randomly
-"""
-
 import numpy as np
 import scipy as sp
 import scipy.linalg as spl
@@ -19,19 +12,23 @@ from scipy.special import legendre
 
 import matplotlib.pyplot as plt
 
-N = 5
+
+K = 10000
+p = 0.5
+h = 0
+beta = 1
 M = 100
+
+N = 5
 hm = 1/M
 
-Vmax = 1000
-h0 = 0
-
 np.random.seed(0)
-#V = Vmax * np.ones(shape=(M,))
-#V = Vmax * np.random.rand(M)
-V = Vmax * np.random.randint(2, size=M)
+V = np.random.rand(M)
+V[V<=p] = 0
+V[V>p] = 1
+KV = K * V
 
-plt.bar(x=np.arange(0,1,1/M)+1/(1*M), height=V, width=1/M)
+plt.bar(x=np.arange(0,1,1/M)+1/(1*M), height=KV, width=1/M)
 
 def mmp(m, n):
     return m*N + n
@@ -82,7 +79,7 @@ A = np.zeros(shape=(M*N+1, M*N+1))
 B = np.zeros(shape=(M*N+1, M*N+1))
 
 for m in range(M):
-    Ae = 2/hm * A_hat + hm/2 * V[m] * B_hat
+    Ae = 2/hm * A_hat + hm/2 * KV[m] * B_hat
     Be = hm/2 * B_hat
     
     Ae = sps.coo_matrix(Ae)
@@ -98,26 +95,67 @@ for m in range(M):
         c = mmp(m, Be.col[k])
         B[r,c] += Be.data[k]
 
-A[0,0] += h0
-A[-1,-1] += h0
+A[0,0] += h
+A[-1,-1] += h
 
 A = sps.csc_matrix(A)
 B = sps.csc_matrix(B)
-lam, U = spsl.eigsh(A=A, M=B, k=4, sigma=0)
+lam, U_eig = spsl.eigsh(A=A, M=B, k=4, sigma=0)
+
+A = np.zeros(shape=(M*N+1, M*N+1))
+F = np.zeros(shape=(M*N+1,))
+
+for m in range(M):
+    Ae = 2/hm * A_hat + hm/2 * KV[m] * B_hat
+    Fe = hm/2 * F_hat
+    
+    Ae = sps.coo_matrix(Ae)
+    Fe = sps.coo_matrix(Fe)
+    
+    for k in range(Ae.nnz):
+        r = mmp(m, Ae.row[k])
+        c = mmp(m, Ae.col[k])
+        A[r,c] += Ae.data[k]
+        
+    for k in range(Fe.nnz):
+        i = mmp(m, Fe.row[k])
+        F[i] += Fe.data[k]
+
+F[0] += h/beta
+F[-1] += h/beta
+
+A = sps.csc_matrix(A)
+U_solve = spsl.spsolve(A, F)
 
 print(lam)
 
+def normalize(y):
+    if np.max(y) < -np.min(y):
+        return y / np.min(y)
+    else:
+        return y / np.max(y)
+
+
+plt.figure()
+
 x = np.linspace(0, 1, 20*M +1)[:-1]
 xx = np.linspace(-1, 1, 20 +1)[:-1]
+
+y0 = np.zeros_like(x)
+UU = U_solve
+for m in range(M):
+    DOF = UU[m*N: (m+1)*N+1]
+    for ii in range(N+1):
+        y0[m*20: (m+1)*20] += DOF[ii] * phi(ii, xx)
+plt.plot(x, y0, 'k-')
+
 for ind in range(4):
     y = np.zeros_like(x)
-    UU = U[:,ind]
+    UU = U_eig[:,ind]
     for m in range(M):
         DOF = UU[m*N: (m+1)*N+1]
         for ii in range(N+1):
             y[m*20: (m+1)*20] += DOF[ii] * phi(ii, xx)
-
-    plt.figure()
-    plt.plot(x, y)
-    plt.show()
+    plt.plot(x, normalize(y)/(lam[ind]+beta+np.min(y0)))
     
+plt.show()
