@@ -13,8 +13,8 @@ from scipy.special import legendre
 import matplotlib.pyplot as plt
 
 
-K = 10000
-p = 0.5
+K = 3000
+p = 0.3
 h = 0
 beta = 1
 M = 100
@@ -136,26 +136,33 @@ def normalize(y):
         return y / np.max(y)
 
 
-plt.figure()
+x = np.linspace(0, 1, 7*M +1)[:-1]
+xx = np.linspace(-1, 1, 7 +1)[:-1]
 
-x = np.linspace(0, 1, 20*M +1)[:-1]
-xx = np.linspace(-1, 1, 20 +1)[:-1]
-
-y0 = np.zeros_like(x)
+w = np.zeros_like(x)
 UU = U_solve
 for m in range(M):
     DOF = UU[m*N: (m+1)*N+1]
     for ii in range(N+1):
-        y0[m*20: (m+1)*20] += DOF[ii] * phi(ii, xx)
-plt.plot(x, y0, 'k-')
+        w[m*7: (m+1)*7] += DOF[ii] * phi(ii, xx)
 
+u = []
 for ind in range(4):
-    y = np.zeros_like(x)
+    u_t = np.zeros_like(x)
     UU = U_eig[:,ind]
     for m in range(M):
         DOF = UU[m*N: (m+1)*N+1]
         for ii in range(N+1):
-            y[m*20: (m+1)*20] += DOF[ii] * phi(ii, xx)
-    plt.plot(x, normalize(y)/(lam[ind]+beta+np.min(y0)))
+            u_t[m*7: (m+1)*7] += DOF[ii] * phi(ii, xx)
+    u.append(normalize(u_t))
     
+    
+plt.figure()
+
+plt.plot(x, w, 'k-', label='w(x)')
+for ind in range(4):
+    plt.plot(x, u[ind]/lam[ind],
+             label='$u_%d$/$\\lambda_%d$' % (ind+1, ind+1))
+    
+plt.legend()
 plt.show()

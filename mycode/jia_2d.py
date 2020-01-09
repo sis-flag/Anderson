@@ -13,26 +13,31 @@ from scipy.special import legendre
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-K = 1000
-p = 0.5
+K = 3000
+p = 0.3
 h = 0
 M = 20
 beta = 1
 
-N = 4
+N = 6
 hm = 1/M
 
 np.random.seed(0)
 V = np.random.rand(M,M)
-V[V<=p] = 0
-V[V>p] = 1
+#V[V<=p] = 0
+#V[V>p] = 1
 KV = K * V
 
-fig = plt.figure()
-ax = fig.gca(projection='3d')
+#fig = plt.figure()
+#ax = fig.gca(projection='3d')
+#x = np.arange(0,1,1/M)
+#X, Y = np.meshgrid(x, x)
+#ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, KV.ravel())
+#plt.show()
+
 x = np.arange(0,1,1/M)
 X, Y = np.meshgrid(x, x)
-ax.bar3d(X.ravel(), Y.ravel(), 0, 1/M, 1/M, KV.ravel())
+plt.pcolor(X, Y, V, cmap='rainbow')
 plt.show()
 
 def mmp(m1, m2, n):
@@ -221,54 +226,85 @@ def normalize(y):
 
 print(lam)
 
-x = np.linspace(0, 1, 20*M +1)[:-1]
+x = np.linspace(0, 1, 7*M +1)[:-1]
 x1, x2 = np.meshgrid(x, x)
-xx = np.linspace(-1, 1, 20+1)[:-1]
+
+xx = np.linspace(-1, 1, 7+1)[:-1]
 xx1, xx2 = np.meshgrid(xx, xx)
-y0 = np.zeros_like(x1)
+yy1, yy2 = [], []
+for ii in range(N+1):
+    yy1.append( phi(ii, xx1) )
+    yy2.append( phi(ii, xx2) )
+    
+w = np.zeros_like(x1)
 UU = U_solve.reshape((M*N+1, M*N+1)).real
 for m1 in range(M):
     for m2 in range(M):
         DOF = UU[m1*N: (m1+1)*N+1, m2*N: (m2+1)*N+1]
         for ii in range(N+1):
             for jj in range(N+1):
-                y0[m2*20:(m2+1)*20,m1*20:(m1+1)*20] += \
-                    DOF[ii,jj] * phi(ii, xx1) * phi(jj, xx2)
+                w[m2*7:(m2+1)*7,m1*7:(m1+1)*7] += \
+                    DOF[ii,jj] * yy1[ii] * yy2[jj]
 
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.plot_surface(x1, x2, y0, cmap='rainbow')
-plt.show()
-
-fig = plt.figure()
-ax = fig.gca()
-cax = ax.pcolor(x1, x2, y0, cmap='rainbow')
-fig.colorbar(cax)
-plt.show()
-
-x = np.linspace(0, 1, 20*M +1)[:-1]
-x1, x2 = np.meshgrid(x, x)
-xx = np.linspace(-1, 1, 20 +1)[:-1]
-xx1, xx2 = np.meshgrid(xx, xx)
+u = []
 for ind in range(6):    
-    y = np.zeros_like(x1)
+    u_t = np.zeros_like(x1)
     UU = U_eig[:,ind].reshape((M*N+1, M*N+1))
     for m1 in range(M):
         for m2 in range(M):
             DOF = UU[m1*N: (m1+1)*N+1, m2*N: (m2+1)*N+1]
             for ii in range(N+1):
                 for jj in range(N+1):
-                    y[m2*20:(m2+1)*20,m1*20:(m1+1)*20] += \
-                        DOF[ii,jj] * phi(ii, xx1) * phi(jj, xx2)
-                        
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
-    ax.plot_surface(x1, x2, normalize(y)/(lam[ind]+beta+np.min(y0)), cmap='rainbow')
-    plt.show()
+                    u_t[m2*7:(m2+1)*7,m1*7:(m1+1)*7] += \
+                        DOF[ii,jj] * yy1[ii] * yy2[jj]
+    u.append(normalize(u_t))
+    
 
+
+
+#fig = plt.figure()
+#ax = fig.gca(projection='3d')
+#ax.plot_surface(x1, x2, w, cmap='rainbow')
+#plt.show()
+#
+#fig = plt.figure()
+#ax = fig.gca()
+#cax = ax.pcolor(x1, x2, w, cmap='rainbow')
+#fig.colorbar(cax)
+#plt.show()
+#
+#for ind in range(6):
+#    fig = plt.figure()
+#    ax = fig.gca(projection='3d')
+#    ax.plot_surface(x1, x2, normalize(u[ind])/(lam[ind]), cmap='rainbow')
+#    plt.show()
+#    
+#    fig = plt.figure()
+#    ax = fig.gca()
+#    cax = ax.pcolor(x1, x2, normalize(u[ind])/(lam[ind]), cmap='rainbow')
+#    fig.colorbar(cax)
+#    plt.show()
+    
+#%% plot
+fig = plt.figure()
+ax = fig.gca()
+cax = ax.pcolor(x1, x2, w, cmap='rainbow')
+fig.colorbar(cax)
+plt.show()
+
+alpha = 1 / np.max(w)
+
+for ind in range(6):
+#    fig = plt.figure()
+#    ax = fig.gca()
+#    cax = ax.pcolor(x1, x2, w*lam[ind], vmin=1, vmax=1.001, cmap='rainbow')
+#    cax.cmap.set_under('black')
+#    cax.cmap.set_over('white')
+#    fig.colorbar(cax)
+#    plt.show()
+    
     fig = plt.figure()
     ax = fig.gca()
-    cax = ax.pcolor(x1, x2, normalize(y)/(lam[ind]+beta+np.min(y0)), \
-                    cmap='rainbow', vmin=-0.003)
+    cax = ax.pcolor(x1, x2, u[ind], vmin=-1, vmax=1, cmap='rainbow')
     fig.colorbar(cax)
     plt.show()
