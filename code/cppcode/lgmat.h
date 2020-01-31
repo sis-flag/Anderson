@@ -40,7 +40,7 @@ void getAhat(Int N, Real **vA, Int **iA, Int **jA)
     (*vA)[n] = -0.5;
     n++;
 
-    for (int k = 1; k < N; k++)
+    for (Int k = 1; k < N; k++)
     {
         (*iA)[n] = k;
         (*jA)[n] = k;
@@ -48,7 +48,6 @@ void getAhat(Int N, Real **vA, Int **iA, Int **jA)
         n++;
     }
 }
-
 
 void getBhat(Int N, Real **vB, Int **iB, Int **jB)
 {
@@ -107,14 +106,14 @@ void getBhat(Int N, Real **vB, Int **iB, Int **jB)
     (*vB)[n] = -1. / sqrt(90.);
     n++;
 
-    for (int k = 1; k < N; k++)
+    for (Int k = 1; k < N; k++)
     {
         (*iB)[n] = k;
         (*jB)[n] = k;
         (*vB)[n] = 0.5 / (k - 0.5) / (k + 1.5);
         n++;
     }
-    for (int k = 1; k < N - 2; k++)
+    for (Int k = 1; k < N - 2; k++)
     {
         (*iB)[n] = k + 2;
         (*jB)[n] = k;
@@ -127,33 +126,53 @@ void getBhat(Int N, Real **vB, Int **iB, Int **jB)
     }
 }
 
+void getFhat(Int N, Real **vF, Int **iF)
+{
+    *vF = malloc((N + 3) * sizeof(Real));
+    *iF = malloc((N + 3) * sizeof(Int));
+
+    Int n = 0;
+
+    (*iF)[n] = 0;
+    (*vF)[n] = 1;
+    n++;
+    (*iF)[n] = N;
+    (*vF)[n] = 1;
+    n++;
+    (*iF)[n] = 1;
+    (*vF)[n] = -2. / sqrt(6.);
+    n++;
+
+    return;
+}
+
 // H_hat0 = coo_matrix(([1],([0],[0])), shape=(N+1,N+1))
 // H_hat1 = coo_matrix(([1],([N],[N])), shape=(N+1,N+1))
-
-// F_hat = coo_matrix(([1,1,-2/np.sqrt(6)],([0,N,1],[0,0,0])), shape=(N+1,1))
 
 // G_hat0 = coo_matrix(([1],([0],[0])), shape=(N+1,1))
 // G_hat1 = coo_matrix(([1],([N],[0])), shape=(N+1,1))
 
+
+// KA = kron(A_hat, B_hat) + kron(B_hat, A_hat)
 void getKAhat(Int N, Real **vKA, Int **iKA, Int **jKA)
 {
     Int *iA, *jA, *iB, *jB;
     Real *vA, *vB;
     getAhat(N, &vA, &iA, &jA);
     getBhat(N, &vB, &iB, &jB);
-    int nnzA = N + 3;
-    int nnzB = 3 * N + 5;
+    Int nnzA = N + 3;
+    Int nnzB = 3 * N + 5;
 
     *vKA = malloc((2 * nnzA * nnzB) * sizeof(Real));
     *iKA = malloc((2 * nnzA * nnzB) * sizeof(Int));
     *jKA = malloc((2 * nnzA * nnzB) * sizeof(Int));
 
-    int n = 0;
+    Int n = 0;
 
     // sparse kron
-    for (int k1 = 0; k1 < nnzA; k1++)
+    for (Int k1 = 0; k1 < nnzA; k1++)
     {
-        for (int k2 = 0; k2 < nnzB; k2++)
+        for (Int k2 = 0; k2 < nnzB; k2++)
         {
             (*iKA)[n] = iA[k1] * (N + 1) + iB[k2];
             (*jKA)[n] = jA[k1] * (N + 1) + jB[k2];
@@ -163,9 +182,9 @@ void getKAhat(Int N, Real **vKA, Int **iKA, Int **jKA)
     }
 
     // sparse kron
-    for (int k1 = 0; k1 < nnzA; k1++)
+    for (Int k1 = 0; k1 < nnzA; k1++)
     {
-        for (int k2 = 0; k2 < nnzB; k2++)
+        for (Int k2 = 0; k2 < nnzB; k2++)
         {
             (*iKA)[n] = iA[k1] + iB[k2] * (N + 1);
             (*jKA)[n] = jA[k1] + jB[k2] * (N + 1);
@@ -175,24 +194,24 @@ void getKAhat(Int N, Real **vKA, Int **iKA, Int **jKA)
     }
 }
 
-
+// KB = kron(B_hat, B_hat)
 void getKBhat(Int N, Real **vKB, Int **iKB, Int **jKB)
 {
     Int *iB, *jB;
     Real *vB;
     getBhat(N, &vB, &iB, &jB);
-    int nnzB = 3 * N + 5;
+    Int nnzB = 3 * N + 5;
 
     *vKB = malloc((nnzB * nnzB) * sizeof(Real));
     *iKB = malloc((nnzB * nnzB) * sizeof(Int));
     *jKB = malloc((nnzB * nnzB) * sizeof(Int));
 
-    int n = 0;
+    Int n = 0;
 
     // sparse kron
-    for (int k1 = 0; k1 < nnzB; k1++)
+    for (Int k1 = 0; k1 < nnzB; k1++)
     {
-        for (int k2 = 0; k2 < nnzB; k2++)
+        for (Int k2 = 0; k2 < nnzB; k2++)
         {
             (*iKB)[n] = iB[k1] * (N + 1) + iB[k2];
             (*jKB)[n] = jB[k1] * (N + 1) + jB[k2];
@@ -202,9 +221,30 @@ void getKBhat(Int N, Real **vKB, Int **iKB, Int **jKB)
     }
 }
 
-// KA = kron(A_hat, B_hat) + kron(B_hat, A_hat)
-// KB = kron(B_hat, B_hat)
 // KF = kron(F_hat, F_hat)
+void getKFhat(Int N, Real **vKF, Int **iKF)
+{
+    Int *iF;
+    Real *vF;
+    getFhat(N, &vF, &iF);
+    Int nnzF = 3;
+
+    *vKF = malloc((nnzF * nnzF) * sizeof(Real));
+    *iKF = malloc((nnzF * nnzF) * sizeof(Int));
+
+    Int n = 0;
+
+    // sparse kron
+    for (Int k1 = 0; k1 < nnzF; k1++)
+    {
+        for (Int k2 = 0; k2 < nnzF; k2++)
+        {
+            (*iKF)[n] = iF[k1] * (N + 1) + iF[k2];
+            (*vKF)[n] = vF[k1] * vF[k2];
+            n++;
+        }
+    }
+}
 
 // KHB0 = kron(H_hat0, B_hat)
 // KHB1 = kron(H_hat1, B_hat)

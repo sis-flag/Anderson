@@ -1,5 +1,6 @@
 static char help[] = 
-    "Legendre spectral elemement method for Neumann eigenvalues in 1 dimension.\n"
+    "Anderson localization eigenvalue problem with Neumann boundary in 1dimension.\n"
+    "Legendre spectral elemement method.\n"
     "The command line options are:\n"
     "    -N <n>, where <n> = degree of polynomials.\n"
     "    -M <m>, where <m> = number of grid subdivisions.\n\n";

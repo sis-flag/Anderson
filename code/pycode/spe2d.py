@@ -16,7 +16,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 #%% parameters
 N = 10 # degree of polynomial
-Ns = 40 # number of sample points in each region
+Ns = 100 # number of sample points in each region
 
 #%% basis function
 def phi(n, x):
@@ -547,7 +547,7 @@ if __name__ == "__main__":
     
     #%% parameters (p=-1 for uniform distribution)
     K = 3000
-    p = 0.4
+    p = -0.5
     M = 5
     h = 0.1
     beta = 1
@@ -560,16 +560,14 @@ if __name__ == "__main__":
         V[V>p] = 1
     KV = K * V
     
-    KV = np.ones((7,7))
+#    lam, u = eigN(KV, h)
+#    wN = solveN(KV, h/beta)
+#    wM = solveM(KV, h/beta, 0.71, 0.71, 1)
     
-    lam, u = eigN(KV, h)
-    wN = solveN(KV, h/beta)
-    wM = solveM(KV, h/beta, 0.71, 0.71, 1)
+    lam, u = eigD(KV)
+    w = solveD(KV)
     
-#    lam, u = eigD(KV)
-#    w = solveD(KV)
-    
-#    scipy.io.savemat('2.mat',{"K":K, "p":p, "V":V, "h":h, "beta":beta, "lam":lam, "u":u, "w":w})
+    scipy.io.savemat('2.mat',{"lam":lam, "u":u, "w":w})
     
     #%% plot
     plt.rcParams['figure.figsize'] = (4.0, 3.0)
@@ -586,18 +584,12 @@ if __name__ == "__main__":
     plt.title("potential")
     plt.show()
 
-    x1 = np.linspace(0, 1, wN.shape[0] +1)
-    x2 = np.linspace(0, 1, wN.shape[1] +1)
+    x1 = np.linspace(0, 1, w.shape[0] +1)
+    x2 = np.linspace(0, 1, w.shape[1] +1)
     x2, x1 = np.meshgrid(x2, x1)
     
     plt.figure()
-    plt.pcolor(x1, x2, wN, vmin=0, cmap='rainbow')
+    plt.pcolor(x1, x2, w, vmin=0, cmap='rainbow')
     plt.colorbar()
     plt.title("landscape1")
-    plt.show()
-    
-    plt.figure()
-    plt.pcolor(x1, x2, wM, vmin=0, cmap='rainbow')
-    plt.colorbar()
-    plt.title("landscape2")
     plt.show()

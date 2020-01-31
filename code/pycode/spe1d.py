@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 #%% parameters
 N = 10 # degree of polynomial
-Ns = 40 # number of sample points in each region
+Ns = 50 # number of sample points in each region
 
 #%% basis function
 def phi(n, x):
@@ -402,7 +402,7 @@ if __name__ == "__main__":
     K = 3000
     p = 0.5
     M = 10
-    h = 0.01
+    h = 0
     beta = 1
     alpha = 1000
     
@@ -414,10 +414,10 @@ if __name__ == "__main__":
         V[V>p] = 1
     KV = K * V
     
-    lamN, uN = eigN(KV, h)
-    wM = solveM(KV, h/beta, 0.2, 1/alpha)
+    KV = np.array([2,8,3,5,1,6,0,7,9,4])*100
     
-    wN = solveM(KV, h/beta)
+    lam, u = eigD(KV)    
+    w = solveD(KV)
     
     #%% plot
     plt.rcParams['figure.figsize'] = (4.0, 3.0)
@@ -428,15 +428,14 @@ if __name__ == "__main__":
     plt.bar(x=np.arange(0,1,1/M)+1/(2*M), height=KV, width=1/M)
     plt.show()
     
-    x = np.linspace(0, 1, len(wN))
+    x = np.linspace(0, 1, len(w))
 
 #    print("Robin eigen value: ", lamN)
     
     plt.figure()
-    plt.plot(x, wM, 'r-', label='wM')
-    plt.plot(x, wN, 'k-', label='wN')
+    plt.plot(x, w, 'k-', label='w')
     for ind in range(4):
-        plt.plot(x, uN[ind]/(lamN[ind]+beta+alpha), label='u%d' % (ind+1) )
+        plt.plot(x, u[ind]/(lam[ind]+beta), label='u%d' % (ind+1) )
     plt.title("Robin eigen mode")
     plt.legend()
     plt.show()

@@ -14,7 +14,7 @@ end
 
 M = length(V);
 hm = 1 / M;
-[Ahat, Bhat, ~, ~, ~, ~, ~] = lgmat(N);
+[Ahat, Bhat] = lgmat(N);
 
 l2g = @(m) (m-1) * N + (1:N+1);
 
