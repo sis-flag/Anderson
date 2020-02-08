@@ -11,7 +11,9 @@ M = round(length(U)-1) / N;
         elseif n == N+1
             y = (1+x)/2;
         else
-            y = (legendreP(n,x) - legendreP(n-2,x)) / sqrt(4*n-2);
+            p1 = legendre(n,x); p1 = p1(1,:);
+            p2 = legendre(n-2,x); p2 = p2(1,:);
+            y = (p1 - p2) / sqrt(4*n-2);
         end
     end
 
@@ -24,10 +26,6 @@ end
 u = zeros(1, Ns*M+1);
 for m = 1:M
     Uloc = U((m-1)*N+1: m*N+1);
-    u((m-1)*Ns+1: m*Ns+1) = 0;
-    for n = 1:N+1
-        u((m-1)*Ns+1: m*Ns+1) = ...
-            u((m-1)*Ns+1: m*Ns+1) + Uloc(n) * yhat(n,:);
-    end
+    u((m-1)*Ns+1: m*Ns+1) = (Uloc') * yhat;
 end
 end

@@ -402,7 +402,7 @@ if __name__ == "__main__":
     K = 3000
     p = 0.5
     M = 10
-    h = 0
+    h = 1
     beta = 1
     alpha = 1000
     
@@ -416,8 +416,9 @@ if __name__ == "__main__":
     
     KV = np.array([2,8,3,5,1,6,0,7,9,4])*100
     
-    lam, u = eigD(KV)    
-    w = solveD(KV)
+    lam, u = eigN(KV, h)
+    w1 = solveM(KV, h/beta)
+    w2 = solveM(KV, h/beta, 0.5, 0.05)
     
     #%% plot
     plt.rcParams['figure.figsize'] = (4.0, 3.0)
@@ -428,12 +429,13 @@ if __name__ == "__main__":
     plt.bar(x=np.arange(0,1,1/M)+1/(2*M), height=KV, width=1/M)
     plt.show()
     
-    x = np.linspace(0, 1, len(w))
+    x = np.linspace(0, 1, len(w1))
 
 #    print("Robin eigen value: ", lamN)
     
     plt.figure()
-    plt.plot(x, w, 'k-', label='w')
+    plt.plot(x, w1, 'k-', label='w')
+    plt.plot(x, w2, 'm-', label='w')
     for ind in range(4):
         plt.plot(x, u[ind]/(lam[ind]+beta), label='u%d' % (ind+1) )
     plt.title("Robin eigen mode")

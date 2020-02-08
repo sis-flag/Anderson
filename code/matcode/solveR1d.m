@@ -9,7 +9,7 @@ function [U] = solveR1d(V, g, x0, u0, N)
 if nargin <= 4
     N = 10;
 end
-if nargin <= 2
+if nargin <= 3
     x0 = []; u0 = [];
 end
 

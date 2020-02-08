@@ -549,7 +549,7 @@ if __name__ == "__main__":
     K = 3000
     p = -0.5
     M = 5
-    h = 0.1
+    h = 0
     beta = 1
     
     #%% solve
@@ -560,14 +560,14 @@ if __name__ == "__main__":
         V[V>p] = 1
     KV = K * V
     
-#    lam, u = eigN(KV, h)
-#    wN = solveN(KV, h/beta)
-#    wM = solveM(KV, h/beta, 0.71, 0.71, 1)
+    KV = np.array([[2,8,3],[5,1,6],[4,7,9]])*100
     
-    lam, u = eigD(KV)
-    w = solveD(KV)
+    lam, u = eigN(KV, h)
+    w1 = solveM(KV, h/beta)
+    w2 = solveM(KV, h/beta, 0.5, 0.5, 0.01)
     
-    scipy.io.savemat('2.mat',{"lam":lam, "u":u, "w":w})
+#    lam, u = eigD(KV)
+#    w = solveD(KV)
     
     #%% plot
     plt.rcParams['figure.figsize'] = (4.0, 3.0)
@@ -579,7 +579,7 @@ if __name__ == "__main__":
     x2, x1 = np.meshgrid(x2, x1)
     
     plt.figure()
-    plt.pcolor(x1, x2, KV, vmin=0, vmax=K, cmap='rainbow')
+    plt.pcolor(x1, x2, KV, cmap='rainbow')
     plt.colorbar()
     plt.title("potential")
     plt.show()
@@ -589,7 +589,13 @@ if __name__ == "__main__":
     x2, x1 = np.meshgrid(x2, x1)
     
     plt.figure()
-    plt.pcolor(x1, x2, w, vmin=0, cmap='rainbow')
+    plt.pcolor(x1, x2, w1, cmap='rainbow')
+    plt.colorbar()
+    plt.title("landscape1")
+    plt.show()
+    
+    plt.figure()
+    plt.pcolor(x1, x2, w2, cmap='rainbow')
     plt.colorbar()
     plt.title("landscape1")
     plt.show()
