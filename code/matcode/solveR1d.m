@@ -15,20 +15,37 @@ end
 
 M = length(V);
 hm = 1 / M;
+
 [Ahat, Bhat, Fhat] = lgmat(N);
+[iAhat, jAhat, vAhat] = find(Ahat);
+[iBhat, jBhat, vBhat] = find(Bhat);
+[iFhat, ~, vFhat] = find(Fhat);
 
-l2g = @(m) (m-1) * N + (1:N+1);
+l2g = @(m, n) (m-1) * N + n;
 
-A = sparse(M*N+1, M*N+1);
-F = sparse(M*N+1, 1);
+iA = zeros(1, M*(4*N+8));
+jA = zeros(1, M*(4*N+8));
+vA = zeros(1, M*(4*N+8));
+
+kA = 0;
 for m =1:M
-    Ae = 2/hm * Ahat + hm/2 * V(m) * Bhat;
-    Fe = hm/2 * Fhat;
+    iA(kA+1:kA+N+3) = l2g(m, iAhat);
+    jA(kA+1:kA+N+3) = l2g(m, jAhat);
+    vA(kA+1:kA+N+3) = 2/hm * vAhat;
+    kA = kA+N+3;
     
-    ind = l2g(m);
-    
-    A(ind, ind) = A(ind, ind) + Ae;
-    F(ind) = F(ind) + Fe;
+    iA(kA+1:kA+3*N+5) = l2g(m, iBhat);
+    jA(kA+1:kA+3*N+5) = l2g(m, jBhat);
+    vA(kA+1:kA+3*N+5) = hm/2 * V(m) * vBhat;
+    kA = kA+3*N+5;
+end
+
+A = sparse(iA, jA, vA, M*N+1, M*N+1);
+
+F = zeros(M*N+1, 1);
+for m =1:M
+    ind = l2g(m, iFhat);
+    F(ind) = F(ind) + hm/2 * vFhat;
 end
 
 F(1) = F(1) + g;

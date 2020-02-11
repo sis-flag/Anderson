@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     Real *vAhat, *vBhat, *vFhat;
     getAhat(N, &vAhat, &iAhat, &jAhat);
     getBhat(N, &vBhat, &iBhat, &jBhat);
-    getAhat(N, &vFhat, &iFhat);
+    getFhat(N, &vFhat, &iFhat);
 
     /* local to global mapping 
    
