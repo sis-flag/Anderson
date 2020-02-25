@@ -1,10 +1,10 @@
 clear;
 rng(0);
 
-M = 150;
+M = 200;
 V = 500 * rand(M);
 
-fprintf('size: %d\n', M)
+fprintf('problem size: %d\n', M)
 
 disp('Robin boundary source problem:')
 tic; W = solveR2d(V, 0); toc

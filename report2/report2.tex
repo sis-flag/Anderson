@@ -79,22 +79,17 @@
 
 对于什么样的参数是“最优”，并没有一个确切的有指标刻画的标准。对于$\beta$具体取什么样的值比较好，现在只能说可以在边界不会翘起来的情况下，可以尽量取得小一点。
 
-\section{画出valley line}
+\subsection{localize到边界时参数的选取}
 
-目前得valley line画出来是这样。
+之前有一个问题是当localize的位置在边界时，要如何选取$\beta$的值，这时的结果会不会有变化。我们用同样的势函数，换不同的$\beta$模拟。结果如图\ref{fig9}。得到的结果和原来差不多。由于在最终的不等式里出现的是$\beta$和特征值相加，所以$\beta$选取和特征值在同一数量级的数就差不多。
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{pic/vline2}
-    \label{figv1}
-\caption{K=3000,均匀分布}
-\end{figure}
-
-画出其中大于$1/(2\lambda_1)$的valleyline是这样。
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\linewidth]{pic/vline3}
-    \label{figv2}
-\caption{K=3000,均匀分布}
+    \includegraphics[width=0.3\linewidth]{pic/bdb2}
+    \includegraphics[width=0.3\linewidth]{pic/bdb3}
+    \includegraphics[width=0.3\linewidth]{pic/bdb4}
+    \label{fig9}
+\caption{localize到边界的landscape}
 \end{figure}
 
 \section{不同边界条件下的比较}
@@ -102,17 +97,19 @@
 在实验中我们发现，边界条件是Dirichlet还是导数型的，主要影响landscape的边界，对landscape的内部影响较小。对eigenmode的影响就比较大，因为原来不会聚集到边界的峰有可能聚集到边界了。
 
 还是先看一维的情况，在一个特定的V下模拟，这里的V故意在边界选取得比较小，能够突出局部化到边界的效果。如图\ref{fig6}
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{pic/bdnu1}
-    \includegraphics[width=0.4\linewidth]{pic/bdnu2} \\
-    \includegraphics[width=0.4\linewidth]{pic/bdnu3}
-    \includegraphics[width=0.4\linewidth]{pic/bdnu4}
+    \includegraphics[width=0.3\linewidth]{pic/bdnu1}
+    \includegraphics[width=0.3\linewidth]{pic/bdnu2} \\
+    \includegraphics[width=0.3\linewidth]{pic/bdnu3}
+    \includegraphics[width=0.3\linewidth]{pic/bdnu4}
     \label{fig6}
 \caption{左上为V，剩下三个是不同边界条件下的模拟结果}
 \end{figure}
 
 这三个eigenmode很不一样，尤其是Dirichelt和Neumann边界的，相差很多。但是把它们的landscape画在一起，就会发现在内部很相似。图\ref{fig7}中比较了不同边界条件下的landscape。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\linewidth]{pic/bdnu5}
@@ -120,7 +117,8 @@
 \caption{不同边界条件下的landscape}
 \end{figure}
 
-二维的也一样。二维的曲面画在一起就乱了，我们只能画切面图。如图\ref{fig8}。landscape在内部差不多。在y=0和y=1的时候就不一样了。
+二维的也一样。二维的曲面画在一起不容易看清楚，我们只能画切面图。如图\ref{fig8}。landscape在内部差不多。在y=0和y=1的时候就不一样了。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\linewidth]{pic/bdny25}
@@ -132,16 +130,80 @@
 \caption{二维不同边界条件下的landscape}
 \end{figure}
 
+\section{多算几个特征值}
 
-之前有一个问题是当localize的位置在边界时，要如何选取$\beta$的值，这时的结果会不会有变化。我们用同样的势函数，换不同的$\beta$模拟。结果如图\ref{fig9}。得到的结果和原来差不多。由于在最终的不等式里出现的是$\beta$和特征值相加，所以$\beta$选取和特征值在同一数量级的数就差不多。
+根据测试，现有的代码至少可以计算50个以内的最小特征值，更多的说不定也可以。测试过程中，用50x50的分块，求解了50个特征值，只用了40秒就收敛了。这样的表现应该可以达到要求。
+
+我们希望知道不同边界条件下会不会对较大特征值对应的特征函数产生影响。我们还是先看一维的情况。在图\ref{fig10}中我们比较了不同边界条件下的特征值。
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.3\linewidth]{pic/bdb2}
-    \includegraphics[width=0.3\linewidth]{pic/bdb3}
-    \includegraphics[width=0.3\linewidth]{pic/bdb4}
-    \label{fig9}
-\caption{localize到边界的landscape}
+    \includegraphics[width=0.24\linewidth]{pic/mei0}
+    \includegraphics[width=0.24\linewidth]{pic/mei1}
+    \includegraphics[width=0.24\linewidth]{pic/mei2}
+    \includegraphics[width=0.24\linewidth]{pic/mei3}
+    \includegraphics[width=0.24\linewidth]{pic/mei5}
+    \includegraphics[width=0.24\linewidth]{pic/mei7}
+    \includegraphics[width=0.24\linewidth]{pic/mei10}
+    \includegraphics[width=0.24\linewidth]{pic/mei20}
+    \label{fig10}
+\caption{不同边界条件下eignemode的比较（右上第一张为势函数V）}
 \end{figure}
+
+得到的结论和我们的直觉相反，对前几个特征值，两种边界条件下的结果都一样，但是对后面的特征值，两种边界条件下就表现出了很大差异。注意到这个例子中没有前几个特征值localize到边界的情况，我们尝试模拟一下前面提到过的特殊选取，让特征函数出现在边界。如图\ref{fig11}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.24\linewidth]{pic/meb0}
+    \includegraphics[width=0.24\linewidth]{pic/meb1}
+    \includegraphics[width=0.24\linewidth]{pic/meb2}
+    \includegraphics[width=0.24\linewidth]{pic/meb3}
+    \includegraphics[width=0.24\linewidth]{pic/meb5}
+    \includegraphics[width=0.24\linewidth]{pic/meb7}
+    \includegraphics[width=0.24\linewidth]{pic/meb10}
+    \includegraphics[width=0.24\linewidth]{pic/meb20}
+    \label{fig11}
+\caption{不同边界条件下eignemode的比较（右上第一张为势函数V）}
+\end{figure}
+
+可以看到，除了eigenmode3，其它的都有很大差异。所以我们的结论还是和前面提到的一样：边界条件只影响边界。所以localize到内部的eigenmode不会有影响，如果eigenmode在边界附近出现了峰，那不同的边界条件就会对它影响很大。
+
+下面我们研究二维的情况，如图\ref{fig12}。由于二维的情况大多数都localize在边界，所以两种边界条件下的情况完全不一样。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pic/me2d1}
+    \includegraphics[width=0.45\linewidth]{pic/me2d2}
+    \includegraphics[width=0.45\linewidth]{pic/me2d3}
+    \includegraphics[width=0.45\linewidth]{pic/me2d5}
+    \includegraphics[width=0.45\linewidth]{pic/me2d20}
+    \includegraphics[width=0.45\linewidth]{pic/me2d50}
+    \label{fig12}
+\caption{不同边界条件下eignemode的比较（编号依次为1，2，3，5，20，50）}
+\end{figure}
+
+在这里，一维和二维的例子有很大的区别。在前面的两个例子中，我们同样取K为3000，势函数为$[0,K]$内的均匀分布。画出两种不同边界下的特征值如图\ref{fig13}。图中横轴为特征值编号（第几小的特征值），纵轴为特征值的数值。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pic/lam1d}
+    \includegraphics[width=0.45\linewidth]{pic/lam2d}
+    \label{fig13}
+\caption{不同边界条件下特征值的数值}
+\end{figure}
+
+可以看出，一维情况，两种边界条件下对应排序的特征值相差很小，但是二维的时候就相差很大。（（这个也可以验证特征值增长的阶）
+
+\section{画出valley line}
+
+目前得valley line画出来是这样。两篇文章里都提到了watershed，这可能是个算法，具体还不清楚。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pic/vline4}
+    \includegraphics[width=0.4\linewidth]{pic/hvline4}
+    \label{figv1}
+\caption{K=3000,均匀分布}
+\end{figure}
+
 
 
 

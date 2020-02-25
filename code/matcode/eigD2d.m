@@ -4,10 +4,10 @@ function [U, lam] = eigD2d(V, N, num)
 % u'(x) + h u(x) = 0 for x on boundary
 % V(x) is piecewise constant
 
-if nargin <= 3
+if nargin <= 2
     num = 6;
 end
-if nargin <= 2
+if nargin <= 1
     N = 10;
 end
 

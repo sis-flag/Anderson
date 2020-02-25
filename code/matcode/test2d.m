@@ -3,7 +3,7 @@ rng(0);
 
 % peremeters
 K = 1000;
-V = rand(50)*K;
+V = rand(20)*K;
 h = 0;
 
 x0 = 0.51; y0 = 0.51;
