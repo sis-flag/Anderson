@@ -1,23 +1,11 @@
-clear;
-rng(123);
+function mark = my_watershed(w)
 
-% peremeters
-h = 0;
-V = rand(20)*3000;
-
-W = solveR2d(V, 0);
-w = getval2d(W, 30);
-
-x = linspace(0,1,length(w));
-[x2, x1] = meshgrid(x, x); % caution!
-
-%% watershed
 N = size(w,1);
 mark = zeros(size(w));
 num_mark = 10;
 
 % 给所有像素排序，从低到高浸没
-[~, ind] = sort(-w(:));
+[~, ind] = sort(w(:));
 for k = 1:length(ind)
     indi = mod(ind(k)-1, N) +1;
     indj = ceil(ind(k) / N);
@@ -55,13 +43,3 @@ for k = 1:length(ind)
 %         colorbar;
 %     end
 end
-
-[vi, vj] = find(isnan(mark));
-
-figure();
-hold on
-s = pcolor(x1,x2, w);
-s.LineStyle = 'none';
-colorbar;
-fj = plot((vi-1)/N, (vj-1)/N, 'k.');
-fj.MarkerSize = 3;

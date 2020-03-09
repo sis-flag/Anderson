@@ -1,11 +1,11 @@
 clear;
-rng(0);
+rng(123);
 
 % peremeters
 h = 0;
 V = rand(20)*1000;
 
-W = solveD2d(V);
+W = solveR2d(V, 0);
 w = getval2d(W, 20);
 
 slxx = linspace(0, 1, size(w,1));
@@ -17,13 +17,13 @@ dw = sqrt(dwx.^2 + dwy.^2);
 
 % find local minimum of |grad w|
 cprg = round(0.2 * size(dw,1)/size(V,1));
-mw = mean(mean(dw));
+mdw = mean(mean(dw)); maxw = max(max(w));
 sx = []; sy = []; sdw = []; sw = [];
 for k1 = 1+cprg:size(w,1)-cprg
     for k2 = 1+cprg:size(w,1)-cprg
         dwloc = dw(k1-cprg:k1+cprg, k2-cprg:k2+cprg);
         dwn = sum(sum(dwloc < dw(k1,k2)));
-        if (dwn == 0) && (dw(k1,k2) < 0.1*mw)
+        if (dwn == 0) && (dw(k1,k2) < 0.1*mdw) && (w(k1,k2) < 0.85*maxw)
             sx = [sx, x(k1,k2)];
             sy = [sy, y(k1,k2)];
             sdw = [sdw, dw(k1,k2)];
@@ -111,31 +111,32 @@ for tmp = slxx
     plot(xx, yy, 'k-');
 end
 
-maxw = max(sw); minw = min(min(w));
-rgw = maxw - minw;
 
-figure();
-hold on
-s = pcolor(x, y, w);
-s.LineStyle = 'none';
-colorbar;
+% maxw = max(sw); minw = min(min(w));
+% rgw = maxw - minw;
+
+% figure();
+% hold on
+% s = pcolor(x, y, w);
+% s.LineStyle = 'none';
+% colorbar;
 % plot(ssx, ssy, 'r.')
-for tmp = slxx
-    if isempty(tmp{1})
-        continue
-    end
-    xx =  tmp{1}(:,1); yy =  tmp{1}(:,2);
-    ww = interp2(x,y,w,xx,yy,'nearest');
-    for kk = 1:floor(length(xx)/30)
-        txx = xx((kk-1)*30+1:kk*30);
-        tyy = yy((kk-1)*30+1:kk*30);
-        mtww = mean(ww((kk-1)*30+1:kk*30));
-        fj = plot(txx, tyy, 'k.');
-        fj.MarkerSize = round( (maxw-mtww)/rgw*8 );
-    end
-    txx = xx((kk-1)*30+1:end);
-    tyy = yy((kk-1)*30+1:end);
-    mtww = mean(ww((kk-1)*30+1:end));
-    fj = plot(txx, tyy, 'k.');
-    fj.MarkerSize = round( (maxw-mtww)/rgw*8 );
-end
+% for tmp = slxx
+%     if isempty(tmp{1})
+%         continue
+%     end
+%     xx =  tmp{1}(:,1); yy =  tmp{1}(:,2);
+%     ww = interp2(x,y,w,xx,yy,'nearest');
+%     for kk = 1:floor(length(xx)/30)
+%         txx = xx((kk-1)*30+1:kk*30);
+%         tyy = yy((kk-1)*30+1:kk*30);
+%         mtww = mean(ww((kk-1)*30+1:kk*30));
+%         fj = plot(txx, tyy, 'k.');
+%         fj.MarkerSize = round( (maxw-mtww)/rgw*8 );
+%     end
+%     txx = xx((kk-1)*30+1:end);
+%     tyy = yy((kk-1)*30+1:end);
+%     mtww = mean(ww((kk-1)*30+1:end));
+%     fj = plot(txx, tyy, 'k.');
+%     fj.MarkerSize = round( (maxw-mtww)/rgw*8 );
+% end

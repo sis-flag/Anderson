@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  25 FEB 2020 17:23
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  7 MAR 2020 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1168,31 +1168,34 @@ File: pic/lam1d.eps Graphic file (type eps)
 <pic/lam1d.eps>
 File: pic/lam2d.eps Graphic file (type eps)
 <pic/lam2d.eps>
-File: pic/vline4.eps Graphic file (type eps)
-<pic/vline4.eps>
-File: pic/hvline4.eps Graphic file (type eps)
-<pic/hvline4.eps>
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 210.
  [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
  (./report2.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 210.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 210.
-Package rerunfilecheck Info: File `report2.out' has not changed.
-(rerunfilecheck)             Checksum: 7868D541FD6C8669F6AF67A0D7F181A9.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 205.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 
+
+Package rerunfilecheck Warning: File `report2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report2.out':
+(rerunfilecheck)             Before: 7868D541FD6C8669F6AF67A0D7F181A9
+(rerunfilecheck)             After:  D90E732F7637643F2CE04BDE7DFAC0C0.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 210.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 28273 strings out of 492922
- 551106 string characters out of 6136750
+ 28267 strings out of 492922
+ 551001 string characters out of 6136750
  645684 words of memory out of 5000000
- 31996 multiletter control sequences out of 15000+600000
+ 31992 multiletter control sequences out of 15000+600000
  540240 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  54i,6n,68p,384b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report2.pdf (8 pages).
+Output written on report2.pdf (9 pages).
