@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  7 MAR 2020 15:00
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  30 MAY 2020 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -971,7 +971,7 @@ Package caption Warning: \label without proper reference on input line 38.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig1' on page 1 undefined on input line 30.
+LaTeX Warning: Reference `f1' on page 1 undefined on input line 30.
 
 File: pic/ua0.eps Graphic file (type eps)
 <pic/ua0.eps>
@@ -986,7 +986,7 @@ Package caption Warning: \label without proper reference on input line 51.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig2' on page 1 undefined on input line 44.
+LaTeX Warning: Reference `f2' on page 1 undefined on input line 44.
 
 [1
 
@@ -1015,7 +1015,7 @@ Package caption Warning: \label without proper reference on input line 65.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig3' on page 2 undefined on input line 59.
+LaTeX Warning: Reference `f3' on page 2 undefined on input line 59.
 
 File: pic/h1b10.eps Graphic file (type eps)
 <pic/h1b10.eps>
@@ -1028,7 +1028,7 @@ Package caption Warning: \label without proper reference on input line 76.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig4' on page 2 undefined on input line 71.
+LaTeX Warning: Reference `f4' on page 2 undefined on input line 71.
 
 File: pic/nouseb1d.eps Graphic file (type eps)
 <pic/nouseb1d.eps>
@@ -1037,7 +1037,7 @@ Package caption Warning: \label without proper reference on input line 91.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig9' on page 2 undefined on input line 84.
+LaTeX Warning: Reference `f9' on page 2 undefined on input line 84.
 
 [2]
 File: pic/bdb2.eps Graphic file (type eps)
@@ -1052,7 +1052,7 @@ Package caption Warning: \label without proper reference on input line 107.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig6' on page 3 undefined on input line 99.
+LaTeX Warning: Reference `f6' on page 3 undefined on input line 99.
 
 File: pic/bdnu1.eps Graphic file (type eps)
 <pic/bdnu1.eps>
@@ -1067,7 +1067,7 @@ Package caption Warning: \label without proper reference on input line 116.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig7' on page 3 undefined on input line 111.
+LaTeX Warning: Reference `f7' on page 3 undefined on input line 111.
 
 [3]
 File: pic/bdnu5.eps Graphic file (type eps)
@@ -1078,7 +1078,7 @@ Package caption Warning: \label without proper reference on input line 129.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig8' on page 4 undefined on input line 120.
+LaTeX Warning: Reference `f8' on page 4 undefined on input line 120.
 
 File: pic/bdny25.eps Graphic file (type eps)
 <pic/bdny25.eps>
@@ -1096,7 +1096,7 @@ Package caption Warning: \label without proper reference on input line 149.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig10' on page 5 undefined on input line 137.
+LaTeX Warning: Reference `f10' on page 5 undefined on input line 137.
 
 File: pic/mei0.eps Graphic file (type eps)
 <pic/mei0.eps>
@@ -1119,7 +1119,7 @@ Package caption Warning: \label without proper reference on input line 165.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig11' on page 5 undefined on input line 153.
+LaTeX Warning: Reference `f11' on page 5 undefined on input line 153.
 
 File: pic/meb0.eps Graphic file (type eps)
 <pic/meb0.eps>
@@ -1142,7 +1142,7 @@ Package caption Warning: \label without proper reference on input line 180.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig12' on page 5 undefined on input line 171.
+LaTeX Warning: Reference `f12' on page 5 undefined on input line 171.
 
 File: pic/me2d1.eps Graphic file (type eps)
 <pic/me2d1.eps>
@@ -1161,40 +1161,73 @@ Package caption Warning: \label without proper reference on input line 190.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig13' on page 5 undefined on input line 184.
+LaTeX Warning: Reference `f13' on page 5 undefined on input line 184.
 
 [5] [6] [7]
 File: pic/lam1d.eps Graphic file (type eps)
 <pic/lam1d.eps>
 File: pic/lam2d.eps Graphic file (type eps)
 <pic/lam2d.eps>
- [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
+
+
+Package caption Warning: \label without proper reference on input line 206.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `v1' on page 8 undefined on input line 200.
+
+File: pic/pf2-1.eps Graphic file (type eps)
+<pic/pf2-1.eps>
+File: pic/pf2-2.eps Graphic file (type eps)
+<pic/pf2-2.eps>
+File: pic/pf2-3.eps Graphic file (type eps)
+<pic/pf2-3.eps>
+
+Package caption Warning: \label without proper reference on input line 223.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `v2' on page 8 undefined on input line 211.
+
+File: pic/pf3-1.eps Graphic file (type eps)
+<pic/pf3-1.eps>
+File: pic/pf3-2.eps Graphic file (type eps)
+<pic/pf3-2.eps>
+File: pic/pf3-3.eps Graphic file (type eps)
+<pic/pf3-3.eps>
+File: pic/pf3-10.eps Graphic file (type eps)
+<pic/pf3-10.eps>
+File: pic/pf3-20.eps Graphic file (type eps)
+<pic/pf3-20.eps>
+File: pic/pf3-30.eps Graphic file (type eps)
+<pic/pf3-30.eps>
+File: pic/pf3-50.eps Graphic file (type eps)
+<pic/pf3-50.eps>
+File: pic/pf3-75.eps Graphic file (type eps)
+<pic/pf3-75.eps>
+File: pic/pf3-100.eps Graphic file (type eps)
+<pic/pf3-100.eps>
+[8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
  [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
  (./report2.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 229.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
+Package rerunfilecheck Info: File `report2.out' has not changed.
+(rerunfilecheck)             Checksum: 7868D541FD6C8669F6AF67A0D7F181A9.
 
-
-Package rerunfilecheck Warning: File `report2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report2.out':
-(rerunfilecheck)             Before: 7868D541FD6C8669F6AF67A0D7F181A9
-(rerunfilecheck)             After:  D90E732F7637643F2CE04BDE7DFAC0C0.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
  ) 
 Here is how much of TeX's memory you used:
- 28267 strings out of 492922
- 551001 string characters out of 6136750
- 645684 words of memory out of 5000000
- 31992 multiletter control sequences out of 15000+600000
- 540240 words of font info for 79 fonts, out of 8000000 for 9000
+ 28307 strings out of 492922
+ 551654 string characters out of 6136750
+ 645725 words of memory out of 5000000
+ 32019 multiletter control sequences out of 15000+600000
+ 540248 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  54i,6n,68p,384b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 

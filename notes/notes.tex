@@ -27,7 +27,7 @@
 
 \section{问题和离散}
 
-求解区域$\Omega = [0,1]^d$，维数$d = 1, 2, 3$。
+求解区域$\Omega = [0,1]^d$，维数$d = 1, 2$。
 
 Robin边界特征值问题
 \begin{eqnarray}
@@ -37,8 +37,8 @@ Robin边界特征值问题
 
 Robin边界源项问题
 \begin{eqnarray}
-- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = f(\mathbf{x}) \qquad \mathbf{x} \in \Omega \\
-\frac{\partial u}{\partial n}(\mathbf{x}) + h_0 u(\mathbf{x}) = g_0(\mathbf{x}) \qquad \mathbf{x} \in \partial \Omega
+- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = 1 \qquad \mathbf{x} \in \Omega \\
+\frac{\partial u}{\partial n}(\mathbf{x}) = g_0 \qquad \mathbf{x} \in \partial \Omega
 \end{eqnarray}
 
 Dirichlet边界特征值问题
@@ -49,7 +49,7 @@ u(\mathbf{x}) = 0 \qquad \mathbf{x} \in \partial \Omega
 
 Dirichlet边界源项问题
 \begin{eqnarray}
-- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = f(\mathbf{x}) \qquad \mathbf{x} \in \Omega \\
+- \Delta u(\mathbf{x}) + V(\mathbf{x}) u(\mathbf{x}) = 1 \qquad \mathbf{x} \in \Omega \\
 u(\mathbf{x}) = 0 \qquad \mathbf{x} \in \partial \Omega
 \end{eqnarray}
 
@@ -57,12 +57,12 @@ u(\mathbf{x}) = 0 \qquad \mathbf{x} \in \partial \Omega
 
 Robin边界特征值问题对应变分形式
 \begin{equation}
-\text{find} \ \lambda, u \in \mathbb{C} \times H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) + (h_0 u, v)_{\partial\Omega} = \lambda (u, v) \qquad \forall v \in  H^1(\Omega)
+\text{find} \ \lambda, u \in \mathbb{C} \times H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) + h_0 (u, v)_{\partial\Omega} = \lambda (u, v) \qquad \forall v \in  H^1(\Omega)
 \end{equation}
 
 Robin边界源项问题对应变分形式
 \begin{equation}
-\text{find} \ u \in H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) + (h_0 u, v)_{\partial\Omega} = (f, v) + (g_0, v)_{\partial\Omega} \qquad \forall v \in  H^1(\Omega)
+\text{find} \ u \in H^1(\Omega) \quad (\nabla u, \nabla v) + (V u, v) = (f, v) + (g_0, v)_{\partial\Omega} \qquad \forall v \in  H^1(\Omega)
 \end{equation}
 
 Dirichlet边界特征值问题对应变分形式
@@ -158,7 +158,7 @@ $$ (\phi_k, \phi_k) = \frac{2}{(2k+3)(2k-1)} \quad \text{其中} \quad (k = 1, 2
 和
 $$ (\phi_{k}, \phi_{k+2}) = (\phi_{k+2}, \phi_{k}) = -\frac{1}{(2k+3)\sqrt{(2k+5)(2k+1)}} \quad \text{其中} \quad (k = 1, 2, \cdots, N-3) $$
 
-一维的情况下，对$f(x) = 1$的情况，由于高次的勒让德多项式都和零次多项式正交，所以
+一维的情况下，由于高次的勒让德多项式都和零次多项式正交，所以
 \begin{equation}
 (1, \phi_j) = \left\{ \begin{array}{ll}
 1 & j = 0 \ \text{or} \ j = N \\

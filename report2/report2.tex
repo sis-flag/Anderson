@@ -27,7 +27,7 @@
 
 \subsection{$\alpha$的选取}
 
-我们先从一维的简单情况开始。一维区间分成20段，K=1000，V是均匀分布的随机数，Neumann边界条件。选取$x_0$为0.5 对不同的$\alpha$模拟。如图\ref{fig1}
+我们先从一维的简单情况开始。一维区间分成20段，K=1000，V是均匀分布的随机数，Neumann边界条件。选取$x_0$为0.5 对不同的$\alpha$模拟。如图\ref{f1}
 
 \begin{figure}[htbp]
     \centering
@@ -35,20 +35,20 @@
     \includegraphics[width=0.3\linewidth]{pic/ua300} \\
     \includegraphics[width=0.3\linewidth]{pic/ua1000}
     \includegraphics[width=0.3\linewidth]{pic/ua3000}
-    \label{fig1}
+    \label{f1}
 \caption{一维，不同alpha下的表现}
 \end{figure}
 
 可以看到，在$x_0$附近landscape会间断。我们希望的情况是下面彩色的线和上面黑色的线比较靠近。可以看出，没有enforce的landscape是四幅图里最优的。
 
-把四条landscape画在一起，发现强制的边界仅仅改变了$x_0$附近的函数值，对更远的地方就没有效果了。在二维情况，这种现象特别特别明显。如图\ref{fig2}。图中二维分割成$20 \times 20$的小块，$\alpha = 200$其他参数同上。
+把四条landscape画在一起，发现强制的边界仅仅改变了$x_0$附近的函数值，对更远的地方就没有效果了。在二维情况，这种现象特别特别明显。如图\ref{f2}。图中二维分割成$20 \times 20$的小块，$\alpha = 200$其他参数同上。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\linewidth]{pic/nouse1d}
     \includegraphics[width=0.3\linewidth]{pic/nouse2d1}
     \includegraphics[width=0.3\linewidth]{pic/nouse2d2}
-    \label{fig2}
+    \label{f2}
 \caption{左图是一维的情况，中间是no enforce的二维曲面，右边是把(0.5, 0.5)处强行设成1/200的曲面。红叉下面那个特别细的就是enforce对它的影响。}
 \end{figure}
 
@@ -56,24 +56,24 @@
 
 \subsection{$\beta$的选取}
 
-首先在一维情况下实验，Robin边界条件，取h=1，其他参数同上。结果如图\ref{fig3}
+首先在一维情况下实验，Robin边界条件，取h=1，其他参数同上。结果如图\ref{f3}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\linewidth]{pic/h1b10}
     \includegraphics[width=0.3\linewidth]{pic/h1b100}
     \includegraphics[width=0.3\linewidth]{pic/h1b1000}
-    \label{fig3}
+    \label{f3}
 \caption{beta对结果的影响}
 \end{figure}
 
 从图中可以看出，$\beta$不能太小，否则边界会翘起来，也不能太大，否则不等式就不精确了。之前猜测$\beta$应该大概取成$Kh$，现在看起来并不是这样。
 
-同样，$\beta$的选取仅仅影响landscape在边界附近的性质，对内部影响比较小。如图\ref{fig4}
+同样，$\beta$的选取仅仅影响landscape在边界附近的性质，对内部影响比较小。如图\ref{f4}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\linewidth]{pic/nouseb1d}
-    \label{fig4}
+    \label{f4}
 \caption{beta对结果的影响}
 \end{figure}
 
@@ -81,14 +81,14 @@
 
 \subsection{localize到边界时参数的选取}
 
-之前有一个问题是当localize的位置在边界时，要如何选取$\beta$的值，这时的结果会不会有变化。我们用同样的势函数，换不同的$\beta$模拟。结果如图\ref{fig9}。得到的结果和原来差不多。由于在最终的不等式里出现的是$\beta$和特征值相加，所以$\beta$选取和特征值在同一数量级的数就差不多。
+之前有一个问题是当localize的位置在边界时，要如何选取$\beta$的值，这时的结果会不会有变化。我们用同样的势函数，换不同的$\beta$模拟。结果如图\ref{f9}。得到的结果和原来差不多。由于在最终的不等式里出现的是$\beta$和特征值相加，所以$\beta$选取和特征值在同一数量级的数就差不多。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\linewidth]{pic/bdb2}
     \includegraphics[width=0.3\linewidth]{pic/bdb3}
     \includegraphics[width=0.3\linewidth]{pic/bdb4}
-    \label{fig9}
+    \label{f9}
 \caption{localize到边界的landscape}
 \end{figure}
 
@@ -96,7 +96,7 @@
 
 在实验中我们发现，边界条件是Dirichlet还是导数型的，主要影响landscape的边界，对landscape的内部影响较小。对eigenmode的影响就比较大，因为原来不会聚集到边界的峰有可能聚集到边界了。
 
-还是先看一维的情况，在一个特定的V下模拟，这里的V故意在边界选取得比较小，能够突出局部化到边界的效果。如图\ref{fig6}
+还是先看一维的情况，在一个特定的V下模拟，这里的V故意在边界选取得比较小，能够突出局部化到边界的效果。如图\ref{f6}
 
 \begin{figure}[htbp]
     \centering
@@ -104,20 +104,20 @@
     \includegraphics[width=0.3\linewidth]{pic/bdnu2} \\
     \includegraphics[width=0.3\linewidth]{pic/bdnu3}
     \includegraphics[width=0.3\linewidth]{pic/bdnu4}
-    \label{fig6}
+    \label{f6}
 \caption{左上为V，剩下三个是不同边界条件下的模拟结果}
 \end{figure}
 
-这三个eigenmode很不一样，尤其是Dirichelt和Neumann边界的，相差很多。但是把它们的landscape画在一起，就会发现在内部很相似。图\ref{fig7}中比较了不同边界条件下的landscape。
+这三个eigenmode很不一样，尤其是Dirichelt和Neumann边界的，相差很多。但是把它们的landscape画在一起，就会发现在内部很相似。图\ref{f7}中比较了不同边界条件下的landscape。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\linewidth]{pic/bdnu5}
-    \label{fig7}
+    \label{f7}
 \caption{不同边界条件下的landscape}
 \end{figure}
 
-二维的也一样。二维的曲面画在一起不容易看清楚，我们只能画切面图。如图\ref{fig8}。landscape在内部差不多。在y=0和y=1的时候就不一样了。
+二维的也一样。二维的曲面画在一起不容易看清楚，我们只能画切面图。如图\ref{f8}。landscape在内部差不多。在y=0和y=1的时候就不一样了。
 
 \begin{figure}[htbp]
     \centering
@@ -126,7 +126,7 @@
     \includegraphics[width=0.3\linewidth]{pic/bdny75}
     \includegraphics[width=0.3\linewidth]{pic/bdny0}
     \includegraphics[width=0.3\linewidth]{pic/bdny1}
-    \label{fig8}
+    \label{f8}
 \caption{二维不同边界条件下的landscape}
 \end{figure}
 
@@ -134,7 +134,7 @@
 
 根据测试，现有的代码至少可以计算50个以内的最小特征值，更多的说不定也可以。测试过程中，用50x50的分块，求解了50个特征值，只用了40秒就收敛了。这样的表现应该可以达到要求。
 
-我们希望知道不同边界条件下会不会对较大特征值对应的特征函数产生影响。我们还是先看一维的情况。在图\ref{fig10}中我们比较了不同边界条件下的特征值。
+我们希望知道不同边界条件下会不会对较大特征值对应的特征函数产生影响。我们还是先看一维的情况。在图\ref{f10}中我们比较了不同边界条件下的特征值。
 
 \begin{figure}[htbp]
     \centering
@@ -146,11 +146,11 @@
     \includegraphics[width=0.24\linewidth]{pic/mei7}
     \includegraphics[width=0.24\linewidth]{pic/mei10}
     \includegraphics[width=0.24\linewidth]{pic/mei20}
-    \label{fig10}
+    \label{f10}
 \caption{不同边界条件下eignemode的比较（右上第一张为势函数V）}
 \end{figure}
 
-得到的结论和我们的直觉相反，对前几个特征值，两种边界条件下的结果都一样，但是对后面的特征值，两种边界条件下就表现出了很大差异。注意到这个例子中没有前几个特征值localize到边界的情况，我们尝试模拟一下前面提到过的特殊选取，让特征函数出现在边界。如图\ref{fig11}
+得到的结论和我们的直觉相反，对前几个特征值，两种边界条件下的结果都一样，但是对后面的特征值，两种边界条件下就表现出了很大差异。注意到这个例子中没有前几个特征值localize到边界的情况，我们尝试模拟一下前面提到过的特殊选取，让特征函数出现在边界。如图\ref{f11}
 
 \begin{figure}[htbp]
     \centering
@@ -162,13 +162,13 @@
     \includegraphics[width=0.24\linewidth]{pic/meb7}
     \includegraphics[width=0.24\linewidth]{pic/meb10}
     \includegraphics[width=0.24\linewidth]{pic/meb20}
-    \label{fig11}
+    \label{f11}
 \caption{不同边界条件下eignemode的比较（右上第一张为势函数V）}
 \end{figure}
 
 可以看到，除了eigenmode3，其它的都有很大差异。所以我们的结论还是和前面提到的一样：边界条件只影响边界。所以localize到内部的eigenmode不会有影响，如果eigenmode在边界附近出现了峰，那不同的边界条件就会对它影响很大。
 
-下面我们研究二维的情况，如图\ref{fig12}。由于二维的情况大多数都localize在边界，所以两种边界条件下的情况完全不一样。
+下面我们研究二维的情况，如图\ref{f12}。由于二维的情况大多数都localize在边界，所以两种边界条件下的情况完全不一样。
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.45\linewidth]{pic/me2d1}
@@ -177,17 +177,17 @@
     \includegraphics[width=0.45\linewidth]{pic/me2d5}
     \includegraphics[width=0.45\linewidth]{pic/me2d20}
     \includegraphics[width=0.45\linewidth]{pic/me2d50}
-    \label{fig12}
+    \label{f12}
 \caption{不同边界条件下eignemode的比较（编号依次为1，2，3，5，20，50）}
 \end{figure}
 
-在这里，一维和二维的例子有很大的区别。在前面的两个例子中，我们同样取K为3000，势函数为$[0,K]$内的均匀分布。画出两种不同边界下的特征值如图\ref{fig13}。图中横轴为特征值编号（第几小的特征值），纵轴为特征值的数值。
+在这里，一维和二维的例子有很大的区别。在前面的两个例子中，我们同样取K为3000，势函数为$[0,K]$内的均匀分布。画出两种不同边界下的特征值如图\ref{f13}。图中横轴为特征值编号（第几小的特征值），纵轴为特征值的数值。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.45\linewidth]{pic/lam1d}
     \includegraphics[width=0.45\linewidth]{pic/lam2d}
-    \label{fig13}
+    \label{f13}
 \caption{不同边界条件下特征值的数值}
 \end{figure}
 
@@ -195,16 +195,35 @@
 
 \section{画出valley line}
 
-目前得valley line画出来是这样。两篇文章里都提到了watershed，这可能是个算法，具体还不清楚。
+valley line是用watershed算法画出的分界线，它可以很好地分割出特征函数的峰。
+
+取K为8000，均匀分布，Neumann边界。得到的valley line如图\ref{v1}。
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{pic/vline4}
-    \includegraphics[width=0.4\linewidth]{pic/hvline4}
-    \label{figv1}
-\caption{K=3000,均匀分布}
+    \includegraphics[width=0.3\linewidth]{pic/pf2-1}
+    \includegraphics[width=0.3\linewidth]{pic/pf2-2}
+    \includegraphics[width=0.3\linewidth]{pic/pf2-3}
+    \label{v1}
+\caption{PNAS文章中图2在Neumann边界下的结果}
+\end{figure}
+可以看出，valleyline对特征函数的分割很明显。
+
+画出更多的eigenmode。得到的valley line如图\ref{v2}。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.26\linewidth]{pic/pf3-1}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-2}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-3}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-10}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-20}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-30}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-50}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-75}
+    \includegraphics[width=0.26\linewidth]{pic/pf3-100}
+    \label{v2}
+\caption{PNAS文章中图3在Neumann边界下的结果}
 \end{figure}
 
-
-
+关于effective valley line，在这个例子里，解$w(x)$的最小值是0.0530，而即使是最小的特征值，它的倒数$1 / \lambda$也是8.5672e-04。所以，按照pnas文章里面的定义，effective valley line\textbf{一条也没有}。
 
 \end{document}
