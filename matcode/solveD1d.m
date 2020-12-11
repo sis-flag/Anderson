@@ -13,7 +13,7 @@ function [U] = solveD1d(V, N)
 
 % default input
 if nargin < 2
-    N = 10;
+    N = 6;
 end
 M = length(V);
 hm = 1 / M;

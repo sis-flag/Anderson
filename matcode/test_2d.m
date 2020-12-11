@@ -24,7 +24,7 @@ colorbar;
 
 % Robin boundary
 [U, lam] = eigR2d(V, h, 6);
-W = solveR2d(V, h/beta);
+W = solveN2d(V, h/beta);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));

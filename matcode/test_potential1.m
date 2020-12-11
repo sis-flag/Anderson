@@ -22,7 +22,7 @@ for i = 1:length(K)
     KV = K(i) * V;
     
     [U, lam] = eigR2d(KV, 0, 6);
-    W = solveR2d(KV, 0);
+    W = solveN2d(KV, 0);
     
     w = getval2d(W);
     x = linspace(0, 1, size(w,1));
@@ -80,7 +80,7 @@ for i = 1:length(K)
     KV = K(i) * V;
     
     [U, lam] = eigR2d(KV, 0, 6);
-    W = solveR2d(KV, 0);
+    W = solveN2d(KV, 0);
     
     w = getval2d(W);
     x = linspace(0, 1, size(w,1));
@@ -138,7 +138,7 @@ for i = 1:length(K)
     KV = K(i) * V;
     
     [U, lam] = eigR2d(KV, 0, 6);
-    W = solveR2d(KV, 0);
+    W = solveN2d(KV, 0);
     
     w = getval2d(W);
     x = linspace(0, 1, size(w,1));
@@ -196,7 +196,7 @@ for i = 1:length(K)
     KV = K(i) * V;
     
     [U, lam] = eigR2d(KV, 0, 6);
-    W = solveR2d(KV, 0);
+    W = solveN2d(KV, 0);
     
     w = getval2d(W);
     x = linspace(0, 1, size(w,1));

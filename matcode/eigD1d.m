@@ -15,7 +15,7 @@ function [U, lam] = eigD1d(V, num, N)
 
 % default input
 if nargin < 3
-    N = 10;
+    N = 6;
 end
 
 M = length(V);

@@ -4,12 +4,14 @@ rng(0);
 % peremeters
 rng(0);
 
-K = 8000;
-V = rand(20);
+K = 100;
+p = 0.3;
+V = rand(10);
+V(V<p) = 0; V(V>=p) = 1;
 V = K * V;
 
 [U, lam] = eigR2d(V, 0, 100);
-W = solveR2d(V, 0);
+W = solveN2d(V, 0);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));

@@ -17,7 +17,7 @@ function [U, lam] = eigD2d(V, num, N)
 
 % default input
 if nargin < 3
-    N = 10;
+    N = 6;
 end
 
 M = size(V, 1);

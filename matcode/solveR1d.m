@@ -1,7 +1,7 @@
-function [U] = solveR1d(V, g, x0, u0, N)
+function [U] = solveR1d(V, h, x0, u0, N)
 % solve 1-d anderson source problem
 % - u''(x) + V(x) u(x) = 1 for x in [0, 1]
-% u'(x) = g for x = 0 or x = 1
+% u'(x) + h u(x) = 0 for x = 0 or x = 1
 % enforce u(x0) = u0
 % V(x) is piecewise constant
 % input:
@@ -16,7 +16,7 @@ function [U] = solveR1d(V, g, x0, u0, N)
 
 % default input
 if nargin < 5
-    N = 10;
+    N = 6;
 end
 if nargin < 4
     x0 = []; u0 = [];
@@ -56,8 +56,8 @@ end
 
 A = sparse(iA, jA, vA, M*N+1, M*N+1);
 
-F(1) = F(1) + g;
-F(end) = F(end) + g;
+A(1, 1) = A(1, 1) + h;
+A(end, end) = A(end, end) + h;
 
 if ~isempty(x0)
     m = round(x0/hm);

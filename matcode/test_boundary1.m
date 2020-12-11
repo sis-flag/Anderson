@@ -18,7 +18,7 @@ h = 1;
 beta = 30;
 
 [U, lam] = eigR1d(V, h, 6);
-W = solveR1d(V, h/beta);
+W = solveN1d(V, h/beta);
 
 w = getval1d(W);
 x = linspace(0,1,length(w));
@@ -28,14 +28,14 @@ hold on
 plot(x, w, 'k')
 for k = 1:4
     uk = my_nmlz(getval1d(U(:,k)));
-    plot(x, uk / (lam(k) + 1/max(w) + beta) )
+    plot(x, uk / (lam(k) + beta) )
 end
 title('Robin boundary')
 saveas(gcf, '../report0/boundary/R1d.png')
 
 %% 1d Neumann boundary
 [U, lam] = eigR1d(V, 0, 6);
-W = solveR1d(V, 0);
+W = solveN1d(V, 0);
 
 w = getval1d(W);
 x = linspace(0,1,length(w));
@@ -45,7 +45,7 @@ hold on
 plot(x, w, 'k')
 for k = 1:4
     uk = my_nmlz(getval1d(U(:,k)));
-    plot(x, uk / (lam(k) + 1/max(w)) )
+    plot(x, uk / lam(k) )
 end
 title('Neumann boundary')
 saveas(gcf, '../report0/boundary/N1d.png')
@@ -92,7 +92,7 @@ h = 1;
 beta = 30;
 
 [U, lam] = eigR2d(V, h, 6);
-W = solveR2d(V, h/beta);
+W = solveN2d(V, h/beta);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));
@@ -127,7 +127,7 @@ saveas(gcf, '../report0/boundary/Ru2d.png')
 
 %% 2d Neumann boundary
 [U, lam] = eigR2d(V, 0, 6);
-W = solveR2d(V, 0);
+W = solveN2d(V, 0);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));

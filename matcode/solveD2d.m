@@ -15,7 +15,7 @@ function [U] = solveD2d(V, N)
 
 % default input
 if nargin < 2
-    N = 10;
+    N = 6;
 end
 
 M = size(V, 1);

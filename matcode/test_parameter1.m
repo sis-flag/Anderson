@@ -18,7 +18,7 @@ saveas(gcf, '../report0/parameter/V1.png')
 
 for x0 = [0.3, 0.5, 0.7]
     for alpha = [1000, 3000, 10000]
-        W = solveR1d(V, 0, x0, 1/alpha);
+        W = solveN1d(V, 0, x0, 1/alpha);
 
         w = getval1d(W);
         x = linspace(0, 1, length(w));
@@ -39,7 +39,7 @@ figure();
 hold on
 for x0 = [0.3, 0.5, 0.7]
     for alpha = [1000, 3000, 10000]
-        W = solveR1d(V, 0, x0, 1/alpha);
+        W = solveN1d(V, 0, x0, 1/alpha);
 
         w = getval1d(W);
         x = linspace(0, 1, length(w));
@@ -53,14 +53,14 @@ figure();
 hold on
 alpha = 300;
 for x0 = 0.1: 0.1: 0.9
-    W = solveR1d(V, 0, x0, 1/alpha);
+    W = solveN1d(V, 0, x0, 1/alpha);
 
     w = getval1d(W);
     x = linspace(0, 1, length(w));
 
     plot(x, w)
 end
-W = solveR1d(V, 0);
+W = solveN1d(V, 0);
 w = getval1d(W);
 x = linspace(0, 1, length(w));
 plot(x, w, 'k')
@@ -86,7 +86,7 @@ saveas(gcf, '../report0/parameter/V2.png')
 
 for x0 = [0.3, 0.5, 0.7]
     for alpha = [1000, 3000, 10000]
-        W = solveR1d(V, 0, x0, 1/alpha);
+        W = solveN1d(V, 0, x0, 1/alpha);
 
         w = getval1d(W);
         x = linspace(0, 1, length(w));
@@ -107,7 +107,7 @@ figure();
 hold on
 for x0 = [0.3, 0.5, 0.7]
     for alpha = [1000, 3000, 10000]
-        W = solveR1d(V, 0, x0, 1/alpha);
+        W = solveN1d(V, 0, x0, 1/alpha);
 
         w = getval1d(W);
         x = linspace(0, 1, length(w));
@@ -121,14 +121,14 @@ figure();
 hold on
 alpha = 300;
 for x0 = 0.1: 0.1: 0.9
-    W = solveR1d(V, 0, x0, 1/alpha);
+    W = solveN1d(V, 0, x0, 1/alpha);
 
     w = getval1d(W);
     x = linspace(0, 1, length(w));
 
     plot(x, w)
 end
-W = solveR1d(V, 0);
+W = solveN1d(V, 0);
 w = getval1d(W);
 x = linspace(0, 1, length(w));
 plot(x, w, 'k')
@@ -141,7 +141,7 @@ K = 8000;
 V = rand(20);
 V = K * V;
 
-W = solveR2d(V, 0);
+W = solveN2d(V, 0);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));
@@ -151,7 +151,7 @@ figure()
 mesh(x1, x2, w);
 saveas(gcf, '../report0/parameter/2DA1.png')
 
-W = solveR2d(V, 0, 0.5, 0.5, 1/700);
+W = solveN2d(V, 0, 0.5, 0.5, 1/700);
 w = getval2d(W);
 
 figure()

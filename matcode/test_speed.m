@@ -7,10 +7,10 @@ V = 8000 * rand(M);
 fprintf('problem size: %d\n', M)
 
 disp('Robin boundary source problem:')
-tic; W = solveR2d(V, 0); toc
+tic; W = solveR2d(V, 1); toc
 
 disp('Robin boundary eigen problem:')
-tic; [U, lam] = eigR2d(V, 0); toc
+tic; [U, lam] = eigR2d(V, 1); toc
 
 disp('Dirichlet boundary source problem:')
 tic; W = solveD2d(V); toc

@@ -1,7 +1,7 @@
-function [U] = solveR2d(V, g, x0, y0, u0, N)
+function [U] = solveR2d(V, h, x0, y0, u0, N)
 % solve 2-d anderson source problem
 % - laplace u(x) + V(x) u(x) = 1 for x in [0,1] x [0,1]
-% u'(x) = g for x on boundary
+% u'(x) + h u(x) = 0 for x on boundary
 % enforce u(x0, y0) = u0
 % V(x) is piecewise constant
 % input:
@@ -18,7 +18,7 @@ function [U] = solveR2d(V, g, x0, y0, u0, N)
 
 % default input
 if nargin < 6
-    N = 10;
+    N = 6;
 end
 if nargin < 5
     x0 = []; y0 = []; u0 = [];
@@ -27,7 +27,7 @@ end
 M = size(V, 1);
 hm = 1 / M;
 
-[Ahat, Bhat, Fhat, ~, ~, ~, ~, KGF0, KGF1, KFG0, KFG1] = lgmat2d(N);
+[Ahat, Bhat, Fhat, KHB0, KHB1, KBH0, KBH1, ~, ~, ~, ~] = lgmat2d(N);
 [iAhat, jAhat, vAhat] = find(Ahat);
 [iBhat, jBhat, vBhat] = find(Bhat);
 [iFhat, ~, vFhat] = find(Fhat);
@@ -70,28 +70,28 @@ A = sparse(iA, jA, vA, (M*N+1)^2, (M*N+1)^2);
 m2 = 1;
 for m1 = 1:M
     ind = l2g(m1, m2, 1:(N+1)^2);
-    F(ind) = F(ind) + hm/2 * g * KGF0;
+    A(ind, ind) = A(ind, ind) + hm/2 * h * KHB0;
 end
 
 % right boundary
 m2 = M;
 for m1 = 1:M
     ind = l2g(m1, m2, 1:(N+1)^2);
-    F(ind) = F(ind) + hm/2 * g * KGF1;
+    A(ind, ind) = A(ind, ind) + hm/2 * h * KHB1;
 end
 
 % bottom boundary
 m1 = 1;
 for m2 = 1:M
     ind = l2g(m1, m2, 1:(N+1)^2);
-    F(ind) = F(ind) + hm/2 * g * KFG0;
+    A(ind, ind) = A(ind, ind) + hm/2 * h * KBH0;
 end
 
 % top boundary
 m1 = M;
 for m2 = 1:M
     ind = l2g(m1, m2, 1:(N+1)^2);
-    F(ind) = F(ind) + hm/2 * g * KFG1;
+    A(ind, ind) = A(ind, ind) + hm/2 * h * KBH1;
 end
 
 if ~isempty(x0)

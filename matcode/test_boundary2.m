@@ -9,9 +9,9 @@ V = K * V;
 
 %% 1d compare
 w0 = getval1d(solveD1d(V));
-w1 = getval1d(solveR1d(V, 0.03));
-w2 = getval1d(solveR1d(V, 0));
-w3 = getval1d(solveR1d(V, -0.03));
+w1 = getval1d(solveN1d(V, 0.03));
+w2 = getval1d(solveN1d(V, 0));
+w3 = getval1d(solveN1d(V, -0.03));
 
 x = linspace(0, 1, length(w1));
 
@@ -37,9 +37,9 @@ V = K * V;
 
 %% 2d compare
 w0 = getval2d(solveD2d(V));
-w1 = getval2d(solveR2d(V, 0.03));
-w2 = getval2d(solveR2d(V, 0));
-w3 = getval2d(solveR2d(V, -0.03));
+w1 = getval2d(solveN2d(V, 0.03));
+w2 = getval2d(solveN2d(V, 0));
+w3 = getval2d(solveN2d(V, -0.03));
 
 x = linspace(0, 1, size(w0,1));
 

@@ -18,7 +18,7 @@ function [U, lam] = eigR2d(V, h, num, N)
 
 % default input
 if nargin < 4
-    N = 10;
+    N = 6;
 end
 
 M = size(V, 1);

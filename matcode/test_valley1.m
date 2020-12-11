@@ -22,7 +22,7 @@ saveas(gcf, '../report0/valley/V.png')
 
 %% simulation
 [U, lam] = eigR2d(V, 0, 50);
-W = solveR2d(V, 0);
+W = solveN2d(V, 0);
 
 w = getval2d(W);
 x = linspace(0, 1, size(w,1));
@@ -42,10 +42,9 @@ cf.MarkerSize = 3;
 saveas(gcf, '../report0/valley/W.png')
 
 %% plot eigen mode
-alpha = 1 / max(max(w));
 for k = [1,2,3,5,7,10,20,30,50]
-    evx1 = vx1(vw<1/(lam(k)+alpha));
-    evx2 = vx2(vw<1/(lam(k)+alpha));
+    evx1 = vx1(vw < 1/lam(k) );
+    evx2 = vx2(vw < 1/lam(k) );
     
     uk = my_nmlz(getval2d(U(:,k)));
     
@@ -63,7 +62,6 @@ for k = [1,2,3,5,7,10,20,30,50]
 end
 
 %% plot black-white
-alpha = 1 / max(max(w));
 for k = [1,2,3,5,7,10,20,30]
     uk = my_nmlz(getval2d(U(:,k)));
     
@@ -76,7 +74,7 @@ for k = [1,2,3,5,7,10,20,30]
     title(sprintf('eigen mode %d, \\lambda = %g', k, lam(k)))
 
     subplot(1, 2, 2);
-    bw = double(w < 1/(lam(k)+alpha) );
+    bw = double(w < 1/lam(k) );
     cf = pcolor(x1, x2, bw);
     cf.LineStyle = 'none';
     caxis([0, 1])

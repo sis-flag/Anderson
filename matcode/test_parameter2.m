@@ -24,7 +24,7 @@ for kb = 1:length(all_beta)
     
     beta = all_beta(kb);
     
-    w = getval1d(solveR1d(V, h/beta));
+    w = getval1d(solveN1d(V, h/beta));
     x = linspace(0, 1, length(w));
 
     figure();
@@ -74,7 +74,7 @@ for kb = 1:length(all_beta)
     
     beta = all_beta(kb);
     
-    w = getval1d(solveR1d(V, h/beta));
+    w = getval1d(solveN1d(V, h/beta));
     x = linspace(0, 1, length(w));
 
     figure();

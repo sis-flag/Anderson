@@ -9,7 +9,7 @@ function u = getval1d(U, Ns, N)
 
 % default input
 if nargin < 3
-    N = 10;
+    N = 6;
 end
 if nargin < 2
     Ns = 50;
