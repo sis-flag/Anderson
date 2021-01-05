@@ -1,0 +1,74 @@
+clear
+
+L = [5, 24, 3, 1];
+h = [L(2)/2; L(1); L(2); L(3); L(4); L(3); L(2)/2];
+h = h / sum(h);
+
+h1 = [L(2)/2; L(1); L(2)+L(3)+L(4)+L(3)+L(2)/2];
+h1 = h1 / sum(h1);
+
+h2 = [L(2)/2+L(1)+L(2); L(3); L(4); L(3); L(2)/2];
+h2 = h2 / sum(h2);
+
+%%
+K = 800;
+
+[U0, lam0] = eigPhase(K, h, 2);
+[U1, lam1] = eigPhase(K, h1, 1);
+[U2, lam2] = eigPhase(K, h2, 1);
+
+[u01, x01] = getvalPhase(U0(:,1), h);
+[u02, x02] = getvalPhase(U0(:,2), h);
+[u1, x1] = getvalPhase(U1(:,1), h1);
+[u2, x2] = getvalPhase(U2(:,1), h2);
+
+px = linspace(0, 1, 201);
+pu01 = interp1(x01, my_nmlz(u01), px);
+pu02 = interp1(x02, my_nmlz(u02), px);
+pu1 = interp1(x1, my_nmlz(u1), px);
+pu2 = interp1(x2, my_nmlz(u2), px);
+
+figure
+hold on
+plot(px, pu01, '.')
+plot(px, pu02, '.')
+plot(px, pu1, '-')
+plot(px, pu2, '-')
+xlim([0, 1])
+set(gcf, 'Position', [500 500 400 300])
+
+legend('eigenmode 1 of V(x)', ...
+    'eigenmode 2 of V(x)', ...
+    'eigenmode 1 of V_1(x)', ...
+    'eigenmode 1 of V_2(x)')
+
+disp(lam0)
+disp(lam1)
+disp(lam2)
+
+%%
+all_K = 680:5:780;
+
+lam0 = zeros(2, length(all_K));
+lam1 = zeros(1, length(all_K));
+lam2 = zeros(1, length(all_K));
+for jk = 1:length(all_K)
+    K = all_K(jk);
+    
+    [~, lam0(:,jk)] = eigPhase(K, h, 2);
+    [~, lam1(jk)] = eigPhase(K, h1, 1);
+    [~, lam2(jk)] = eigPhase(K, h2, 1);
+end
+
+figure
+hold on
+plot(all_K, lam0, '*')
+plot(all_K, lam1, '-')
+plot(all_K, lam2, '-')
+xlabel('K')
+ylabel('\lambda')
+set(gcf, 'Position', [500 500 400 300])
+legend('\lambda_1 of V(x)', ...
+    '\lambda_2 of V(x)', ...
+    '\lambda_1 of V_1(x)', ...
+    '\lambda_1 of V_2(x)')
