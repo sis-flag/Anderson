@@ -126,48 +126,57 @@ save('Prob.mat', 'all_p', 'all_K', 'all_h', 'N_samp', 'N1d', 'N2d',...
     'Pb_h', 'Pb_p', 'Pb_K','Pe_h', 'Pe_p', 'Pe_K', 'Pc_h', 'Pc_p', 'Pc_K')
 
 %% plot
-clear
+% clear
 load Prob
 
 figure
 hold on
-plot(all_h(2:end-1), mean(Pb_h(2:end-1,:), 2), '*-')
-plot(all_h(2:end-1), mean(Pe_h(2:end-1,:), 2), '*-')
-plot(all_h(2:end-1), mean(Pc_h(2:end-1,:), 2), '*-')
+plot(all_h(2:end-1), mean(Pb_h(2:end-1,:), 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_h(2:end-1), mean(Pe_h(2:end-1,:), 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_h(2:end-1), mean(Pc_h(2:end-1,:), 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
 legend('P_b', 'P_e', 'P_c')
 ylim([0, 1])
-xlim([0.1, 1e3])
+xlim([3e-2, 3e3])
 xticks(all_h(2:2:end))
 xlabel('h')
 ylabel('probability')
 set(gcf, 'Position', [300 300 400 300])
-set(gca, 'FontSize', 14)
+set(gca, 'FontSize', 15)
 set(gca, 'XScale', 'log')
 
 figure
 hold on
-plot(all_p, mean(Pb_p, 2), '*-')
-plot(all_p, mean(Pe_p, 2), '*-')
-plot(all_p, mean(Pc_p, 2), '*-')
+plot(all_p, mean(Pb_p, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_p, mean(Pe_p, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_p, mean(Pc_p, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
 legend('P_b', 'P_e', 'P_c')
 ylim([0, 1])
 xticks(all_p(1:2:end))
 xlabel('p')
 ylabel('probability')
 set(gcf, 'Position', [300 300 400 300])
-set(gca, 'FontSize', 14)
+set(gca, 'FontSize', 15)
 
 figure
 hold on
-plot(all_K, mean(Pb_K, 2), '*-')
-plot(all_K, mean(Pe_K, 2), '*-')
-plot(all_K, mean(Pc_K, 2), '*-')
+plot(all_K, mean(Pb_K, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_K, mean(Pe_K, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
+plot(all_K, mean(Pc_K, 2),...
+    '.-', 'MarkerSize', 15, 'LineWidth', 1)
 legend('P_b', 'P_e', 'P_c')
 ylim([0, 1])
-xlim([10, 1e5])
+xlim([3, 3e5])
 xticks(all_K(1:2:end))
 xlabel('K')
 ylabel('probability')
 set(gcf, 'Position', [300 300 400 300])
-set(gca, 'FontSize', 14)
+set(gca, 'FontSize', 15)
 set(gca, 'XScale', 'log')

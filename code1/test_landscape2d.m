@@ -7,6 +7,8 @@ N = 20;
 h = 0;
 
 V = K * rand(N, N);
+V(11, 20) = K / 10;
+V(11, 19) = K;
 % V = K * binornd(1, p, N, N);
 
 [U, lam] = eig2d(V, h, 4);
@@ -27,6 +29,7 @@ set(gcf, 'Position', [300 300 400 300])
 set(gca, 'FontSize', 12)
 zticks([])
 view(-150, 70)
+axis off
 
 % plot eigen mode and valley line
 figure
@@ -46,3 +49,4 @@ set(gcf, 'Position', [300 300 400 300])
 set(gca, 'FontSize', 12)
 zticks([])
 view(-150, 70)
+axis off

@@ -65,11 +65,12 @@ mSPb = mean(SPb, 2);
 
 figure
 hold on
-plot(all_p, mSPb, 'bo')
-plot(all_p, mCPb, 'r*')
-plot(all_p, TPb, 'k-')
+plot(all_p, mSPb, 'b+', 'MarkerSize', 10)
+plot(all_p, mCPb, 'rx', 'MarkerSize', 10)
+plot(all_p, TPb, 'k-', 'LineWidth', 1)
 xlabel('p')
-ylabel('probability')
+ylabel('P_b')
 xlim([0.1, 0.9])
 set(gcf, 'Position', [300 300 400 300])
-set(gca, 'FontSize', 14)
+set(gca, 'FontSize', 16)
+legend('probability', 'frequency', 'prediction')

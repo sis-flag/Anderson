@@ -105,9 +105,9 @@ mSPN = mean(SPN, 2);
 
 figure
 hold on
-plot(all_p, mSPD, 'bo')
-plot(all_p, mCPD, 'r*')
-plot(all_p, TPD, 'k-')
+plot(all_p, mSPD, 'b+', 'MarkerSize', 10)
+plot(all_p, mCPD, 'rx', 'MarkerSize', 10)
+plot(all_p, TPD, 'k-', 'LineWidth', 1)
 xlabel('p')
 ylabel('P_D')
 xlim([0.1, 0.9])
@@ -117,9 +117,9 @@ set(gca, 'FontSize', 16)
 
 figure
 hold on
-plot(all_p, mSPN, 'bo')
-plot(all_p, mCPN, 'r*')
-plot(all_p, TPN, 'k-')
+plot(all_p, mSPN, 'b+', 'MarkerSize', 10)
+plot(all_p, mCPN, 'rx', 'MarkerSize', 10)
+plot(all_p, TPN, 'k-', 'LineWidth', 1)
 xlabel('p')
 ylabel('P_N')
 xlim([0.1, 0.9])

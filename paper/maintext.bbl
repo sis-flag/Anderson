@@ -1,0 +1,27 @@
+\begin{thebibliography}{4}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Chen(2004)}]{chen2004markov}
+Chen, M.~F.
+\newblock \emph{From Markov chains to non-equilibrium particle systems} (World
+  Scientific, 2004).
+
+\bibitem[{Filoche \& Mayboroda(2012)}]{filoche2012universal}
+Filoche, M. \& Mayboroda, S.
+\newblock Universal mechanism for Anderson and weak localization.
+\newblock \emph{Proc. Natl. Acad. Sci. USA} \textbf{109}, 14761--14766 (2012).
+
+\bibitem[{Bass(1998)}]{1998Diffusions}
+Bass, R.~F.
+\newblock \emph{Diffusions and Elliptic Operators} (Springer,, 1998).
+
+\bibitem[{Soille \& Vincent(1990)}]{Soille1990Determining}
+Soille, P. \& Vincent, L.~M.
+\newblock Determining watersheds in digital pictures via flooding simulations.
+\newblock \emph{Proceedings of SPIE - The International Society for Optical
+  Engineering} \textbf{1360}, 240--250 (1990).
+
+\end{thebibliography}
