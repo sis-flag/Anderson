@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  7 MAR 2021 16:40
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.18)  13 MAR 2021 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -915,163 +915,180 @@ Package amsmath Warning: Cannot use `split' here;
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 509.
 
-[14] (./maintext.bbl)
+[14]
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 544 replaced by U+FFFD.
+File: Fig6.eps Graphic file (type eps)
+<Fig6.eps>
+ (./maintext.bbl [15])
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 532.
- [15]
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 561.
+ [16]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 572.
+(amsmath)                trying to recover with `aligned' on input line 601.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 587.
+(hyperref)                removing `\hbox' on input line 616.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 587.
+(hyperref)                removing `\mathsurround' on input line 616.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 587.
+(hyperref)                removing `\z@' on input line 616.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 587.
+(hyperref)                removing `\unskip' on input line 616.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 587.
+(hyperref)                removing `\@@italiccorr' on input line 616.
 
-[16]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 628.
-
+[17]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 628.
+(hyperref)                removing `\hbox' on input line 657.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 628.
+(hyperref)                removing `\mathsurround' on input line 657.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 628.
+(hyperref)                removing `\z@' on input line 657.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 628.
+(hyperref)                removing `\unskip' on input line 657.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 642.
+(hyperref)                removing `\@@italiccorr' on input line 657.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 642.
+(hyperref)                removing `\hbox' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 642.
+(hyperref)                removing `\mathsurround' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 642.
+(hyperref)                removing `\z@' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 642.
-
-[17] [18]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 700.
+(hyperref)                removing `\unskip' on input line 671.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 700.
+(hyperref)                removing `\@@italiccorr' on input line 671.
+
+[18] [19]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hbox' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 700.
+(hyperref)                removing `\mathsurround' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 700.
+(hyperref)                removing `\z@' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 700.
+(hyperref)                removing `\unskip' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 700.
+(hyperref)                removing `\@@italiccorr' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 700.
+(hyperref)                removing `\hbox' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 700.
+(hyperref)                removing `\mathsurround' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 700.
+(hyperref)                removing `\z@' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 700.
+(hyperref)                removing `\unskip' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 702.
+(hyperref)                removing `\@@italiccorr' on input line 729.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 702.
+(hyperref)                removing `math shift' on input line 731.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 702.
+(hyperref)                removing `subscript' on input line 731.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 744.
+(hyperref)                removing `math shift' on input line 731.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 744.
+(hyperref)                removing `math shift' on input line 773.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 744.
+(hyperref)                removing `subscript' on input line 773.
 
-[19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 802.
- [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 802.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 773.
+
+[20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 831.
+ [21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 831.
  (./maintext.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 802.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 802.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 831.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 831.
 Package rerunfilecheck Info: File `maintext.out' has not changed.
-(rerunfilecheck)             Checksum: 5B126EA1D4D8DF41F91ECF14B9B132E3.
+(rerunfilecheck)             Checksum: 411DB3C9A96E2779C286CDE70106722E.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 802.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 831.
  ) 
 Here is how much of TeX's memory you used:
- 16234 strings out of 492922
- 230487 string characters out of 6136750
- 396320 words of memory out of 5000000
- 19995 multiletter control sequences out of 15000+600000
+ 16238 strings out of 492922
+ 230530 string characters out of 6136750
+ 396546 words of memory out of 5000000
+ 19998 multiletter control sequences out of 15000+600000
  26226 words of font info for 128 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  44i,23n,51p,1524b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on maintext.pdf (20 pages).
+Output written on maintext.pdf (21 pages).

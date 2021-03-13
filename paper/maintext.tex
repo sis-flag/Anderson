@@ -517,6 +517,35 @@ We generate $L_1, L_2, L_3, L_4$ randomly as our sample points. The sample point
 Noting that there are two descriptions of the critical point $K_c$ mentioned above. One is that two peaks of the first eigenmode locates in $W_1$ and $W_2$ are equal in height ($F = 0.5$) and the other is that the first and the second eigenvalues of the original system are equal ($\lambda_1 = \lambda_2$). Actually, the two descriptions are not exactly same, which is the main source of the error mentioned above. The simulation results prove that the difference between two descriptions is sufficient small.
 \end{remark}
 
+\subsection{Key factors in phase transition}
+
+The critical point $K_c$ depends on four variables $L_1$, $L_2$, $L_3$ and $L_4$. Since there is a restriction of total length $L_1 + 2 L_2 + 2 L_3 + L_4 = 1$, there are only three degrees of freedom. We can define 
+\begin{equation}
+P_1 = 1 - 2 L_2, \quad P_2 = \frac{L_1}{L_1 + 2 L_3 + L_4}, \quad P_3 = \frac{L_4}{2 L_3 + L_4},
+\end{equation}
+where $P_1$ represents the total length of both wells, $P_2$ represents the proportion of the length of $W_1$ to the total length and $P_3$ represents the proportion of the length of barrier in $W_2$ to the total length of $W_2$.
+
+As we known, when the interval shrinks, the Dirichlet eigenvalue on the interval will increase. Thus, $K_c$ increases with the decrease of $P_1$. For details, the square of the interval length is in reverse ratio to the eigenvalue on the interval. Then the relationship can be expressed as
+\begin{equation}
+K_c = C_1 {P_1}^{-2}.
+\end{equation}
+where $C_1$ is a constant independent of $P_1$. Fig. \ref{fig6} (a) illustrates the variation of the critical point $K_c$ with the factor $P_1$. The simulation results are consistent with our conjecture. Similarly, from the simulation results, we can obtain the relationship between $K_c$ and $P_2$, $P_3$ are
+\begin{equation}
+\log K_c = C_2 P_2 + C_3,
+\end{equation}
+and
+\begin{equation}
+K_c = C_4 {P_3}^{-2}.
+\end{equation}
+Simulation results are illustrated in Fig. \ref{fig6} (b) and (c). From the simulation results we can obtain that the relationships between $K_c$ and $P_1$, $P_3$ are both second order approximately and the relationship between $K_c$ and $P_2$ is exponential order. This means that the relative length of two wells is more important than other factors in phase transition problems.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Fig6.eps}
+\caption{The variation of the critical point $K_c$ with the factors $P_1$, $P_2$, and $P_3$. Blue crosses denote the simulation results and the red lines denote the results obtained by linear regression.}
+\label{fig6}
+\end{figure}
+
 \section*{Acknowledgements}
 The authors acknowledge support from the NSAF grant in National Natural Science Foundation of China (NSFC) with grant No. U1930402.
 
