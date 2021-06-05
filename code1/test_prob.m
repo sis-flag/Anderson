@@ -7,19 +7,21 @@ N_samp = 1000;
 N1d = 50;
 N2d = 15;
 
+thes = 0.5;
+
 %% relation to h
 p = 0.5;
-K = 1e3;
+K = 1e4;
 all_h = [0, 1e-1, 3e-1, 1e0, 3e0, 1e1, 3e1, 1e2, 3e2, 1e3, inf];
 
-Pb_h = zeros(length(all_h), N_samp);
+Pb_h = zeros(length(all_h), N_samp, 'logical');
 for jh = 1:length(all_h)
     h = all_h(jh);
     for js = 1:N_samp
         V = K * binornd(1, p, N1d, 1);
         U = eig1d(V, h, 1);
         u = abs(getval1d(U));
-        tPb = max(u(1), u(end)) / max(u);
+        tPb = max(u(1), u(end)) / max(u) > thes;
         Pb_h(jh, js) = tPb;
     end
     
@@ -27,16 +29,16 @@ for jh = 1:length(all_h)
     toc
 end
 
-Pe_h = zeros(length(all_h), N_samp);
-Pc_h = zeros(length(all_h), N_samp);
+Pe_h = zeros(length(all_h), N_samp, 'logical');
+Pc_h = zeros(length(all_h), N_samp, 'logical');
 for jh = 1:length(all_h)
     h = all_h(jh);
     for js = 1:N_samp
         V = K * binornd(1, p, N2d, N2d);
         U = eig2d(V, h, 1);
         u = abs(getval2d(U));
-        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:));
-        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:));
+        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:)) > thes;
+        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:)) > thes;
         Pe_h(jh, js) = tPe;
         Pc_h(jh, js) = tPc;
     end
@@ -47,17 +49,17 @@ end
 
 %% relation to p
 all_p = 0.1:0.1:0.9;
-K = 1e3;
-h = 1;
+K = 1e4;
+h = 0.01;
 
-Pb_p = zeros(length(all_p), N_samp);
+Pb_p = zeros(length(all_p), N_samp, 'logical');
 for jp = 1:length(all_p)
     p = all_p(jp);
     for js = 1:N_samp
         V = K * binornd(1, p, N1d, 1);
         U = eig1d(V, h, 1);
         u = abs(getval1d(U));
-        tPb = max(u(1), u(end)) / max(u);
+        tPb = max(u(1), u(end)) / max(u) > thes;
         Pb_p(jp, js) = tPb;
     end
     
@@ -65,16 +67,16 @@ for jp = 1:length(all_p)
     toc
 end
 
-Pe_p = zeros(length(all_p), N_samp);
-Pc_p = zeros(length(all_p), N_samp);
+Pe_p = zeros(length(all_p), N_samp, 'logical');
+Pc_p = zeros(length(all_p), N_samp, 'logical');
 for jp = 1:length(all_p)
     p = all_p(jp);
     for js = 1:N_samp
         V = K * binornd(1, p, N2d, N2d);
         U = eig2d(V, h, 1);
         u = abs(getval2d(U));
-        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:));
-        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:));
+        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:)) > thes;
+        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:)) > thes;
         Pe_p(jp, js) = tPe;
         Pc_p(jp, js) = tPc;
     end
@@ -86,16 +88,16 @@ end
 %% relation to K
 p = 0.5;
 all_K = [1e1, 3e1, 1e2, 3e2, 1e3, 3e3, 1e4, 3e4, 1e5];
-h = 1;
+h = 0.01;
 
-Pb_K = zeros(length(all_K), N_samp);
+Pb_K = zeros(length(all_K), N_samp, 'logical');
 for jk = 1:length(all_K)
     K = all_K(jk);
     for js = 1:N_samp
         V = K * binornd(1, p, N1d, 1);
         U = eig1d(V, h, 1);
         u = abs(getval1d(U));
-        tPb = max(u(1), u(end)) / max(u);
+        tPb = max(u(1), u(end)) / max(u) > thes;
         Pb_K(jk, js) = tPb;
     end
     
@@ -103,16 +105,16 @@ for jk = 1:length(all_K)
     toc
 end
 
-Pe_K = zeros(length(all_K), N_samp);
-Pc_K = zeros(length(all_K), N_samp);
+Pe_K = zeros(length(all_K), N_samp, 'logical');
+Pc_K = zeros(length(all_K), N_samp, 'logical');
 for jk = 1:length(all_K)
     K = all_K(jk);
     for js = 1:N_samp
         V = K * binornd(1, p, N2d, N2d);
         U = eig2d(V, h, 1);
         u = abs(getval2d(U));
-        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:));
-        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:));
+        tPe = max([u(1,:), u(end,:), u(:,1)', u(:,end)']) / max(u(:)) > thes;
+        tPc = max([u(1,1), u(1,end), u(end,1), u(end,end)]) / max(u(:)) > thes;
         Pe_K(jk, js) = tPe;
         Pc_K(jk, js) = tPc;
     end

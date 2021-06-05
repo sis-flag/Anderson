@@ -10,16 +10,16 @@ for jk = 1:length(all_K)
     K = all_K(jk);
     [U, lam] = eigPhase(K, h, 2);
     
-    [u1, ~, hp11, hp12] = getvalPhase(U(:,1), h);
-    [u2, x, hp21, hp22] = getvalPhase(U(:,2), h);
+    [u1, x, hp11, hp12] = getvalPhase(U(:,1), h);
     
     figure
     hold on
+    cl = bar([0; cumsum(h)], [1,0,1,0,1,0,1,0],'histc');
+    cl.LineStyle = 'None';
+    cl.FaceColor = [0.8, 0.8, 0.8];
     plot(x, u1 / (hp11 + hp12), 'LineWidth', 1)
-    plot(x, u2 / (hp21 + hp22), 'LineWidth', 1)
-    legend(['u_1'; 'u_2'], 'Location', 'NorthEastOut')
     xlim([0, 1])
     title(['K = ', int2str(K)])
-    set(gcf, 'Position', [300 300 350 200])
-    set(gca, 'FontSize', 14)
+    set(gcf, 'Position', [300 300 350 300])
+    set(gca, 'FontSize', 16)
 end

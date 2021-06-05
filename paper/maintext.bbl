@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{5}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
@@ -23,5 +23,10 @@ Soille, P. \& Vincent, L.~M.
 \newblock Determining watersheds in digital pictures via flooding simulations.
 \newblock \emph{Proceedings of SPIE - The International Society for Optical
   Engineering} \textbf{1360}, 240--250 (1990).
+
+\bibitem[{Grebenkov \& Nguyen(2012)}]{2012Geometrical}
+Grebenkov, D.~S. \& Nguyen, B.~T.
+\newblock Geometrical structure of Laplacian eigenfunctions.
+\newblock \emph{Siam Review} \textbf{55}, págs. 601--667 (2012).
 
 \end{thebibliography}

@@ -6,19 +6,22 @@ rng(0)
 K = 5e4;
 N = 50;
 N_samp = 1000;
-h = 0.01;
 all_p = (0.2:0.05:0.8)';
+all_pt = (0.05:0.01:0.95)';
+
+thes = 0.5;
+h = 0.01;
 
 %% theoretically predict
-TPb = zeros(length(all_p), 1);
-for jp = 1:length(all_p)
-    p = all_p(jp);
+TPb = zeros(length(all_pt), 1);
+for jp = 1:length(all_pt)
+    p = all_pt(jp);
     TPb(jp) = pred_prob(p, N);
 end
 
 %% simulation
 CPb = zeros(length(all_p), N_samp, 'logical');
-SPb = zeros(length(all_p), N_samp);
+SPb = zeros(length(all_p), N_samp, 'logical');
 for jp = 1:length(all_p)
     p = all_p(jp);
     for js = 1:N_samp
@@ -26,7 +29,7 @@ for jp = 1:length(all_p)
         V = K * binornd(1, p, N, 1);
         U = eig1d(V, h, 1);
         u = abs(getval1d(U));
-        SPb(jp, js) = max(u(1), u(end)) / max(u);
+        SPb(jp, js) = (max(u(1), u(end)) / max(u) > thes);
         
         intv = [0; find(diff(V)~=0); N];
         duan = diff(intv);
@@ -67,10 +70,10 @@ figure
 hold on
 plot(all_p, mSPb, 'b+', 'MarkerSize', 10)
 plot(all_p, mCPb, 'rx', 'MarkerSize', 10)
-plot(all_p, TPb, 'k-', 'LineWidth', 1)
+plot(all_pt, TPb, 'k-', 'LineWidth', 1)
 xlabel('p')
 ylabel('P_b')
-xlim([0.1, 0.9])
-set(gcf, 'Position', [300 300 400 300])
+xlim([0.05, 0.95])
+ylim([0.09, 0.51])
+set(gcf, 'Position', [300 300 400 350])
 set(gca, 'FontSize', 16)
-legend('probability', 'frequency', 'prediction')
