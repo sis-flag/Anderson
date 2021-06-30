@@ -4,7 +4,7 @@ L = [5, 24, 3, 1];
 h = [L(2)/2; L(1); L(2); L(3); L(4); L(3); L(2)/2];
 h = h / sum(h); % normalize
 
-all_K = 700:1:750;
+all_K = 650:2:800;
 
 all_F1 = zeros(length(all_K), 1);
 all_F2 = zeros(length(all_K), 1);
@@ -22,11 +22,10 @@ end
 figure
 hold on
 plot(all_K, all_F1, '-', 'LineWidth', 1)
-plot([700, 750], [0.5, 0.5], 'k--', 'LineWidth', 0.5)
+plot([min(all_K), max(all_K)], [0.5, 0.5], 'k--', 'LineWidth', 0.5)
 plot(723.5, 0.5, 'ko')
 text(723.5, 0.5, 'crtitcal point')
 xlabel('K')
 ylabel('F')
-xlim([700, 750])
 set(gcf, 'Position', [300 300 350 300])
 set(gca, 'FontSize', 16)

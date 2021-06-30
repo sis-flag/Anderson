@@ -1,0 +1,287 @@
+% This file was created with JabRef 2.10.
+% Encoding: GBK
+
+
+@Article{abrahams1979scaling,
+  Title                    = {Scaling theory of localization: Absence of quantum diffusion in two dimensions},
+  Author                   = {Abrahams, Elihu and Anderson, PW and Licciardello, DC and Ramakrishnan, TV},
+  Journal                  = {Phys. Rev. Lett.},
+  Year                     = {1979},
+  Number                   = {10},
+  Pages                    = {673},
+  Volume                   = {42},
+
+  Publisher                = {APS}
+}
+
+@Article{abrahams2001metallic,
+  Title                    = {Metallic behavior and related phenomena in two dimensions},
+  Author                   = {Abrahams, Elihu and Kravchenko, Sergey V and Sarachik, Myriam P},
+  Journal                  = {Rev. Mod. Phys.},
+  Year                     = {2001},
+  Number                   = {2},
+  Pages                    = {251},
+  Volume                   = {73},
+
+  Publisher                = {APS}
+}
+
+@Article{akkermans1988theoretical,
+  Title                    = {Theoretical study of the coherent backscattering of light by disordered media},
+  Author                   = {Akkermans, E and Wolf, PE and Maynard, R and Maret, G},
+  Journal                  = {Journal de Physique},
+  Year                     = {1988},
+  Number                   = {1},
+  Pages                    = {77--98},
+  Volume                   = {49}
+}
+
+@Article{anderson1958absence,
+  Title                    = {Absence of diffusion in certain random lattices},
+  Author                   = {Anderson, Philip W},
+  Journal                  = {Phys. Rev.},
+  Year                     = {1958},
+  Number                   = {5},
+  Pages                    = {1492},
+  Volume                   = {109},
+
+  Publisher                = {APS}
+}
+
+@Article{arnold2016effective,
+  Title                    = {Effective confining potential of quantum states in disordered media},
+  Author                   = {Arnold, Douglas N and David, Guy and Jerison, David and Mayboroda, Svitlana and Filoche, Marcel},
+  Journal                  = {Phys. Rev. Lett.},
+  Year                     = {2016},
+  Number                   = {5},
+  Pages                    = {056602},
+  Volume                   = {116},
+
+  Publisher                = {APS}
+}
+
+@Book{1998Diffusions,
+  Title                    = {Diffusions and Elliptic Operators},
+  Author                   = {Bass, Richard F},
+  Publisher                = {Springer,},
+  Year                     = {1998}
+}
+
+@Article{billy2008direct,
+  Title                    = {Direct observation of Anderson localization of matter waves in a controlled disorder},
+  Author                   = {Billy, Juliette and Josse, Vincent and Zuo, Zhanchun and Bernard, Alain and Hambrecht, Ben and Lugan, Pierre and Cl{\'e}ment, David and Sanchez-Palencia, Laurent and Bouyer, Philippe and Aspect, Alain},
+  Journal                  = {Nature},
+  Year                     = {2008},
+  Number                   = {7197},
+  Pages                    = {891--894},
+  Volume                   = {453},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Article{van2006maximal,
+  Title                    = {Maximal clusters in non-critical percolation and related models},
+  Author                   = {van Der Hofstad, Remco and Redig, Frank},
+  Journal                  = {J. Stat. Phys.},
+  Year                     = {2006},
+  Number                   = {4},
+  Pages                    = {671--703},
+  Volume                   = {122},
+
+  Publisher                = {Springer}
+}
+
+@Article{eberle2016reflection,
+  Title                    = {Reflection couplings and contraction rates for diffusions},
+  Author                   = {Eberle, Andreas},
+  Journal                  = {Probab. Theory Relat. Fields},
+  Year                     = {2016},
+  Number                   = {3-4},
+  Pages                    = {851--886},
+  Volume                   = {166},
+
+  Publisher                = {Springer}
+}
+
+@Article{evers2008anderson,
+  Title                    = {Anderson transitions},
+  Author                   = {Evers, Ferdinand and Mirlin, Alexander D},
+  Journal                  = {Rev. Mod. Phys.},
+  Year                     = {2008},
+  Number                   = {4},
+  Pages                    = {1355},
+  Volume                   = {80},
+
+  Publisher                = {APS}
+}
+
+@Article{filoche2012universal,
+  Title                    = {Universal mechanism for Anderson and weak localization},
+  Author                   = {Filoche, Marcel and Mayboroda, Svitlana},
+  Journal                  = {Proc. Natl. Acad. Sci. USA},
+  Year                     = {2012},
+  Number                   = {37},
+  Pages                    = {14761--14766},
+  Volume                   = {109},
+
+  Publisher                = {National Acad Sciences}
+}
+
+@Article{2012Geometrical,
+  Title                    = {Geometrical structure of Laplacian eigenfunctions},
+  Author                   = {Grebenkov, D. S. and Nguyen, B. T.},
+  Journal                  = {Siam Review},
+  Year                     = {2012},
+  Number                   = {4},
+  Pages                    = {p√°gs. 601-667},
+  Volume                   = {55}
+}
+
+@Article{john1987strong,
+  Title                    = {Strong localization of photons in certain disordered dielectric superlattices},
+  Author                   = {John, Sajeev},
+  Journal                  = {Phys. Rev. Lett.},
+  Year                     = {1987},
+  Number                   = {23},
+  Pages                    = {2486},
+  Volume                   = {58},
+
+  Publisher                = {APS}
+}
+
+@Article{komorowski2010ergodicity,
+  Title                    = {On ergodicity of some Markov processes},
+  Author                   = {Komorowski, Tomasz and Peszat, Szymon and Szarek, Tomasz and others},
+  Journal                  = {Ann. Probab.},
+  Year                     = {2010},
+  Number                   = {4},
+  Pages                    = {1401--1443},
+  Volume                   = {38},
+
+  Publisher                = {Institute of Mathematical Statistics}
+}
+
+@Article{kuhn2005localization,
+  Title                    = {Localization of matter waves in two-dimensional disordered optical potentials},
+  Author                   = {Kuhn, RC and Miniatura, Christian and Delande, Dominique and Sigwarth, Olivier and Mueller, Cord A},
+  Journal                  = {Phys. Rev. Lett.},
+  Year                     = {2005},
+  Number                   = {25},
+  Pages                    = {250403},
+  Volume                   = {95},
+
+  Publisher                = {APS}
+}
+
+@Article{lagendijk2009fifty,
+  Title                    = {Fifty years of Anderson localization},
+  Author                   = {Lagendijk, Aart and Van Tiggelen, Bart and Wiersma, Diederik S},
+  Journal                  = {Phys. Today},
+  Year                     = {2009},
+  Number                   = {8},
+  Pages                    = {24--29},
+  Volume                   = {62}
+}
+
+@Article{laurent2007localized,
+  Title                    = {Localized modes in a finite-size open disordered microwave cavity},
+  Author                   = {Laurent, David and Legrand, Olivier and Sebbah, Patrick and Vanneste, Christian and Mortessagne, Fabrice},
+  Journal                  = {Phys. Rev. Lett.},
+  Year                     = {2007},
+  Number                   = {25},
+  Pages                    = {253902},
+  Volume                   = {99},
+
+  Publisher                = {APS}
+}
+
+@Article{lee1985disordered,
+  Title                    = {Disordered electronic systems},
+  Author                   = {Lee, Patrick A and Ramakrishnan, TV},
+  Journal                  = {Rev. Mod. Phys.},
+  Year                     = {1985},
+  Number                   = {2},
+  Pages                    = {287},
+  Volume                   = {57},
+
+  Publisher                = {APS}
+}
+
+@Article{riboli2011anderson,
+  Title                    = {Anderson localization of near-visible light in two dimensions},
+  Author                   = {Riboli, F and Barthelemy, P and Vignolini, S and Intonti, F and De Rossi, A and Combrie, S and Wiersma, DS},
+  Journal                  = {Opt. Lett.},
+  Year                     = {2011},
+  Number                   = {2},
+  Pages                    = {127--129},
+  Volume                   = {36},
+
+  Publisher                = {Optical Society of America}
+}
+
+@Article{roati2008anderson,
+  Title                    = {Anderson localization of a non-interacting Bose--Einstein condensate},
+  Author                   = {Roati, Giacomo and D°ØErrico, Chiara and Fallani, Leonardo and Fattori, Marco and Fort, Chiara and Zaccanti, Matteo and Modugno, Giovanni and Modugno, Michele and Inguscio, Massimo},
+  Journal                  = {Nature},
+  Year                     = {2008},
+  Number                   = {7197},
+  Pages                    = {895--898},
+  Volume                   = {453},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Book{rogers2000diffusions,
+  Title                    = {Diffusions, Markov processes and martingales: Volume 2, It{\^o} calculus},
+  Author                   = {Rogers, L Chris G and Williams, David},
+  Publisher                = {Cambridge University Press},
+  Year                     = {2000},
+  Edition                  = {2nd},
+  Volume                   = {1}
+}
+
+@Article{sapienza2010cavity,
+  Title                    = {Cavity quantum electrodynamics with Anderson-localized modes},
+  Author                   = {Sapienza, Luca and Thyrrestrup, Henri and Stobbe, S{\o}ren and Garcia, Pedro David and Smolka, Stephan and Lodahl, Peter},
+  Journal                  = {Science},
+  Year                     = {2010},
+  Number                   = {5971},
+  Pages                    = {1352--1355},
+  Volume                   = {327},
+
+  Publisher                = {American Association for the Advancement of Science}
+}
+
+@Article{Soille1990Determining,
+  Title                    = {Determining watersheds in digital pictures via flooding simulations},
+  Author                   = {Soille, Pierre and Vincent, Luc M.},
+  Journal                  = {Proceedings of SPIE - The International Society for Optical Engineering},
+  Year                     = {1990},
+  Pages                    = {240-250},
+  Volume                   = {1360}
+}
+
+@Article{stroock1975diffusion,
+  Title                    = {Diffusion processes associated with L{\'e}vy generators},
+  Author                   = {Stroock, Daniel W},
+  Journal                  = {Zeitschrift f{\"u}r Wahrscheinlichkeitstheorie und verwandte Gebiete},
+  Year                     = {1975},
+  Number                   = {3},
+  Pages                    = {209--244},
+  Volume                   = {32},
+
+  Publisher                = {Springer}
+}
+
+@Article{thouless1974electrons,
+  Title                    = {Electrons in disordered systems and the theory of localization},
+  Author                   = {Thouless, David J},
+  Journal                  = {Phys. Rep.},
+  Year                     = {1974},
+  Number                   = {3},
+  Pages                    = {93--142},
+  Volume                   = {13},
+
+  Publisher                = {Elsevier}
+}
+

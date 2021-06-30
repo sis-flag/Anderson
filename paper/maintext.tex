@@ -180,7 +180,7 @@ From the Filoche-Mayboroda inequality, we can obtain
 \end{equation*}
 Fig. \ref{fig1}(a) illustrates the landscape $|w|$ and the first four eigenmodes $|u| / |\lambda|$ obtained by solving problem \eqref{eigenproblem} and \eqref{landscape} in the one-dimensional case. It can be seen from the figure that the Filoche-Mayboroda inequality indeed provides an accurate upper bound for eigenmodes. Furthermore, the localization positions of eigenmodes are perfectly predicted by the peak positions of the landscape.
 
-In this paper, systems are simulated using the spectral element method instead of ordinary finite element method (FEM) or finite difference method (FEM). In the spectral element method, Legendre polynomials are used as basis to approximate the solution. Ordinary FDM or FEM can only get second-order convergence $\mathcal{O}(h^{-2})$, while the spectral element method can achieve exponential convergence $\mathcal{O}(e^{-M})$ on these problems. Exponential convergence order makes the simulation more accurate. In addition, spectral element method has less computational costs than others. Matrix size in spectral element method is $\mathcal{O}(M^2 N^2)$, which make it possible for us to simulate some large-scale systems.
+In this paper, systems are simulated using the spectral element method instead of ordinary finite element method (FEM) or finite difference method (FDM). In the spectral element method, the solution is approximated by piecewise higher order polynomials, and the Legendre polynomials are used as basis on each subdomain  $\Omega_k$. The degree of the polynomial is $10$ for 1-d case and $6$ for 2-d case in this paper. Ordinary FDM or FEM can only get second-order convergence with respect to the mesh size, while the spectral element method can achieve exponential convergence on these problems with respect to the degree of the polynomial. Thus, spectral element method can get higher accuracy with less computational costs than others, which make it possible for us to simulate some large-scale systems.
 
 \subsection{Valley lines}
 
@@ -221,7 +221,7 @@ In the limit of $K\rightarrow\infty$, since the potential vanishes in $D$, the e
 \begin{equation}\label{subdomain}
 \left\{
 \begin{split}
-& - L u = \lambda u \quad \textrm{in}\;\;\Omega, \\
+& - L u = \lambda u \quad \textrm{in}\;\;D_k, \\
 & \quad g \frac{\partial u}{\partial n} + h u = 0 \quad \textrm{on}\;\;\partial D_k \cap \partial \Omega, \\
 & \quad u = 0 \quad \textrm{on}\;\;\partial D_k \setminus \partial \Omega.
 \end{split}
@@ -229,14 +229,15 @@ In the limit of $K\rightarrow\infty$, since the potential vanishes in $D$, the e
 \end{equation}
 Therefore, in the limit of $K \rightarrow \infty$, the spectrum of the Hamiltonian $H = - L + K V$ is composed of the local eigenvalues of the operator $-L$ in each subdomain $D_k$. If an eigenvalue of $H$ coincides with one of the local eigenvalues of $-L$ in $D_k$, then the corresponding eigenmode will be localized in $D_k$; conversely, if an eigenvalue of $H$ coincides with neither one of the local eigenvalues of $-L$ in $D_k$, then the corresponding eigenmode will not be localized in $D_k$. Based on the above discussion, if multiple subdomains $D_{k_1}, \cdots , D_{k_r}$ share a common local eigenvalue, then the corresponding eigenmode will have multiple peaks and the system will display \emph{multimodality}. In this case, there are more than one eigenvalue sharing a common value and the corresponding eigenmodes are composed of the local eigenmodes of subdomains.
 
-Fig. \ref{fig2}(a) illustrates the potential, landscape and eigenmodes for a one-dimensional problem when $K$ is very large. It can be seen from the figure that the peaks of landscape and eigenmodes only appear in the subdomains in which $V = 0$. Fig. \ref{fig2}(b),(c) illustrates the potential and valley lines for a two-dimensional problem under different values of $K$. When $K$ is small, the subdomains predicted by the valley lines have no significant relationship with $V$. But for sufficient large $K$, the connected components $D_1, \cdots, D_k$ in which $V = 0$ are exactly separated by the valley lines. 
+Fig. \ref{fig2}(a) illustrates the potential, landscape and eigenmodes for a one-dimensional problem with different values of $K$. It can be seen from the figure that when $K$ is large, the peaks of landscape and eigenmodes only appear in the subdomains in which $V = 0$. But when $K$ is not large enough, the peaks perform complicated, even the localization phenomenon may disappear. Fig. \ref{fig2}(b) illustrates the potential and valley lines for a two-dimensional problem under different values of $K$. When $K$ is small, the subdomains predicted by the valley lines have no significant relationship with $V$. But for sufficient large $K$, the connected components $D_1, \cdots, D_k$ in which $V = 0$ are exactly separated by the valley lines. 
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Fig2}
-\caption{(a) The potential, landscape and first four eigenmodes of a one-dimensional problem with the Neumann boundary condition. The gray back ground denotes that $V = 1$ in the subdomain and the white background denotes $V = 0$. The black line denotes the landscape and the colored lines denote the eigenmodes. Parameters are chosen as $K = 10^4$ (b), (c) The potential and valley lines in a two-dimensional problem with the Neumann boundary condition. The yellow parts denote that $V$ in the subdomains are $1$ and the blue parts denote $0$. Red lines denote the valley lines.}
+\caption{(a) The potential, landscape and first four eigenmodes of a one-dimensional problem with the Neumann boundary condition. The gray back ground denotes that $V = 1$ in the subdomain and the white background denotes $V = 0$. The black line denotes the landscape and the colored lines denote the eigenmodes. The rank of the eigenmodes are numbered by the colored numbers. (b) The potential and valley lines in a two-dimensional problem with the Neumann boundary condition. The yellow parts denote that $V$ in the subdomains are $1$ and the blue parts denote $0$. Red lines denote the valley lines.}
 \label{fig2}
 \end{figure}
+
 
 \section{Probability of localization to the boundary}
 
@@ -265,11 +266,52 @@ Fig. \ref{fig3}(a)-(c) show the variation of probability $P_b$, $P_e$ and $P_c$ 
 
 \subsection{The tendency of boundary localization}
 
-As shown in Fig. \ref{fig1} (a) and (c), eigenmodes with Neumann boundary condition are more likely to localize to the boundary. For example, in the first four eigenmodes, there are three eigenmodes localize to the boundary in Fig. \ref{fig1}(c). Here we give some explanation for this phenomon when $K$ is large.
+As shown in Fig. \ref{fig1} (a) and (c), eigenmodes with Neumann boundary condition are more likely to localize to the boundary. For example, in the first four eigenmodes, there are three eigenmodes localize to the boundary in Fig. \ref{fig1}(c). Here we give some explanation for this phenomenon.
 
-For large $K$, the eigenmode and corresponding eigenvalue localizing in the subdomain $D_k$ can be approximately regarded as solutions of the local eigenvalue problem \eqref{subdomain}. Furthermore, the first eigenmode of problem \eqref{anderson} should localize in the subdomain $D_k$ on which the local eigenvalue is the smallest in all connected branches of $D$. For the one-dimensional case and the Dirichlet boundary condition, the first eigenmode will localize in the longest subdomain. But for other boundary conditions, the discussion of the local eigenvalue problem \eqref{subdomain} on the boundary becomes more complicated. We propose the \emph{extended subdomain} to simplify the discussion.
+For large $K$, the eigenmode and corresponding eigenvalue localizing in the subdomain $D_k$ can be approximately regarded as solutions of the local eigenvalue problem \eqref{subdomain}. The first eigenmode of problem \eqref{anderson} should localize in the subdomain $D_k$ on which the local eigenvalue is the smallest. For the one-dimensional case and the Dirichlet boundary condition, the first eigenmode will localize in the longest subdomain. But for other boundary conditions, the discussion of the local eigenvalue problem \eqref{subdomain} on the boundary becomes more complicated. We consider an one-dimensional example to intorduce the \emph{extended subdomain} to simplify the discussion.
 
-Consider the problem \eqref{subdomain} with the Neumann boundary condition on $\partial D_k \cap \partial \Omega$. According to the proof given in Appendix \ref{appD}, the smallest eigenvalue of the problem \eqref{subdomain} is equal to the smallest Dirichlet eigenvalue on $D_k^{(e)}$ which can be obtained $D_k$ through mirror symmetry. Fig. \ref{fig3}(d) illustrates the first eigenmode on $D_k$ and $D_k^{(e)}$ for a simple one-dimensional case.
+Consider system \eqref{subdomain} for laplace operator on interval $D_k = [0, L]$. When $D_k \cup \partial \Omega = \phi$, boundary condition on both sides should be Dirichlet. The system is
+\begin{equation*}
+\left\{
+\begin{split}
+& - u''(x) = \lambda u(x) \quad x \in (0, L), \\
+& \quad u(0) = u(L) = 0.
+\end{split}
+\right.
+\end{equation*}
+The first eigenvalue and eigenmode of the system is
+\begin{equation*}
+u_1(x) = \sin(\frac{\pi}{L} x) \quad \text{and} \quad \lambda_1 = (\frac{\pi}{L})^2
+\end{equation*}
+When $D_k \cup \partial \Omega \neq \phi$, boundary consition on one of both sides should be Neumann. Here we consider the boundary condition is Neumann on the left boundary and Dirichlet on the right boundary. The system is
+\begin{equation*}
+\left\{
+\begin{split}
+& - u''(x) = \lambda u(x) \quad x \in (0, L), \\
+& \quad u'(0) = u(L) = 0.
+\end{split}
+\right.
+\end{equation*}
+The first eigenvalue and eigenmode of the system is
+\begin{equation*}
+u_1(x) = \cos(\frac{\pi}{2 L} x) \quad \text{and} \quad \lambda_1 = (\frac{\pi}{2 L})^2
+\end{equation*}
+Noting that the eigenvalue can be regarded as the first eigenvalue on a interval with twice length and both side Dirichlet boundary, we define $D_k^{(e)} = [-L, L]$. The system on $D_k^{(e)}$ is defined as
+\begin{equation*}
+\left\{
+\begin{split}
+& - u''(x) = \lambda u(x) \quad x \in (-L, L), \\
+& \quad u(-L) = u(L) = 0.
+\end{split}
+\right.
+\end{equation*}
+The first eigenvalue and eigenmode of the system is also
+\begin{equation*}
+u_1(x) = \cos(\frac{\pi}{2 L} x) \quad \text{and} \quad \lambda_1 = (\frac{\pi}{2 L})^2
+\end{equation*}
+Fig. \ref{fig3}(d) illustrates the first eigenmode on $D_k$ and $D_k^{(e)}$. Here we can obtain that a system on the interval with one side Neumann and another side Dirichlet boundary condition can be regarded as a system with both side Dirichlet boundary on a interval with twice length.
+
+The result can be extended to the high-dimensional cases. Generally, consider the problem \eqref{subdomain} with the Neumann boundary condition on $\partial D_k \cap \partial \Omega$. According to the proof given in Appendix \ref{appD}, the smallest eigenvalue of the problem \eqref{subdomain} is equal to the smallest Dirichlet eigenvalue on $D_k^{(e)}$ which can be obtained $D_k$ through mirror symmetry.
 
 Precisely, the extended subdomain can be defined as follows. When $D_k \cup \partial \Omega = \phi$, the extended subdomain $D_k^{(e)}$ is the same as $D_k$, when $D_k \cup \partial \Omega \neq \phi$, all the extended subdomain $D_k^{(e)}$ can be obtained from $D_k$ through mirror symmetry along the boundary $\partial \Omega$. Perticuliarly, for two-dimensioinal case, when the subdomain is on the corner, there are two edges near the subdomain, thus the extended subdomain should be mirror symmetirc about both edges. Fig. \ref{fig3} (e), (f) illustrate the potential and corresponding extended subdomains in the one-dimensional and two-dimensional cases respectively.
 
@@ -277,10 +319,12 @@ With the help of the extended subdomain, we can transform all the local eigenval
 
 It can be seen in the Fig. \ref{fig3} (e), (f) that the extended subdomains on the boundary are more likely to have larger size. For example, in the two-dimensional case, when the subdomain is on the edge, the area of the cprresponding extended subdomain will be twice as much as before, and when the subdomain is on the corner, the area will be four times as much as before. Further more, the extended subdoamins near the boundary have better symmetry. Then the local eigenvalue of the problem \eqref{subdomain} on these subdomains are more likely smaller. Then the first eigenmode are more likely localize to the boundary.
 
+Noting that in Fig. \ref{fig3}, for one-dimensional case, there are at most two subdomains will be extended, but for two-dimensional case, many subdomains will be extended. Thus, the boundary localization phenomenon is not so obvious in one-dimensional case, but for two-dimensional case, the probility of localize to the edge is near $1$.
+
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Fig3}
-\caption{(a), (b) and (c) Simulation results of the probability of localization to the boundary. Default parameters are chosen as $K = 10^3, h = 0.01, p = 0.5， N= 50$ if not mentioned. (d) The first eigenmode of the Laplacian eigenvalue problem on $D$ and $D^{(e)}$. (e), (f) The potential and extended subdomains in one-dimensional and two-dimensional case respectively. Blue parts denote subdomains on which $V = 0$ and yellow parts denote $V = 1$. Extended subdomains $D^{(e)}$ are surrounded by red lines. (g) Simulation results and theoretical predictions of the probability of localization to the boundary for the one-dimensional case. Blue crosses denote the simulation result of the probability $P_b$ under different values of $p$, red crosses denote the frequency of the event "the longest extended subdomain locates on the boundary" in the simulation and the black line denotes the theoretical prediction of $P_b$ from equation \eqref{bdprob}. Parameters are chosen as $K = 5 \times 10^4, h = 0.01, N = 50$. We randomly generate the potential $1000$ times on each point and calculate the mean value of the samples as the results of the probability.}
+\caption{(a), (b) and (c) Simulation results of the probability of localization to the boundary. Default parameters are chosen as $K = 10^3, h = 0.01, p = 0.5， N = 50$ for one-dimensional and $N = 15$ for two-dimensional case if not mentioned. (d) The first eigenmode of the Laplacian eigenvalue problem on $D$ and $D^{(e)}$. (e), (f) The potential and extended subdomains in one-dimensional and two-dimensional case respectively. Blue parts denote subdomains on which $V = 0$ and yellow parts denote $V = 1$. Extended subdomains $D^{(e)}$ are surrounded by red lines. (g) Simulation results and theoretical predictions of the probability of localization to the boundary for the one-dimensional case. Blue crosses denote the simulation result of the probability $P_b$ under different values of $p$, red crosses denote the frequency of the event "the longest extended subdomain locates on the boundary" in the simulation and the black line denotes the theoretical prediction of $P_b$ from equation \eqref{bdprob}. Parameters are chosen as $K = 5 \times 10^4, h = 0.01, N = 50$. We randomly generate the potential $1000$ times on each point and calculate the mean value of the samples as the results of the probability.}
 \label{fig3}
 \end{figure}
 
@@ -296,7 +340,7 @@ The relationship between the probability $P_b$ and the parameter $p$ is extremel
 
 To test the accuracy of our approximate analytical expression, we compare the theoretical prediction given in \eqref{bdprob} with numerical simulations. The results are illustrated in Fig. \ref{fig3}(g). The theoretical prediction is in perfect agreement with the simulation.
 
-In Fig. \ref{fig3}(g), $P_b$ decreases with parameter $p$ when $p<0.8$ and performs abnormal near $p=0.9$. When $p$ is near $0.2$, $P_b$ may increase to $0.5$, which means half of the eigenmodes may lacalize to the boundary. The boundary localization is a common phenomon when $p$ is small.
+In Fig. \ref{fig3}(g), $P_b$ decreases with parameter $p$ when $p<0.8$ and performs abnormal near $p=0.9$. When $p$ is near $0.2$, $P_b$ may increase to $0.5$, which means half of the eigenmodes may lacalize to the boundary. The boundary localization is a common phenomenon when $p$ is small.
 
 Here we choose the parameter $h$ to be small but not $0$ to avoid the multimodality which will be metioned latter. In the simulations, when $h$ is small but not $0$, if the longest two extended subdomains have the same length but only one of them locates on the boundary, then the first eigenmode will not localize to the boundary. This can help us to avoid some complicated discussions.
 
@@ -336,7 +380,7 @@ Fig. \ref{fig4}(b), (c) illustrate the simulation results and theoretical predic
 
 \subsection{Model of phase transition}
 
-According to the previous discussion, when $K$ is large, the first eigenmode of the system will localize to the longest subinterval on which $V(x) = 0$. But, as shown in Fig. \ref{fig5}(b), when $K$ is not large enough, the first eigenmode may localize to otherwhere. This phenomenon may occur under various boundary conditions. A natural problem is, as $K$ increases, how does the localization behavior of the system transfer from one to another?
+According to the previous discussion, when $K$ is large, the first eigenmode of the system will localize to the longest subinterval on which $V(x) = 0$. But, as shown in Fig. \ref{fig2}(a), when $K$ is not large enough, the first eigenmode may localize to otherwhere. If there are a long interval on which most of the values of $V(x)$ is $0$ and only a few parts on which $V(x)$ is $1$, then the first eigenmode of the system will localize in this interval instead of the longest subinterval on which $V(x) = 0$. This phenomenon may occur under various boundary conditions. A natural problem is, as $K$ increases, how does the localization behavior of the system transfer from one to another?
 
 Here we consider a toy model in one-dimensional case with parabolic boundary condition. In this model, the potential $V$ is chosen as follows. As shown in Fig. \ref{fig5}(a), in the whole domain $[0, 1]$, the values of $V$ are $0$ and $1$ alternately in these intervals with length $L_2/2, L_1, L_2, L_3, L_4, L_3, L_2/2$ respectively.
 \begin{equation*}
@@ -377,7 +421,7 @@ S: \;
 \right.
 \end{equation}
 
-In the phase transition problem, the distance between the two wells should be large enough to separate two wells and ensure there are little influence between the two wells. The length of barrier should be small and the length of $W_2$ and $W_1$ should be approximately equal, which can ensure the occurance of phase transition phenomon. In particular, the parameters should satisfy: $L_3 < L_1$ (ensure the first eigenmode localize to $W_1$ when $K$ is large), $L1 < 2 L_3$ (ensure the first eigenmode localize to $W_2$ when $K$ is small), $L_4 < L_3 / 2$ (barrier should be short enough), $L_2 > L_1 + 2 L_3 + L_4$ (two wells should be far enough), and $L_1 + 2 L_2 + 2 L_3 + L_4 = 1$ (the total length equals $1$).
+In the phase transition problem, the distance between the two wells should be large enough to separate two wells and ensure there are little influence between the two wells. The length of barrier should be small and the length of $W_2$ and $W_1$ should be approximately equal, which can ensure the occurance of phase transition phenomenon. In particular, the parameters should satisfy: $L_3 < L_1$ (ensure the first eigenmode localize to $W_1$ when $K$ is large), $L1 < 2 L_3$ (ensure the first eigenmode localize to $W_2$ when $K$ is small), $L_4 < L_3 / 2$ (barrier should be short enough), $L_2 > L_1 + 2 L_3 + L_4$ (two wells should be far enough), and $L_1 + 2 L_2 + 2 L_3 + L_4 = 1$ (the total length equals $1$).
 
 The first and the second eigenmodes of the problem under different values of $K$ are illustrated in Fig. \ref{fig5}(b). Since the second well $W_2$ is longer, when $K$ is small, the barrier in $W_2$ is not strong enough, and then the first eigenmode will localize to $W_2$. On the contrary, when $K$ is large, the first eigenmode will localize to $W_1$. As the parameter $K$ increases, the left peak of the first eigenmode becomes higher and the right peak vanishes. Then the location of the maxima of the first eigenmode will transfer from $W_2$ to $W_1$, and \emph{phase transition} occurs.
 % Due to the orthogonality, the behavior of the second eigenmode is the opposite of the first, location of the maxima of the second eigenmode will transfer from $W_1$ to $W_2$.
@@ -503,7 +547,7 @@ D_2(K_c, \lambda_c) = 0
 \end{equation}
 This system of algebraic equations can be used to analytically predict the critical threshold and the critical eigenvalue of the problem. Here, we can avoid the time-consuming simulations.
 
-To validate our theory, we generate $L_1, L_2, L_3, L_4$ randomly as our sample points. On $1000$ sample points, mean square error (MSE) of the critical threshold $K_c$ is $0.3947$, and MSE of the critical eigenvalue $\lambda_c$ is $9.1751$. The predicted values obtained from \eqref{phase0} are very close to the simulation results.
+To validate our theory, we generate $L_1, L_2, L_3, L_4$ randomly as our sample points. For details, sample points are generated uniformly in the interval $L_3 \in [0.03, 0.055], L_1 \in [1.3 L_3, 1.7 L_3], L_4 \in [0.2 L_3, 0.4 L_3]$ and $L_2$ is determined by $L_1 + 2 L_2 + 2 L_3 + L_4 = 1$. On $1000$ sample points, mean relative error (MRE) of the critical threshold $K_c$ is $1.52 \times 10^{-4}$, and MRE of the critical eigenvalue $\lambda_c$ is $1.61 \times 10^{-4}$. The predicted values obtained from \eqref{phase0} are very close to the simulation results.
 
 Noting that there are two descriptions of the critical threshold $K_c$ mentioned above. One is that two peaks of the first eigenmode locates in $W_1$ and $W_2$ are equal in height ($F = 0.5$) and the other is that the first and the second eigenvalues of the original system are equal ($\lambda_1 = \lambda_2$). Actually, the two descriptions are not exactly same, which gives rise to the error mentioned above. The simulation results demonstrate that the difference between two descriptions is sufficient small and in general can be neglected.
 
@@ -540,13 +584,19 @@ From the results we can see that the critical threshold $K_c$ are power law func
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Fig6}
-\caption{The relationship between the critical threshold $K_c$ and the factors $P_1$, $P_2$, and $P_3$. Blue circles denote the simulation results and the red lines denote the results obtained by linear regression. Default parameters are chosen as $P_1 = 0.25, P_2 = 0.4, P_3 = 0.1$ if not mentioned. In each subfigure, we genreate $12$ sample points uniformly in the certain range.}
+\caption{The relationship between the critical threshold $K_c$ and the factors $P_1$, $P_2$, and $P_3$. Blue circles denote the simulation results and the red lines denote the results obtained by linear regression. Default parameters are chosen as $P_1 = 0.25, P_2 = 0.4, P_3 = 0.1$ if not mentioned. In each subfigure, we genreate $30$ sample points uniformly in the certain range.}
 \label{fig6}
 \end{figure}
 
 \section{Conclusion}
 
-In this paper, we firstly proposed the landscape of the Anderson Localization problem with arbitary second-order elliptic differential operator and arbitary open bounded condition using the Skorokhod stochastic differential equation. Basing on the Skorokhod equation, we discussed the limit behavior of the landscape and the eigenmode of the problem for large degree of randomness. Secondly, we found out the boundary localization and the multimodality phenomon and calculated the probability of the occurance of these phenomon theoretically in one-dimionsional case. The theoretical prediction is in perfect agreement with the numerical simulation. Finally, we calculated the theoretical expression of the critical thereshold in phase transition model and pointed out the key factors which has the most influence of the critical thereshold.
+In this paper, we discussed the landscape, the boundary localization, the multimodality phenomenon, and the phase transition problem in Anderson localization system. Earlier results only focus on the Laplace operator and the Dirichlet boundary condition. Here we extend the results about the landscape to arbitrary second-order elliptic differential operator and arbitrary open bounded condition using the Skorokhod stochastic differential equation. For non-Dirichlet boundary conditions, we notice that the eigenmode may localize to the boundary which is boundary localization phenomenon. Simulation results indicates that the eigenmodes are more likely localize to the boundary in two-dimensional case than one-dimensional case. We give some detailed analysis of this phenomenon by introducing the extended subdomain and calculate the theoretically expression of probability of localization to the boundary in a simple one-dimensional case.
+
+Basing on the Skorokhod equation, we discussed the limit behavior of the landscape and the eigenmode of the problem for large degree of randomness. When the degree of randomness is large enough, the eigenmode will localize in the connected subdomains on which the potential vanishes. The location of the eigenmode is determined by the local eigenvalue. If multiple subdomains share a common local eigenvalue, then the corresponding eigenmode will have multiple peaks and the system will display multimodality. The multimodality phenomenon mainly appears in one-dimensional case. We calculated the probability of the occurrence of the multimodality phenomenon theoretically. The theoretical prediction is in perfect agreement with the numerical simulation.
+
+Since the limit behavior only applies to a large degree of randomness, when degree of randomness is not large, some small barriers in the potential may lose their efficacy. We focus on the transition behavior in a toy model as the degree of randomness increasing. In this model, as the degree of randomness increasing, there exist a critical threshold when the location of the eigenmode jump from a well to another. We calculated the theoretical expression of the critical threshold and the critical eigenvalue in phase transition model. Moreover, since there are various choice of the parameters, we pointed out the key factors which has the most influence of the critical threshold.
+
+Owing to the complexity of the model, we only calculate the probability of the boundary localization and the multimodality phenomenon when the potential is generated form Bernoulli distribution in one-dimensional case for large parameter $K$ and small $h$. In phase transition problem, we only consider the case that there are only two wells and a barrier in the middle of one of the wells. In the future, we can improve the theory to make it applicable to more general cases.
 
 \section*{Acknowledgements}
 The authors acknowledge support from the NSAF grant in National Natural Science Foundation of China (NSFC) with grant No. U1930402.
@@ -606,7 +656,6 @@ Similarly, the landscape has the following probabilistic representation:
 \begin{equation*}
 w(x) = \Enum_x\int_0^\infty Y_sds.
 \end{equation*}
-
 
 \section{Proof of the extended subdomain}\label{appD}
 
