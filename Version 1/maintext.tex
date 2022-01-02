@@ -167,11 +167,11 @@ L = \frac{1}{2} \sum_{i,j=1}^{d} a^{ij}(x) \partial_{ij} + \sum_{i=1}^{d} b^i(x)
 is an arbitrary second-order elliptic operator, $V = V(x)$ is an arbitrary random potential, and $\Omega \subset \Rnum^d$ is an arbitrary bounded domain. In the following, we shall define the localization landscape and its valley lines for the model \eqref{eigenproblem}.
 
 \subsection{Localization landscape}
-A recent theory \cite{filoche2012universal} has shown that under the Dirichlet boundary condition ($g = 0$ and $h = 1$), the spatial location of the eigenmodes of the eigenvalue problem \eqref{eigenproblem} can be predicted by the solution of an associated Dirichlet problem
+A recent theory \cite{filoche2012universal} has shown that under the Dirichlet boundary condition ($g = 0$ and $h = 1$), the spatial location of the eigenmodes of the eigenvalue problem \eqref{anderson} can be predicted by the solution of an associated Dirichlet problem
 \begin{equation}\label{landDirichlet}
 \left\{
 \begin{split}
-& -L w + K V w = 1, \quad \textrm{in} \; \Omega, \\
+& -\triangle w + K V w = 1, \quad \textrm{in} \; \Omega, \\
 & \quad w = 0, \quad \textrm{on} \; \partial \Omega,
 \end{split}
 \right.
@@ -191,7 +191,7 @@ where $\Enum_x$ denotes the conditional expectation given that $X_0 = x$. For th
 \left\{
 \begin{split}
 & - L w + K V w = 1 \quad \textrm{in} \; \Omega, \\
-& \quad g \frac{\partial w}{\partial n} + h u = 0 \quad \textrm{on} \; \partial \Omega.
+& \quad g \frac{\partial w}{\partial n} + h w = 0 \quad \textrm{on} \; \partial \Omega.
 \end{split}
 \right.
 \end{equation}
@@ -246,7 +246,7 @@ We next focus on the behavior of the eigenmodes inside $D$. Clearly, $D$ can be 
 \end{equation}
 Therefore, when $K$ is very large, the spectrum of the Hamiltonian $H = - L + K V$ is composed of the local eigenvalues of the operator $-L$ in each subregion $D_k$. If an eigenvalue of $H$ coincides with one of the local eigenvalues of $-L$ in $D_k$, then the corresponding eigenmode will be localized in $D_k$; conversely, if an eigenvalue of $H$ coincides with neither one of the local eigenvalues of $-L$ in $D_k$, then the corresponding eigenmode will not be localized in $D_k$. When $K$ is not very large, the landscape and eigenmodes are small but not zero on $\partial D_k \setminus \partial \Omega$ and thus the domain $\Omega$ can be divided into the many weakly coupled subregions.
 
-To gain a deeper insight, we depict the potential, landscape, and eigenmodes for a one-dimensional problem under different values of $K$ (Fig. \ref{fig2}(a)). When $K$ is large, the landscape and eigenmodes are only localized in the region where the potential vanishes. However, this is not the case when $K$ is relatively small. Fig. \ref{fig2}(b),(c) illustrate the potential and valley lines for a two-dimensional problem under different values of $K$. When $K$ is small, the confining subregions enclosed by the valley lines may include many connected components of $D$. However, for sufficiently large $K$, the connected components of $D$ are exactly separated by valley lines.
+To gain a deeper insight, we depict the potential, landscape, and eigenmodes for a one-dimensional problem under different values of $K$ (Fig. \ref{fig2}(a)). When $K$ is large, the landscape and eigenmodes are only localized in the region where the potential vanishes. However, this is not the case when $K$ is relatively small. Fig. \ref{fig2}(b) illustrate the potential and valley lines for a two-dimensional problem under different values of $K$. When $K$ is small, the confining subregions enclosed by the valley lines may include many connected components of $D$. However, for sufficiently large $K$, the connected components of $D$ are exactly separated by valley lines.
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Fig2}
@@ -316,22 +316,22 @@ where the left-hand side of the interval has the Neumann boundary condition and 
 \end{equation}
 which has the Dirichlet boundary condition (see Fig. \ref{fig3}(d) for an illustration of the extended subregion and the first eigenmodes in the original and extended subregions). In other words, when $D_k$ is around the boundary, the first eigenmode of the local system \eqref{regionDe} with mixed boundary condition can be viewed as that of an equivalent system \eqref{equivalent} with Dirichlet boundary condition in the extended subregion $D_k^{(e)}$ which is twice as long as the original subregion $D_k$. Clearly, for a subregion of a fixed length, the local problem \eqref{regionDe} has a smaller eigenvalue if the subregion appears on the boundary since the length of the subregion should be ``doubled". This explain why compared to the interior of the domain, the eigenmodes are more likely to be localized on the boundary when $h$ is small and $K$ is large.
 
-The above considerations can also be generalized to higher dimensions. For each subregion $D_k$, we can extend it to another subregion $D_k^{(e)}$ via mirror symmetry along the boundary (Fig. \ref{fig3}(f)). If $D_k$ does not appear on the boundary, then the extended subregion $D_k^{(e)}$ is the same as $D_k$; if $D_k$ appears on the boundary, then $D_k^{(e)}$ is strictly larger than $D_k$. Suppose that $D_k$ appears on the boundary. Then the local problem \eqref{subregion} has the Neumann boundary condition on $\partial D_k \cap \partial \Omega$ and the Dirichlet boundary condition on $\partial D_k \setminus \partial \Omega$. In Appendix \ref{appD}, we have proved that the first eigenmode of the local system with mixed boundary condition is exactly the same as that of an equivalent system with Dirichlet boundary condition in the extended subregion $D_k^{(e)}$. In particular, in the two-dimensional case, if $D_k$ does not lie in the corner, then the extended subregion is twice as large as the original subregion. However, if $D_k$ lies in the corner, since there are two edges enclosing $D_k$, the extended subregion should be reflected along both edges and thus is four times as large as the original subregion. Recall that a Laplacian eigenvalue problem tends to have smaller eigenvalues on a larger domain with strong symmetry. Clearly, if $D_k$ appears on the boundary, especially in the corner, then it has a larger extended subregion which also has strong symmetry (Fig. \ref{fig3}(f)). Therefore, subregions around the boundary tend to have smaller local eigenvalues and thus the eigenmodes are more likely to be localized on the boundary.
+The above considerations can also be generalized to higher dimensions. For each subregion $D_k$, we can extend it to another subregion $D_k^{(e)}$ via mirror symmetry along the boundary (Fig. \ref{fig3}(d),(e)). If $D_k$ does not appear on the boundary, then the extended subregion $D_k^{(e)}$ is the same as $D_k$; if $D_k$ appears on the boundary, then $D_k^{(e)}$ is strictly larger than $D_k$. Suppose that $D_k$ appears on the boundary. Then the local problem \eqref{subregion} has the Neumann boundary condition on $\partial D_k \cap \partial \Omega$ and the Dirichlet boundary condition on $\partial D_k \setminus \partial \Omega$. In Appendix \ref{appD}, we have proved that the first eigenmode of the local system with mixed boundary condition is exactly the same as that of an equivalent system with Dirichlet boundary condition in the extended subregion $D_k^{(e)}$. In particular, in the two-dimensional case, if $D_k$ does not lie in the corner, then the extended subregion is twice as large as the original subregion. However, if $D_k$ lies in the corner, since there are two edges enclosing $D_k$, the extended subregion should be reflected along both edges and thus is four times as large as the original subregion. Recall that a Laplacian eigenvalue problem tends to have smaller eigenvalues on a larger domain with strong symmetry. Clearly, if $D_k$ appears on the boundary, especially in the corner, then it has a larger extended subregion which also has strong symmetry (Fig. \ref{fig3}(e)). Therefore, subregions around the boundary tend to have smaller local eigenvalues and thus the eigenmodes are more likely to be localized on the boundary.
 
 With the aid of the concept of extended subregions, we are able to transform a local eigenvalue problem with a mixed boundary condition into an equivalent eigenvalue problem with the Dirichlet boundary condition in an extended subregion. When $h$ is small and $K$ is large, the first eigenmode will be localized in the extended subregion with the smallest Dirichlet eigenvalue. In particular, in the one-dimensional case, the first eigenmode will be localized in the longest extended subregion. If the longest two extended subregions are the same in length, then the first eigenmode may be localized in these two subregions simultaneously. This phenomenon will be discussed in detail later.
 
-Note that in the one-dimensional case, there are at most two subregions around the boundary and the extended subregion is twice as long as the original one. However, in the two-dimensional case, the proportions of subregions that need to be extended is much higher (Fig. \ref{fig3}(f)). Moreover, if a subregion appears in the corner, then its area should be ``magnified" four times. These two facts explain why compared to the one-dimensional case, the eigenmodes for a two-dimensional problem have a much higher probability to be localized on the boundary.
+Note that in the one-dimensional case, there are at most two subregions around the boundary and the extended subregion is twice as long as the original one. However, in the two-dimensional case, the proportions of subregions that need to be extended is much higher (Fig. \ref{fig3}(e)). Moreover, if a subregion appears in the corner, then its area should be ``magnified" four times. These two facts explain why compared to the one-dimensional case, the eigenmodes for a two-dimensional problem have a much higher probability to be localized on the boundary.
 
 \subsection{Dependence of the boundary probabilities on $p$}
 In the previous discussion, we have explained why of the boundary probabilities decrease as the parameters $h$ and $K$ increase. Here we focus on the dependence of the boundary probabilities on the parameter $p$. For simplicity, we only focus on the one-dimensional case for small $h$ and large $K$.
 
 In the one-dimensional case, the domain $\Omega = (0, 1)$ is divided uniformly into $N$ subintervals of the same length $1/N$. In each subinterval, the potential $V$ can only take the value of $0$ or $1$ with $p$ being the probability of $V = 0$ and $q = 1-p$ being the probability of $V = 1$. Then the domain $\Omega$ can be decomposed into many subregions with $V = 0$ and $V = 1$ alternatively (see the white and gray regions in Fig. \ref{fig2}(a)). Intuitively, when $N$ is large, the lengths of these subregions are approximately independent and the number of subintervals included in each subregion with $V = 0$ ($V = 1$) approximately follows a geometric distribution with parameter $p$ ($q$). For small $h$ and large $K$, we have shown that the first eigenmode must be localized in the longest extended subregion with $V = 0$. Therefore, the probability that the first eigenmode is localized on the boundary is approximately equal to the probability that the longest extended subregion with $V = 0$ appears on the boundary, which is given by (see Appendix \ref{appB} for the proof)
 \begin{equation}\label{bdprob}
-P_b \approx q^2 p^2 \sum_{k=1}^{\infty} q^{k-2} \sum_{n=1}^{k-1} (1 - q^{2 \max\{k-n,n\}-1})^{M-2} + 2p q^2 \sum_{n=1}^{\infty} (1 - p^{2 n-1})^{M-2} p^{n-1}.
+P_b \approx q^2 p^2 \sum_{k=1}^{\infty} q^{k-2} \sum_{n=1}^{k-1} (1 - q^{2 \max\{k-n,n\}-1})^{M-2} + 2 p^2 q \sum_{n=1}^{\infty} (1-q^{2n-1})^{M-1} q^{n-1}.
 \end{equation}
 This formula reveals a complex relationship between the boundary probability $P_b$ on the parameter $p$ in the one-dimensional case.
 
-To test our theory, we compare the theoretical prediction given in \eqref{bdprob} with numerical simulations where the boundary probability $P_b$ is computed by generating the random potential 1000 times and then solving the associated eigenvalue problem \eqref{anderson} (Fig. \ref{fig3}(g)). Interestingly, while the analytical expression is very complicated, it is in perfect agreement with simulation results. Moreover, we find that $P_b$ decreases with $p$. When $p\approx 0.5$, we have $P_b\approx 0.26$, which means that the first eigenmode has a one in four chance of being localized on the boundary. In the two-dimensional case, the dependence of the boundary probabilities $P_e$ or $P_c$ on the parameter $p$ is similar (Fig. \ref{fig3}(c)), but it is very difficult to obtain their analytical expressions.
+To test our theory, we compare the theoretical prediction given in \eqref{bdprob} with numerical simulations where the boundary probability $P_b$ is computed by generating the random potential 1000 times and then solving the associated eigenvalue problem \eqref{anderson} (Fig. \ref{fig3}(f)). Interestingly, while the analytical expression is very complicated, it is in perfect agreement with simulation results. Moreover, we find that $P_b$ decreases with $p$. When $p\approx 0.5$, we have $P_b\approx 0.26$, which means that the first eigenmode has a one in four chance of being localized on the boundary. In the two-dimensional case, the dependence of the boundary probabilities $P_e$ or $P_c$ on the parameter $p$ is similar (Fig. \ref{fig3}(c)), but it is very difficult to obtain their analytical expressions.
 
 
 \section{Multimodality}\label{multimodality}
@@ -350,18 +350,19 @@ Fig. \ref{fig4}(a) illustrates multimodality for a one-dimensional problem. In t
 
 As mentioned earlier, the domain $\Omega = (0, 1)$ is divided uniformly into $N$ subintervals of the same length $1/N$. The number of subintervals included in each subregion with $V = 0$ ($V = 1$) approximately follows a geometric distribution with parameter $p$ ($q$). When $K\gg 1$, the first eigenmode must be localized in the longest extended subregion with $V = 0$ for both the Dirichlet and Neumann boundary conditions. Thus the probability that the first eigenmode displays multimodality is approximately equal to the probability that there are more than one longest extended subregions. For the Dirichlet boundary condition, the probability of multimodality is approximately given by (see Appendix \ref{appB} for the proof)
 \begin{equation}\label{multiD}
-P_D = 1 - p \sum_{n=1}^{\infty} (1 - p^{n-1})^{M-2} q^{n-1}.
+P_D \approx 1 - M p \sum_{n=1}^{\infty} (1 - q^{n-1})^{M-1} q^{n-1}.
 \end{equation}
 For the Neumann boundary condition, the probability of multimodality is much more complicated and is approximately given by
 \begin{equation}\label{multiN}
 \begin{split}
-P_N =&\; 1 - q^2 (M-2) \sum_{n=1}^{\infty} (1 - q^{(n-1)/2})^2 (1 - q^{n-1})^{M-3} q^{n-1} p \\
+P_N \approx&\; 1 - q^2 (M-2) \sum_{n=1}^{\infty} (1 - q^{[\frac{n-1}{2}]})^2 (1 - q^{n-1})^{M-3} q^{n-1} p \\
 &\;- 2 q^2 \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-2} (1 - q^{n-1}) q^{n-1} p \\
-&\;- 2 p q (M-1) \sum_{n=1}^{\infty} (1 - q^{(n-1)/2}) (1 - q^{n-1})^{M-2} q^{n-1} p \\
+&\;- 2 p q (M-1) \sum_{n=1}^{\infty} (1 - q^{[\frac{n-1}{2}]}) (1 - q^{n-1})^{M-2} q^{n-1} p \\
 &\;- 2 p q \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-1} q^{n-1} p \\
-&\;- p^2 M \sum_{n=1}^{\infty} (1 - p^{n-1})^{M-1} q^{n-1} p.
+&\;- p^2 M \sum_{n=1}^{\infty} (1 - q^{n-1})^{M-1} q^{n-1} p.
 \end{split}
 \end{equation}
+Where $[x]$ represents the largest integer less equal than $x$.
 
 %On the one hand, the eigenvalues are exactly equal only if $K \rightarrow \infty$, but we can only choose $K$ as a large number in simulation. On the ohter hand, the simulation will be affected by calculation error. Thus we can hardly observe that eigenvalues are exactly equal in practice. We regard that the eigenvalues are equal when the relative difference between the first and the second eigenvalue satisfy $\frac{\lambda_2 - \lambda_1}{\lambda_1} < 0.02$ and the multimodality appears when there is an eigenmode with multiple peaks in the eigenspace formed by eigenmode $u_1$ and $u_2$.
 
@@ -545,7 +546,7 @@ Since $L_1 + 2 L_2 + 2 L_3 + L_4 = 1$, there four parameters only have three deg
 \begin{equation}
 P_1 = \frac{L_1 + 2 L_3 + L_4}{L_1 + 2 L_2 + 2 L_3 + L_4}, \quad P_2 = \frac{L_1}{L_1 + 2 L_3 + L_4}, \quad P_3 = \frac{L_4}{2 L_3 + L_4},
 \end{equation}
-where $P_1$ represents the length of the two wells relative to the length of the whole interval, $P_2$ represents the length of the left well relative to total length of the two wells, and $P_3$ represents the length of the barrier relative to the length of the right well. The relationship between $K_c$ and $P_1$, $P_2$, and $P_3$ is complicated. However, we can obtain an approximate relationship between them using our analytical theory. Fig. \ref{fig6}(a)-(c) illustrate the critical threshold $K_c$ as $P_1$, $P_2$, and $P_3$ vary, where $K_c$ is numerically computed using \eqref{phase0}. Here we generate different values of $P_1$, $P_2$, and $P_3$ randomly from a large swathes of parameter space and keep the other two parameters invariant. Interestingly, we find that $K_c$ depends on $P_1$ in a power law form as
+where $P_1$ represents the length of the two wells relative to the length of the whole interval, $P_2$ represents the length of the left well relative to total length of the two wells, and $P_3$ represents the length of the barrier relative to the length of the right well. The relationship between $K_c$ and $P_1$, $P_2$, and $P_3$ is complicated. However, we can obtain an approximate relationship between them using our analytical theory. Fig. \ref{fig6}(a)-(c) illustrate the critical threshold $K_c$ as $P_1$, $P_2$, and $P_3$ vary. Here we generate different values of $P_1$, $P_2$, and $P_3$ randomly from a large swathes of parameter space and keep the other two parameters invariant. Interestingly, we find that $K_c$ depends on $P_1$ in a power law form as
 \begin{equation}
 K_c \propto {P_1}^{-2}.
 \end{equation}
@@ -716,7 +717,7 @@ Second, we consider the situation where $V(0) = 0$ and $V(1) = 1$, whose probabi
 p_2 &= \mathbb{P}(\max\{X_2, X_3, \cdots, X_{M}\} < 2 X_1) \\
 &= \sum_{n=1}^{\infty} \mathbb{P}(\max\{X_2, X_3, \cdots, X_{M-1}\} < 2 n) \mathbb{P}(X_1 = n) \\
 &= \sum_{n=1}^{\infty} [\mathbb{P}(X_k < 2 n)]^{M-1} \mathbb{P}(X_1 = n)\\
-&= q \sum_{n=1}^{\infty} (1 - p^{2 n-1})^{M-2} p^{n-1}.
+&= p \sum_{n=1}^{\infty} (1-q^{2n-1})^{M-1} q^{n-1}.
 \end{split}
 \end{equation*}
 Third, we consider the situation where $V(0) = 1$ and $V(1) = 0$, whose probability is $p q$. In this case, the lengths of the extended subregions with $V = 0$ are given by $X_1, X_2, \cdots, 2X_M$. In analogy to the second case, the probability that the longest extended subregion appears on the boundary is given by
@@ -738,7 +739,7 @@ Under the Dirichlet boundary condition, the first eigenmode is localized in the 
 &= M \; \mathbb{P}(\max\{X_{2}, X_{3}, \cdots, X_{M}\} < X_1) \\
 &= M \sum_{n=1}^{\infty} \mathbb{P}(\max\{X_2, X_3, \cdots, X_{M-1}\} < n) \mathbb{P}(X_1 = n) \\
 &= M \sum_{n=1}^{\infty} [\mathbb{P}(X_k < n)]^{M-1} \mathbb{P}(X_1 = n)\\
-&= M \sum_{n=1}^{\infty} (1 - p^{n-1})^{M-1} q^{n-1} p,
+&= M \sum_{n=1}^{\infty} (1 - q^{n-1})^{M-1} q^{n-1} p,
 \end{split}
 \end{equation*}
 which gives \eqref{multiD} in the main text.
@@ -756,9 +757,10 @@ p_1 = &\; \sum_{k=2}^{M-1} \mathbb{P}(\max\{2 X_1, X_2, \cdots, X_{k-1}, X_{k+1}
 &\; + 2 \sum_{n=1}^{\infty} \mathbb{P}(\max\{X_2, \cdots, 2 X_M\} < 2 n) \mathbb{P}(X_1 = n) \\
 = &\; (M-2) \sum_{n=1}^{\infty} [\mathbb{P}(2 X_k < n)]^2 [\mathbb{P}(X_k < n)]^{M-3} \mathbb{P}(X_2 = n) \\
 &\; + 2 \sum_{n=1}^{\infty} [\mathbb{P}(X_k < 2 n)]^{M-2} \mathbb{P}(X_k < n) \mathbb{P}(X_1 = n) \\
-= &\; (M-2) \sum_{n=1}^{\infty} (1 - q^{(n-1)/2})^2 (1 - q^{n-1})^{M-3} q^{n-1} p + 2 \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-2} (1 - q^{n-1}) q^{n-1} p.
+= &\; (M-2) \sum_{n=1}^{\infty} (1 - q^{[\frac{n-1}{2}]})^2 (1 - q^{n-1})^{M-3} q^{n-1} p + 2 \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-2} (1 - q^{n-1}) q^{n-1} p.
 \end{split}
 \end{equation*}
+Where $[x]$ represents the largest integer less equal than $x$.
 Second, we consider the situation where $V(0) = 0$ and $V(1) = 1$, whose probability is $p q$. In this case, the length of extended subregions with $V = 0$ are given by $2 X_1, X_2, \cdots, X_M$. Then the probability that there is a unique longest extended subregion is
 \begin{equation*}
 \begin{split}
@@ -768,7 +770,7 @@ p_2 = &\; \sum_{k=2}^{M} \mathbb{P}(\max\{2 X_1, X_2, \cdots, X_{k-1}, X_{k+1}, 
 = &\; (M-1) \sum_{n=1}^{\infty} \mathbb{P}(\max\{2 X_1, \cdots, X_{M}\} < n) \mathbb{P}(X_2 = n) \\
 &\; + \sum_{n=1}^{\infty} \mathbb{P}(\max\{X_2, \cdots, X_M\} < 2 n) \mathbb{P}(X_1 = n) \\
 = &\; (M-1) \sum_{n=1}^{\infty} \mathbb{P}(2 X_k < n) [\mathbb{P}(X_k < n)]^{M-2} \mathbb{P}(X_2 = n) + \sum_{n=1}^{\infty} [\mathbb{P}(X_k < 2 n)]^{M-1} \mathbb{P}(X_1 = n) \\
-= &\; (M-1) \sum_{n=1}^{\infty} (1 - q^{(n-1)/2}) (1 - q^{n-1})^{M-2} q^{n-1} p + \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-1} q^{n-1} p.
+= &\; (M-1) \sum_{n=1}^{\infty} (1 - q^{[\frac{n-1}{2}]}) (1 - q^{n-1})^{M-2} q^{n-1} p + \sum_{n=1}^{\infty} (1 - q^{2n-1})^{M-1} q^{n-1} p.
 \end{split}
 \end{equation*}
 Third, we consider the situation where $V(0) = 1$ and $V(1) = 0$, whose probability is $pq$. In this case, the probability that there is a unique longest extended subregion is given by $p_3 = p_2$. Finally, we consider the situation in which $V(0) = V(1) = 1$, whose probability is $p^2$. In this case, the length of the extended subregions with $V = 0$ are given by $X_1, X_2, \cdots, X_M$. Then the probability that there is a unique longest extended subregion is given by $p_4 = 1-p_D$, where $p_D$ is the multimodal probability for the Dirichlet boundary condition. In summary, the probability that the first eigenmode is unimodal is given by

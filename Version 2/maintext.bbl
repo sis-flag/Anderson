@@ -1,0 +1,133 @@
+\begin{thebibliography}{22}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Anderson(1958)}]{anderson1958absence}
+Anderson, P.~W.
+\newblock Absence of diffusion in certain random lattices.
+\newblock \emph{Phys. Rev.} \textbf{109}, 1492 (1958).
+
+\bibitem[{Thouless(1974)}]{thouless1974electrons}
+Thouless, D.~J.
+\newblock Electrons in disordered systems and the theory of localization.
+\newblock \emph{Phys. Rep.} \textbf{13}, 93--142 (1974).
+
+\bibitem[{Abrahams \emph{et~al.}(1979)Abrahams, Anderson, Licciardello \&
+  Ramakrishnan}]{abrahams1979scaling}
+Abrahams, E., Anderson, P., Licciardello, D. \& Ramakrishnan, T.
+\newblock Scaling theory of localization: Absence of quantum diffusion in two
+  dimensions.
+\newblock \emph{Phys. Rev. Lett.} \textbf{42}, 673 (1979).
+
+\bibitem[{Lee \& Ramakrishnan(1985)}]{lee1985disordered}
+Lee, P.~A. \& Ramakrishnan, T.
+\newblock Disordered electronic systems.
+\newblock \emph{Rev. Mod. Phys.} \textbf{57}, 287 (1985).
+
+\bibitem[{John(1987)}]{john1987strong}
+John, S.
+\newblock Strong localization of photons in certain disordered dielectric
+  superlattices.
+\newblock \emph{Phys. Rev. Lett.} \textbf{58}, 2486 (1987).
+
+\bibitem[{Akkermans \emph{et~al.}(1988)Akkermans, Wolf, Maynard \&
+  Maret}]{akkermans1988theoretical}
+Akkermans, E., Wolf, P., Maynard, R. \& Maret, G.
+\newblock Theoretical study of the coherent backscattering of light by
+  disordered media.
+\newblock \emph{Journal de Physique} \textbf{49}, 77--98 (1988).
+
+\bibitem[{Kuhn \emph{et~al.}(2005)Kuhn, Miniatura, Delande, Sigwarth \&
+  Mueller}]{kuhn2005localization}
+Kuhn, R., Miniatura, C., Delande, D., Sigwarth, O. \& Mueller, C.~A.
+\newblock Localization of matter waves in two-dimensional disordered optical
+  potentials.
+\newblock \emph{Phys. Rev. Lett.} \textbf{95}, 250403 (2005).
+
+\bibitem[{Billy \emph{et~al.}(2008)}]{billy2008direct}
+Billy, J. \emph{et~al.}
+\newblock Direct observation of Anderson localization of matter waves in a
+  controlled disorder.
+\newblock \emph{Nature} \textbf{453}, 891--894 (2008).
+
+\bibitem[{Roati \emph{et~al.}(2008)}]{roati2008anderson}
+Roati, G. \emph{et~al.}
+\newblock Anderson localization of a non-interacting Bose--Einstein condensate.
+\newblock \emph{Nature} \textbf{453}, 895--898 (2008).
+
+\bibitem[{Abrahams \emph{et~al.}(2001)Abrahams, Kravchenko \&
+  Sarachik}]{abrahams2001metallic}
+Abrahams, E., Kravchenko, S.~V. \& Sarachik, M.~P.
+\newblock Metallic behavior and related phenomena in two dimensions.
+\newblock \emph{Rev. Mod. Phys.} \textbf{73}, 251 (2001).
+
+\bibitem[{Evers \& Mirlin(2008)}]{evers2008anderson}
+Evers, F. \& Mirlin, A.~D.
+\newblock Anderson transitions.
+\newblock \emph{Rev. Mod. Phys.} \textbf{80}, 1355 (2008).
+
+\bibitem[{Lagendijk \emph{et~al.}(2009)Lagendijk, Van~Tiggelen \&
+  Wiersma}]{lagendijk2009fifty}
+Lagendijk, A., Van~Tiggelen, B. \& Wiersma, D.~S.
+\newblock Fifty years of Anderson localization.
+\newblock \emph{Phys. Today} \textbf{62}, 24--29 (2009).
+
+\bibitem[{Laurent \emph{et~al.}(2007)Laurent, Legrand, Sebbah, Vanneste \&
+  Mortessagne}]{laurent2007localized}
+Laurent, D., Legrand, O., Sebbah, P., Vanneste, C. \& Mortessagne, F.
+\newblock Localized modes in a finite-size open disordered microwave cavity.
+\newblock \emph{Phys. Rev. Lett.} \textbf{99}, 253902 (2007).
+
+\bibitem[{Sapienza \emph{et~al.}(2010)}]{sapienza2010cavity}
+Sapienza, L. \emph{et~al.}
+\newblock Cavity quantum electrodynamics with Anderson-localized modes.
+\newblock \emph{Science} \textbf{327}, 1352--1355 (2010).
+
+\bibitem[{Riboli \emph{et~al.}(2011)}]{riboli2011anderson}
+Riboli, F. \emph{et~al.}
+\newblock Anderson localization of near-visible light in two dimensions.
+\newblock \emph{Opt. Lett.} \textbf{36}, 127--129 (2011).
+
+\bibitem[{Filoche \& Mayboroda(2012)}]{filoche2012universal}
+Filoche, M. \& Mayboroda, S.
+\newblock Universal mechanism for Anderson and weak localization.
+\newblock \emph{Proc. Natl. Acad. Sci. USA} \textbf{109}, 14761--14766 (2012).
+
+\bibitem[{Arnold \emph{et~al.}(2016)Arnold, David, Jerison, Mayboroda \&
+  Filoche}]{arnold2016effective}
+Arnold, D.~N., David, G., Jerison, D., Mayboroda, S. \& Filoche, M.
+\newblock Effective confining potential of quantum states in disordered media.
+\newblock \emph{Phys. Rev. Lett.} \textbf{116}, 056602 (2016).
+
+\bibitem[{Arnold \emph{et~al.}(2019{\natexlab{a}})Arnold, David, Filoche,
+  Jerison \& Mayboroda}]{arnold2019localization}
+Arnold, D.~N., David, G., Filoche, M., Jerison, D. \& Mayboroda, S.
+\newblock Localization of eigenfunctions via an effective potential.
+\newblock \emph{Communications in Partial Differential Equations} \textbf{44},
+  1186--1216 (2019{\natexlab{a}}).
+
+\bibitem[{Arnold \emph{et~al.}(2019{\natexlab{b}})Arnold, David, Filoche,
+  Jerison \& Mayboroda}]{arnold2019computing}
+Arnold, D.~N., David, G., Filoche, M., Jerison, D. \& Mayboroda, S.
+\newblock Computing spectra without solving eigenvalue problems.
+\newblock \emph{SIAM Journal on Scientific Computing} \textbf{41}, B69--B92
+  (2019{\natexlab{b}}).
+
+\bibitem[{Bass(1998)}]{1998Diffusions}
+Bass, R.~F.
+\newblock \emph{Diffusions and Elliptic Operators} (Springer,, 1998).
+
+\bibitem[{Soille \& Vincent(1990)}]{Soille1990Determining}
+Soille, P. \& Vincent, L.~M.
+\newblock Determining watersheds in digital pictures via flooding simulations.
+\newblock \emph{Proceedings of SPIE - The International Society for Optical
+  Engineering} \textbf{1360}, 240--250 (1990).
+
+\bibitem[{Grebenkov \& Nguyen(2012)}]{2012Geometrical}
+Grebenkov, D.~S. \& Nguyen, B.~T.
+\newblock Geometrical structure of Laplacian eigenfunctions.
+\newblock \emph{Siam Review} \textbf{55}, págs. 601--667 (2012).
+
+\end{thebibliography}

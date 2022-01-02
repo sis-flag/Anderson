@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Localization landscape and limit behavior}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Model}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Localization landscape}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Valley lines}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Limit behavior for large K}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Boundary effect}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Localization on the boundary}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{An explanation of the boundary effect}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Dependence of the boundary probabilities on p}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Multimodality}{}% 11
+\BOOKMARK [1][-]{section.5}{Bifurcation of localization subregions}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{Bifurcation analysis in a toy model}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Computation of the critical threshold}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Dependence of the critical threshold on model parameters}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Conclusions and discussion}{}% 16
+\BOOKMARK [1][-]{Appendix.a.A}{Proof of the Filochea-Mayboroda inequality}{}% 17
+\BOOKMARK [1][-]{Appendix.a.B}{Equivalent system in the extended subregion}{}% 18
+\BOOKMARK [1][-]{Appendix.a.C}{Boundary effect and multimodality}{}% 19
+\BOOKMARK [2][-]{subsection.a.C.1}{Calculation of boundary probability for the Neumann boundary condition}{Appendix.a.C}% 20
+\BOOKMARK [2][-]{subsection.a.C.2}{Calculation of the multimodal probability for the Dirichlet boundary condition}{Appendix.a.C}% 21
+\BOOKMARK [2][-]{subsection.a.C.3}{Calculation of the multimodal probability for the Neumann boundary condition}{Appendix.a.C}% 22
+\BOOKMARK [1][-]{Appendix.a.D}{Critical threshold of bifurcation}{}% 23
+\BOOKMARK [2][-]{subsection.a.D.1}{Eigenvalues of the subsystem 1}{Appendix.a.D}% 24
+\BOOKMARK [2][-]{subsection.a.D.2}{Eigenvalues of the subsystem 2}{Appendix.a.D}% 25
