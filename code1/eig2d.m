@@ -16,6 +16,9 @@ function [U, lam] = eig2d(V, h, num, N)
 
 % V must be square !!!
 
+% When V(x) < 0, 'eigs' may not get the smallest eigenvalue
+V = V - min(V(:)); % shift
+
 % default input
 if nargin < 4
     N = 6;
@@ -113,7 +116,7 @@ else
     end
     
     [U, lam] = eigs(A, B, num, 0);
-    lam = diag(lam);
+    lam = diag(lam) + min(V(:));
 end
 
 end

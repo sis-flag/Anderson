@@ -14,6 +14,9 @@ function [U, lam] = eig1d(V, h, num, N)
 %                     use function getval1d to get value of sulution
 %     lam(1-d array): array with size (num, 1), eigenvalues
 
+% When V(x) < 0, 'eigs' may not get the smallest eigenvalue
+V = V - min(V(:)); % shift
+
 % default input
 if nargin < 4
     N = 10;
@@ -74,7 +77,7 @@ else
     A(end, end) = A(end, end) + h;
     
     [U, lam] = eigs(A, B, num, 0);
-    lam = diag(lam);
+    lam = diag(lam) + min(V(:));
 end
 
 end
